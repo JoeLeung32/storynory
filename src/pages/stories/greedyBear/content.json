@@ -1,0 +1,27 @@
+{
+  "coverImageUrl": "/stories/greedyBear/cover.webp",
+  "sound": "/stories/greedyBear/greedy-bear.mp3",
+  "captions": [
+    {
+      "start": 0,
+      "end": 2.233572,
+      "content": "Hello, This is Jana.\n"
+    },
+    {
+      "start": 2.233572,
+      "end": 4.555707,
+      "content": "And welcome to Storynory."
+    },
+    {
+      "start": 5,
+      "end": 9.58739,
+      "content": "We are here with an amusing story from the Punjab in the North of India.\n\n"
+    },
+    {
+      "start": 9.58739,
+      "end": 12.486984,
+      "content": "We know we have lots of listeners in India"
+    }
+  ],
+  "inProgress": " - so I just want to say: ‘Humari dua hai, aap humesha kush ra ho’ - we wish you happiness always!"
+}
