@@ -3,25 +3,90 @@
   "sound": "/stories/greedyBear/greedy-bear.mp3",
   "captions": [
     {
-      "start": 0,
-      "end": 2.233572,
-      "content": "Hello, This is Jana.\n"
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 0,
+          "end": 2.233572,
+          "content": "Hello, This is Jana",
+          "standalone": true
+        },
+        {
+          "start": 2.233572,
+          "end": 4.555707,
+          "content": "And welcome to Storynory."
+        },
+        {
+          "start": 5,
+          "end": 9.58739,
+          "content": "We are here with an amusing story from the Punjab in the North of India.\n\n"
+        }
+      ]
     },
     {
-      "start": 2.233572,
-      "end": 4.555707,
-      "content": "And welcome to Storynory."
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 10.496664,
+          "end": 12.955099,
+          "content": "We know we have lots of listeners in India"
+        },
+        {
+          "start": 13.039915,
+          "end": 15.629295,
+          "content": "- so I just want to say:"
+        },
+        {
+          "start": 15.629295,
+          "end": 19.384922,
+          "content": "‘Humari dua hai, aap humesha kush ra ho’"
+        },
+        {
+          "start": 19.385011,
+          "end": 23.689838,
+          "content": "- we wish you happiness always!"
+        }
+      ]
     },
     {
-      "start": 5,
-      "end": 9.58739,
-      "content": "We are here with an amusing story from the Punjab in the North of India.\n\n"
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 24.5,
+          "end": 26.12244,
+          "content": "The Greedy Bear"
+        }
+      ]
     },
     {
-      "start": 9.58739,
-      "end": 12.486984,
-      "content": "We know we have lots of listeners in India"
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 26.861679,
+          "end": 28.119523,
+          "content": "Once upon a time,"
+        },
+        {
+          "start": 28.119608,
+          "end": 33.563127,
+          "content": "a poor woodman and his wife lived in a tiny hut close to the orchard of a rich man,"
+        },
+        {
+          "start": 33.774499,
+          "end": 38.145459,
+          "content": "—so close that the boughs of a pear-tree hung right over the cottage yard."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 38.473655,
+          "end": 41.491648,
+          "content": "it was agreed between the rich man and the couple,"
+        }
+      ]
     }
-  ],
-  "inProgress": " - so I just want to say: ‘Humari dua hai, aap humesha kush ra ho’ - we wish you happiness always!"
+  ]
 }
