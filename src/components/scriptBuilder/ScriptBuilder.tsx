@@ -1,40 +1,30 @@
 import React, { SyntheticEvent, useEffect, useRef, useState } from 'react'
 import { HeadFC } from 'gatsby'
 import styled from 'styled-components'
+import { CaptionLine, CaptionTimestamp } from '../../interfaces/Caption'
 
 interface Props {
     audio: HTMLAudioElement | undefined
     storyPath: string | undefined
 }
 
-interface LoopRange {
-    start: number | null
-    end: number | null
-}
-
-const loopRangeDefault = {
+const timeLoopDefault = {
     start: null,
     end: null,
 }
-
-const StyleTextArea = styled.textarea`
-    width: 100%;
-    height: 3rem;
-`
 
 const ScriptBuilder: React.FC<Props> = ({ audio, storyPath }) => {
     const divRef = useRef<HTMLDivElement>(null)
     const textareaRef = useRef<HTMLTextAreaElement>(null)
     const [script, setScript] = useState('')
-    const [timestamp, setTimestamp] = useState<LoopRange>(loopRangeDefault)
-    const [selectedScript, setSelectedScript] = useState([])
+    const [timeLoop, setTimeLoop] = useState<CaptionTimestamp>(timeLoopDefault)
+    const [selectedScript, setSelectedScript] = useState<CaptionLine[]>([])
     const handleSelectedScript = (event: SyntheticEvent) => {
         const selectedText = window?.getSelection()?.toString().trim()
         const newData = {
-            ...timestamp,
+            ...timeLoop,
             content: selectedText,
-        }
-        // @ts-ignore
+        } as CaptionLine
         setSelectedScript([...selectedScript, newData])
         if (textareaRef.current) {
             textareaRef.current.innerText = JSON.stringify([
@@ -45,26 +35,23 @@ const ScriptBuilder: React.FC<Props> = ({ audio, storyPath }) => {
     }
     const handleSelectedScriptClean = () => {
         setSelectedScript([])
-        if (textareaRef.current) {
-            textareaRef.current.innerText = ''
-        }
+        if (!textareaRef.current) return
+        textareaRef.current.innerText = ''
     }
     const handleSetStart = () => {
-        if (audio) {
-            setTimestamp({
-                start: audio.currentTime,
-                end: timestamp.end,
-            })
-        }
+        if (!audio) return
+        setTimeLoop({
+            start: audio.currentTime,
+            end: timeLoop.end,
+        })
     }
     const handleSetEnd = () => {
-        if (audio) {
-            setTimestamp({
-                start: timestamp.start,
-                end: audio.currentTime,
-            })
-            audio?.pause()
-        }
+        if (!audio) return
+        setTimeLoop({
+            start: timeLoop.start,
+            end: audio.currentTime,
+        })
+        audio?.pause()
     }
     useEffect(() => {
         if (!storyPath) return
@@ -80,10 +67,22 @@ const ScriptBuilder: React.FC<Props> = ({ audio, storyPath }) => {
     return (
         <>
             <hr />
-            <div>
-                <StyleTextArea ref={textareaRef}></StyleTextArea>
+            <div className={`card mb-3`}>
+                <StyledScriptSource
+                    ref={divRef}
+                    dangerouslySetInnerHTML={{ __html: script }}
+                ></StyledScriptSource>
             </div>
-            <div className="btn-group" role="group" aria-label="Basic example">
+            <p>
+                Start: {timeLoop.start} / End: {timeLoop.end}
+            </p>
+            <p>
+                <StyledTextArea
+                    ref={textareaRef}
+                    className={`form-control`}
+                ></StyledTextArea>
+            </p>
+            <div className={`btn-group mb-5`}>
                 <button
                     className={`btn btn-sm btn-primary`}
                     onClick={handleSetStart}
@@ -121,17 +120,20 @@ const ScriptBuilder: React.FC<Props> = ({ audio, storyPath }) => {
                     Clean
                 </button>
             </div>
-            <div>
-                Start: {timestamp.start} / End: {timestamp.end}
-            </div>
-            <hr />
-            <div
-                ref={divRef}
-                dangerouslySetInnerHTML={{ __html: script }}
-            ></div>
         </>
     )
 }
+
+const StyledTextArea = styled.textarea`
+    height: 10rem;
+`
+
+const StyledScriptSource = styled.div`
+    overflow: hidden;
+    overflow-y: auto;
+    width: 100%;
+    height: 10rem;
+`
 
 export default ScriptBuilder
 

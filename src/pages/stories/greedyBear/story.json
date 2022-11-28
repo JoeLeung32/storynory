@@ -1,4 +1,5 @@
 {
+  "storyName": "The Greedy Bear",
   "coverImageUrl": "/stories/greedyBear/cover.webp",
   "sound": "/stories/greedyBear/greedy-bear.mp3",
   "captions": [
@@ -9,17 +10,26 @@
           "start": 0,
           "end": 2.233572,
           "content": "Hello, This is Jana",
+          "translation": {
+            "tc": "你好，我是賈娜"
+          },
           "standalone": true
         },
         {
           "start": 2.233572,
           "end": 4.555707,
-          "content": "And welcome to Storynory."
+          "content": "And welcome to Storynory.",
+          "translation": {
+            "tc": "歡迎來到 Storynory。"
+          }
         },
         {
           "start": 5,
           "end": 9.58739,
-          "content": "We are here with an amusing story from the Punjab in the North of India.\n\n"
+          "content": "We are here with an amusing story from the Punjab in the North of India.",
+          "translation": {
+            "tc": "我們在這裡講述了一個來自印度北部旁遮普邦的有趣故事。"
+          }
         }
       ]
     },
