@@ -27,6 +27,7 @@ const StoryBook: React.FC<Props> = (props) => {
     const { children } = props
     const { audioSourceUrl, handleAudio } = props
     const { storyName, captions, translationCode } = props
+    const [highlighter, setHighlighter] = useState<boolean>(true)
     const [audio, setAudio] = useState<HTMLAudioElement>()
     const [currentTime, setCurrentTime] = useState(0)
     const [timeLoop, setTimeLoop] = useState<CaptionTimestamp>(timeLoopDefault)
@@ -68,19 +69,23 @@ const StoryBook: React.FC<Props> = (props) => {
             if (!document) return
             const paragraphs = document.querySelectorAll('.storyParagraph')
             if (!paragraphs) return
+            setCurrentLineId(null)
             paragraphs.forEach((el) => {
                 if (el instanceof HTMLElement) {
                     const targeted =
                         audio.currentTime >= Number(el?.dataset.start) &&
                         audio.currentTime < Number(el?.dataset.end)
-                    el.dataset.highlight = targeted ? 'true' : 'false'
+                    el.dataset.highlight =
+                        highlighter && targeted ? 'true' : 'false'
                     if (targeted) {
                         setCurrentLineId(el.id)
-                        el.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'center',
-                            inline: 'nearest',
-                        })
+                        if (highlighter) {
+                            el.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'center',
+                                inline: 'nearest',
+                            })
+                        }
                     }
                 }
             })
@@ -142,6 +147,16 @@ const StoryBook: React.FC<Props> = (props) => {
                                     <i className="fa-solid fa-pause"></i>
                                 </button>
                             )}
+                            <button
+                                className={`btn btn-sm btn-link ${
+                                    highlighter
+                                        ? 'text-primary'
+                                        : 'text-secondary'
+                                }`}
+                                onClick={() => setHighlighter(!highlighter)}
+                            >
+                                <i className="fa-solid fa-highlighter"></i>
+                            </button>
                         </div>
                     </div>
                 </StyledParagraphLine>
