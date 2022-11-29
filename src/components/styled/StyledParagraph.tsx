@@ -1,13 +1,15 @@
 import styled from 'styled-components'
 
 interface StyledParagraphLine {
-    standalone?: boolean
+	standalone?: boolean
 }
 
 const StyledParagraph = styled.div`
+    border-bottom: 1px solid whitesmoke;
     display: block;
     // display: none;
     margin-bottom: 1rem;
+    padding-bottom: 1rem;
     /*
     &:nth-last-child(-n+1) {
         display: block;
@@ -29,4 +31,4 @@ const StyledParagraphLine = styled.div<StyledParagraphLine>`
     }
 `
 
-export { StyledParagraph, StyledParagraphLine }
+export {StyledParagraph, StyledParagraphLine}

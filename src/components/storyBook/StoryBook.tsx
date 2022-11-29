@@ -122,6 +122,7 @@ const StoryBook: React.FC<Props> = (props) => {
                         </div>
                         <div>
                             <button
+                                title={`Loop this one`}
                                 className={`btn btn-sm btn-link`}
                                 onClick={() =>
                                     audioControl.set(line.start, line.end)
@@ -131,6 +132,7 @@ const StoryBook: React.FC<Props> = (props) => {
                             </button>
                             {(eleId !== currentLineId || audio?.paused) && (
                                 <button
+                                    title={`Play from here`}
                                     className={`btn btn-sm btn-link`}
                                     onClick={() =>
                                         audioControl.set(line.start, null)
@@ -141,6 +143,7 @@ const StoryBook: React.FC<Props> = (props) => {
                             )}
                             {eleId === currentLineId && !audio?.paused && (
                                 <button
+                                    title={`Pause`}
                                     className={`btn btn-sm btn-link`}
                                     onClick={() => audio?.pause()}
                                 >
@@ -148,6 +151,7 @@ const StoryBook: React.FC<Props> = (props) => {
                                 </button>
                             )}
                             <button
+                                title={`Stop highlight and auto-scroll`}
                                 className={`btn btn-sm btn-link ${
                                     highlighter
                                         ? 'text-primary'
