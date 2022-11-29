@@ -129,7 +129,7 @@ const StoryBook: React.FC<Props> = (props) => {
                             >
                                 <i className="fa-solid fa-repeat"></i>
                             </button>
-                            {eleId !== currentLineId && (
+                            {(eleId !== currentLineId || audio?.paused) && (
                                 <button
                                     className={`btn btn-sm btn-link`}
                                     onClick={() =>
@@ -139,7 +139,7 @@ const StoryBook: React.FC<Props> = (props) => {
                                     <i className="fa-solid fa-play"></i>
                                 </button>
                             )}
-                            {eleId === currentLineId && (
+                            {eleId === currentLineId && !audio?.paused && (
                                 <button
                                     className={`btn btn-sm btn-link`}
                                     onClick={() => audio?.pause()}
