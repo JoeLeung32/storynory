@@ -16,8 +16,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.1",
     "@mdx-js/react": "^2.1.5",
+    "@popperjs/core": "^2.11.6",
     "babel-plugin-styled-components": "^2.0.7",
+    "bootstrap": "^5.2.3",
     "gatsby": "^5.2.0",
     "gatsby-plugin-image": "^3.2.0",
     "gatsby-plugin-mdx": "^5.2.0",
@@ -26,6 +29,7 @@
     "gatsby-plugin-styled-components": "^6.2.0",
     "gatsby-source-filesystem": "^5.2.0",
     "gatsby-transformer-sharp": "^5.2.0",
+    "prettier": "^2.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "styled-components": "^5.3.6"
@@ -34,6 +38,10 @@
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
+    "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "gatsby-plugin-eslint": "^4.0.3",
     "typescript": "^4.8.4"
   }
 }

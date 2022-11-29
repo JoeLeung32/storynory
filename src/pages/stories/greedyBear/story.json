@@ -1,0 +1,282 @@
+{
+  "storyName": "The Greedy Bear",
+  "coverImageUrl": "/stories/greedyBear/cover.webp",
+  "sound": "/stories/greedyBear/greedy-bear.mp3",
+  "captions": [
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 0,
+          "end": 2.233572,
+          "content": "Hello, This is Jana",
+          "translation": {
+            "tc": "你好，我是賈娜"
+          },
+          "standalone": true
+        },
+        {
+          "start": 2.233572,
+          "end": 4.555707,
+          "content": "And welcome to Storynory.",
+          "translation": {
+            "tc": "歡迎來到 Storynory。"
+          }
+        },
+        {
+          "start": 5,
+          "end": 9.58739,
+          "content": "We are here with an amusing story from the Punjab in the North of India.",
+          "translation": {
+            "tc": "我們在這裡講述了一個來自印度北部旁遮普邦的有趣故事。"
+          }
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 10.496664,
+          "end": 12.955099,
+          "content": "We know we have lots of listeners in India"
+        },
+        {
+          "start": 13.039915,
+          "end": 15.629295,
+          "content": "- so I just want to say:"
+        },
+        {
+          "start": 15.629295,
+          "end": 19.384922,
+          "content": "‘Humari dua hai, aap humesha kush ra ho’"
+        },
+        {
+          "start": 19.385011,
+          "end": 23.689838,
+          "content": "- we wish you happiness always!"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 24.5,
+          "end": 26.12244,
+          "content": "The Greedy Bear"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 26.861679,
+          "end": 28.119523,
+          "content": "Once upon a time,"
+        },
+        {
+          "start": 28.119608,
+          "end": 33.563127,
+          "content": "a poor woodman and his wife lived in a tiny hut close to the orchard of a rich man,"
+        },
+        {
+          "start": 33.774499,
+          "end": 38.145459,
+          "content": "—so close that the boughs of a pear-tree hung right over the cottage yard."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 38.473655,
+          "end": 41.491648,
+          "content": "it was agreed between the rich man and the couple,"
+        },
+        {
+          "start": 41.601762,
+          "end": 43.875183,
+          "content": "that if any of the fruit fell into the yard,"
+        },
+        {
+          "start": 43.974047,
+          "end": 45.899247,
+          "content": "the couple were to be allowed to eat it;"
+        },
+        {
+          "start": 46.654035,
+          "end": 51.6,
+          "content": "so you may imagine with what hungry eyes they watched the pears ripening,"
+        },
+        {
+          "start": 51.786117,
+          "end": 54.1,
+          "content": "and prayed for a storm of wind,"
+        },
+        {
+          "start": 54.11,
+          "end": 56.134845,
+          "content": "or a flock of flying foxes"
+        },
+        {
+          "start": 56.13492,
+          "end": 59.036753,
+          "content": "or anything which would cause the fruit to fall."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 59.565296,
+          "end": 60.82,
+          "content": "Apart from pears,"
+        },
+        {
+          "start": 60.9,
+          "end": 63.825353,
+          "content": "the couple did not have a rich choice of foods to eat."
+        },
+        {
+          "start": 64.096218,
+          "end": 66.41,
+          "content": "But they did have yellow lentils,"
+        },
+        {
+          "start": 66.43,
+          "end": 68.441894,
+          "content": "ghee and some spices."
+        },
+        {
+          "start": 68.8,
+          "end": 72,
+          "content": "The wife was particularly good at making this dish called dahl."
+        },
+        {
+          "start": 72.449082,
+          "end": 75.854943,
+          "content": "What an appetising smell it had, to be sure!"
+        },
+        {
+          "start": 76.151313,
+          "end": 78.731536,
+          "content": "The woodman gobbled it up as soon as it was ready."
+        },
+        {
+          "start": 79.302155,
+          "end": 83.281096,
+          "content": "But one day his wife said: “No!”"
+        },
+        {
+          "start": 83.28117,
+          "end": 87.272641,
+          "content": "not until you’ve fetched some dry wood. Off you go!”"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 87.57169,
+          "end": 92.234806,
+          "content": "So off he went into the forest and began to hack and saw away at the wood,"
+        },
+        {
+          "start": 92.234885,
+          "end": 96.469339,
+          "content": "and with each cut, he seemed to smell the savoury dhal."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 97.310446,
+          "end": 100.929153,
+          "content": "Just then a bear came swinging by,"
+        },
+        {
+          "start": 100.929226,
+          "end": 104.297559,
+          "content": "with its great black nose tilted in the air,"
+        },
+        {
+          "start": 104.382094,
+          "end": 107.41949,
+          "content": "and its little keen eyes peering about;"
+        },
+        {
+          "start": 107.419562,
+          "end": 110.856453,
+          "content": "for bears, though good enough fellows on the whole,"
+        },
+        {
+          "start": 110.985052,
+          "end": 113.521237,
+          "content": "are just dreadfully inquisitive."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 114.464541,
+          "end": 118.307332,
+          "content": "'Peace be with you, friend!' said the bear,"
+        },
+        {
+          "start": 118.307405,
+          "end": 122.221955,
+          "content": "'and what may you be doing with that bundle of wood?'"
+        },
+        {
+          "start": 122.256972,
+          "end": 125.866393,
+          "content": "'It is for my wife,' returned the woodman."
+        },
+        {
+          "start": 126.221697,
+          "end": 129.88906,
+          "content": "'The fact is,' he added confidentially, smacking his lips,"
+        },
+        {
+          "start": 129.953236,
+          "end": 132.830945,
+          "content": "'she has made such wonderful dhal for dinner!"
+        },
+        {
+          "start": 132.815832,
+          "end": 138.845067,
+          "content": "and if I bring in a good bundle of wood she is pretty sure to give me a plentiful portion."
+        },
+        {
+          "start": 139.073379,
+          "end": 141.208912,
+          "content": "Oh, my dear fellow,"
+        },
+        {
+          "start": 141.208979,
+          "end": 143.905071,
+          "content": "you should just smell that dahl!'"
+        },
+        {
+          "start": 144.106977,
+          "end": 147.202119,
+          "content": "At this the bear's mouth began to water,"
+        },
+        {
+          "start": 147.646219,
+          "end": 151.572904,
+          "content": "for, like all bears, he was a dreadful glutton."
+        }
+      ]
+    }
+  ]
+}

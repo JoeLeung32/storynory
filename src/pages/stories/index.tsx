@@ -2,7 +2,7 @@ import React from "react"
 import {HeadFC, PageProps} from "gatsby"
 
 const StoriesIndexPage: React.FC<PageProps> = () => {
-	return(
+	return (
 		<main>
 			<h1>Stories</h1>
 			<ul>
