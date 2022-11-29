@@ -38,11 +38,11 @@
       "data": [
         {
           "start": 10.496664,
-          "end": 12.955099,
+          "end": 12.635684,
           "content": "We know we have lots of listeners in India"
         },
         {
-          "start": 13.039915,
+          "start": 12.969001,
           "end": 15.629295,
           "content": "- so I just want to say:"
         },
@@ -133,21 +133,21 @@
       "data": [
         {
           "start": 59.565296,
-          "end": 60.82,
+          "end": 60.65,
           "content": "Apart from pears,"
         },
         {
           "start": 60.9,
-          "end": 63.825353,
+          "end": 63.556322,
           "content": "the couple did not have a rich choice of foods to eat."
         },
         {
           "start": 64.096218,
-          "end": 66.41,
+          "end": 66.1,
           "content": "But they did have yellow lentils,"
         },
         {
-          "start": 66.43,
+          "start": 66.35,
           "end": 68.441894,
           "content": "ghee and some spices."
         },
@@ -158,7 +158,7 @@
         },
         {
           "start": 72.449082,
-          "end": 75.854943,
+          "end": 75.566131,
           "content": "What an appetising smell it had, to be sure!"
         },
         {
@@ -173,29 +173,19 @@
         },
         {
           "start": 83.28117,
-          "end": 87.272641,
+          "end": 87,
           "content": "not until you’ve fetched some dry wood. Off you go!”"
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "data": [
+        },
         {
           "start": 87.57169,
-          "end": 92.234806,
+          "end": 92.052035,
           "content": "So off he went into the forest and began to hack and saw away at the wood,"
         },
         {
-          "start": 92.234885,
+          "start": 92.1,
           "end": 96.469339,
           "content": "and with each cut, he seemed to smell the savoury dhal."
-        }
-      ]
-    },
-    {
-      "type": "paragraph",
-      "data": [
+        },
         {
           "start": 97.310446,
           "end": 100.929153,
@@ -203,7 +193,7 @@
         },
         {
           "start": 100.929226,
-          "end": 104.297559,
+          "end": 104.082469,
           "content": "with its great black nose tilted in the air,"
         },
         {
@@ -228,11 +218,11 @@
       "data": [
         {
           "start": 114.464541,
-          "end": 118.307332,
+          "end": 117.989282,
           "content": "'Peace be with you, friend!' said the bear,"
         },
         {
-          "start": 118.307405,
+          "start": 118.2,
           "end": 122.221955,
           "content": "'and what may you be doing with that bundle of wood?'"
         },
@@ -243,18 +233,23 @@
         },
         {
           "start": 126.221697,
-          "end": 129.88906,
+          "end": 129.691255,
           "content": "'The fact is,' he added confidentially, smacking his lips,"
         },
         {
           "start": 129.953236,
-          "end": 132.830945,
+          "end": 132.596094,
           "content": "'she has made such wonderful dhal for dinner!"
         },
         {
-          "start": 132.815832,
+          "start": 132.8,
+          "end": 135.082154,
+          "content": "and if I bring in a good bundle of wood"
+        },
+        {
+          "start": 135.082154,
           "end": 138.845067,
-          "content": "and if I bring in a good bundle of wood she is pretty sure to give me a plentiful portion."
+          "content": "she is pretty sure to give me a plentiful portion."
         },
         {
           "start": 139.073379,
@@ -275,6 +270,601 @@
           "start": 147.646219,
           "end": 151.572904,
           "content": "for, like all bears, he was a dreadful glutton."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 151.657249,
+          "end": 157.624517,
+          "content": "'Do you think your wife would give me some too,"
+        },
+        {
+          "start": 157.7,
+          "end": 161.6,
+          "content": "if I brought her a bundle of wood?' he asked anxiously."
+        },
+        {
+          "start": 161.8,
+          "end": 166.550566,
+          "content": "'Perhaps; if it was a very big load,' answered the woodman craftily."
+        },
+        {
+          "start": 166.7,
+          "end": 172.378276,
+          "content": "'Would—would four hundredweight be enough?' asked the bear."
+        },
+        {
+          "start": 172.8,
+          "end": 177,
+          "content": "'I'm afraid not,' returned the woodman, shaking his head;"
+        },
+        {
+          "start": 177.390359,
+          "end": 181.901776,
+          "content": "'you see dahl is an expensive dish to make."
+        },
+        {
+          "start": 181.901971,
+          "end": 186.4,
+          "content": "You need plenty of ghee, and loads of yellow lentils, and—'"
+        },
+        {
+          "start": 186.8,
+          "end": 190.001521,
+          "content": "'Would—would eight hundredweight do?'"
+        },
+        {
+          "start": 190.344754,
+          "end": 194.705775,
+          "content": "'Say half a ton, and it's a bargain!' said the woodman."
+        },
+        {
+          "start": 195.276448,
+          "end": 197.524518,
+          "content": "'Half a ton is a large quantity!' sighed the bear."
+        },
+        {
+          "start": 197.7,
+          "end": 202.371777,
+          "content": "'There is saffron in the dahl,' remarked the woodman casually,"
+        },
+        {
+          "start": 202.371867,
+          "end": 207.111191,
+          "content": "which wasn’t true because saffron is terribly expensive."
+        },
+        {
+          "start": 207.111276,
+          "end": 208.992682,
+          "content": "The bear licked his lips,"
+        },
+        {
+          "start": 209.268356,
+          "end": 212.724828,
+          "content": "and his little eyes twinkled with greed and delight."
+        },
+        {
+          "start": 212.724921,
+          "end": 216.12841,
+          "content": "'Well, it's a bargain!"
+        },
+        {
+          "start": 216.128517,
+          "end": 220.32142,
+          "content": "Go home smartish and tell your wife to keep the dhal hot;"
+        },
+        {
+          "start": 220.848758,
+          "end": 222.951867,
+          "content": "I'll be with you in a trice.'"
+        },
+        {
+          "start": 222.951971,
+          "end": 228.50326,
+          "content": "Away went the woodman in great glee to tell his wife how the bear had agreed to bring half a ton of wood"
+        },
+        {
+          "start": 228.70981,
+          "end": 230.847563,
+          "content": "in return for a share of the dahl."
+        },
+        {
+          "start": 231.063778,
+          "end": 232.406836,
+          "content": "Now his wife said:"
+        },
+        {
+          "start": 232.913179,
+          "end": 237.2,
+          "content": "“That bear will surely be greedy, like all bears,"
+        },
+        {
+          "start": 237.370625,
+          "end": 240.999876,
+          "content": "and eat your supper if you aren’t careful.”"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 241.1,
+          "end": 243.598967,
+          "content": "At this the woodman became quite pale."
+        },
+        {
+          "start": 244.197999,
+          "end": 249.813169,
+          "content": "'In that case,' he said, 'we had better begin now, and have a fair start.'"
+        },
+        {
+          "start": 250,
+          "end": 258.318338,
+          "content": "So without more ado they sat down on the floor, with the brass pot full of dahl between them, and began to eat as fast as they could."
+        },
+        {
+          "start": 259.553092,
+          "end": 265.354994,
+          "content": "'Remember to leave some for the bear,' said the wife to the husband, speaking with her mouth crammed full."
+        },
+        {
+          "start": 266.25178,
+          "end": 271.852794,
+          "content": "'Certainly, certainly,' he replied, helping herself to another handful."
+        },
+        {
+          "start": 272.706366,
+          "end": 277.490148,
+          "content": "'My dear,' cried the husband a little later with his mouth so full"
+        },
+        {
+          "start": 277.605998,
+          "end": 279.353906,
+          "content": "that he could hardly speak,"
+        },
+        {
+          "start": 279.353906,
+          "end": 281.907902,
+          "content": "'remember the poor bear!'"
+        },
+        {
+          "start": 281.907902,
+          "end": 286.60862,
+          "content": "'Certainly, certainly, my love!' returned the wife, taking another mouthful."
+        },
+        {
+          "start": 287.148962,
+          "end": 291.788346,
+          "content": "So it went on, till there was not a single grain left in the pot."
+        },
+        {
+          "start": 291.788346,
+          "end": 295.50191,
+          "content": "'What's to be done now?' said the woodman;"
+        },
+        {
+          "start": 295.50191,
+          "end": 299.0554,
+          "content": "'it is all your fault, for eating so much.'"
+        },
+        {
+          "start": 299.0554,
+          "end": 303.057378,
+          "content": "'My fault!' retorted his wife scornfully,"
+        },
+        {
+          "start": 303.057378,
+          "end": 306.362855,
+          "content": "'why, you ate twice as much as I did!'"
+        },
+        {
+          "start": 306.459684,
+          "end": 307.2,
+          "content": "'No, I didn't!'"
+        },
+        {
+          "start": 307.43,
+          "end": 310.4,
+          "content": "'Yes, you did!—men always eat more than women.'"
+        },
+        {
+          "start": 310.667732,
+          "end": 311.2,
+          "content": "'No, we don't!'"
+        },
+        {
+          "start": 311.4,
+          "end": 312.6,
+          "content": "'Oh Yes, you do!'"
+        },
+        {
+          "start": 313.2,
+          "end": 317.751634,
+          "content": "'Well, it's no use quarrelling about it now,' said the woodman,"
+        },
+        {
+          "start": 317.751634,
+          "end": 321.1971,
+          "content": "' the dahl’s gone, and the bear will be furious.'"
+        },
+        {
+          "start": 321.1971,
+          "end": 325.551277,
+          "content": "'That wouldn't matter much if we could get the wood,' said his wife."
+        },
+        {
+          "start": 325.551277,
+          "end": 327.640721,
+          "content": "'I'll tell you what we must do,"
+        },
+        {
+          "start": 328.526382,
+          "end": 331.4,
+          "content": "—we must lock up everything there is to eat in the house,"
+        },
+        {
+          "start": 331.4,
+          "end": 335.384266,
+          "content": "leave the dhal pot by the fire, and hide in the attic."
+        },
+        {
+          "start": 335.558767,
+          "end": 338.42128,
+          "content": "When the bear comes he will think we have gone out"
+        },
+        {
+          "start": 338.464719,
+          "end": 340.616338,
+          "content": "and left his dinner for him."
+        },
+        {
+          "start": 341.048776,
+          "end": 344.771422,
+          "content": "Then he will throw down his bundle and come in."
+        },
+        {
+          "start": 344.771422,
+          "end": 348.473038,
+          "content": "Of course he will rampage a little when he finds the pot is empty,"
+        },
+        {
+          "start": 348.8,
+          "end": 350.94604,
+          "content": "but he can't do much mischief,"
+        },
+        {
+          "start": 350.94604,
+          "end": 355.995799,
+          "content": "and I don't think he will take the trouble of carrying the wood away.'"
+        },
+        {
+          "start": 357.192366,
+          "end": 361.584472,
+          "content": "So they made haste to lock up all the food and hide themselves in the garret."
+        },
+        {
+          "start": 362.171099,
+          "end": 367.580688,
+          "content": "Meanwhile the bear had been toiling and moiling away at his bundle of wood,"
+        },
+        {
+          "start": 367.580688,
+          "end": 371.53813,
+          "content": "which took him much longer to collect than he expected;"
+        },
+        {
+          "start": 371.53813,
+          "end": 376.839334,
+          "content": "however, at last he arrived quite exhausted at the woodcutter's cottage."
+        },
+        {
+          "start": 376.839334,
+          "end": 379.526681,
+          "content": "Seeing the brass dhal pot by the fire,"
+        },
+        {
+          "start": 379.625419,
+          "end": 382.259735,
+          "content": "he threw down his load and went in."
+        },
+        {
+          "start": 382.259735,
+          "end": 385.2,
+          "content": "And then—mercy!"
+        },
+        {
+          "start": 385.344095,
+          "end": 388.383371,
+          "content": "wasn't he angry when he found nothing in it"
+        },
+        {
+          "start": 389.076337,
+          "end": 390.767809,
+          "content": "—not even a grain of rice,"
+        },
+        {
+          "start": 391,
+          "end": 393.355416,
+          "content": "nor a tiny wee bit of pulse,"
+        },
+        {
+          "start": 394.318908,
+          "end": 401.566368,
+          "content": "but only a smell that was so uncommonly nice that he actually cried with rage and disappointment."
+        },
+        {
+          "start": 401.566368,
+          "end": 404.603726,
+          "content": "He flew into the most dreadful temper,"
+        },
+        {
+          "start": 405.70857,
+          "end": 407.999876,
+          "content": "but though he turned the house topsy-turvy,"
+        },
+        {
+          "start": 407.999876,
+          "end": 410.863896,
+          "content": "he could not find a morsel of food."
+        },
+        {
+          "start": 410.863896,
+          "end": 414.52,
+          "content": "Finally, he declared he would take the wood away again,"
+        },
+        {
+          "start": 414.6,
+          "end": 416.830496,
+          "content": "but, as the crafty wife had imagined,"
+        },
+        {
+          "start": 416.830496,
+          "end": 419.9,
+          "content": "when he came to the task, he did not care,"
+        },
+        {
+          "start": 420.269488,
+          "end": 423.736922,
+          "content": "even for the sake of revenge, to carry so heavy a burden."
+        },
+        {
+          "start": 423.736922,
+          "end": 430,
+          "content": "'I won't go away empty-handed,' said he to himself, seizing the dhal pot;"
+        },
+        {
+          "start": 430.275512,
+          "end": 434.606255,
+          "content": "'if I can't get the taste I'll have the smell!'"
+        },
+        {
+          "start": 435.51194,
+          "end": 441.69034,
+          "content": "Now, as he left the cottage, he caught sight of the beautiful golden pears hanging over into the yard."
+        },
+        {
+          "start": 442.2,
+          "end": 444.6,
+          "content": "His mouth began to water at once,"
+        },
+        {
+          "start": 444.76598,
+          "end": 449.444044,
+          "content": "for he was desperately hungry, and the pears were the first of the season;"
+        },
+        {
+          "start": 449.957099,
+          "end": 456.668337,
+          "content": "in a trice he was on the wall, up the tree, and, gathering the biggest and ripest one he could find,"
+        },
+        {
+          "start": 456.8,
+          "end": 461.23273,
+          "content": "was just putting it into his mouth, when a thought struck him."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 461.23273,
+          "end": 464.4,
+          "content": "'If I take these pears home"
+        },
+        {
+          "start": 464.4,
+          "end": 469.178897,
+          "content": "I shall be able to sell them for ever so much to the other bears,"
+        },
+        {
+          "start": 469.590808,
+          "end": 474.578809,
+          "content": "and then with the money I shall be able to buy some dhal."
+        },
+        {
+          "start": 475.01386,
+          "end":  478.092355,
+          "content": "Ha, ha! I shall have the best of the bargain after all!'"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 478.434984,
+          "end": 484.403797,
+          "content": "So saying, he began to gather the ripe pears as fast as he could and put them into the pot,"
+        },
+        {
+          "start": 484.635343,
+          "end": 486.950527,
+          "content": "but whenever he came to an unripe one"
+        },
+        {
+          "start": 486.950527,
+          "end": 489.101385,
+          "content": "he would shake his head and say,"
+        },
+        {
+          "start": 489.101385,
+          "end": 490.727107,
+          "content": "'No one would buy that,"
+        },
+        {
+          "start": 490.8,
+          "end": 493.3,
+          "content": "yet it is a pity to waste it'"
+        },
+        {
+          "start": 493.896751,
+          "end": 495.8,
+          "content": "So he would pop it into his mouth and eat it,"
+        },
+        {
+          "start": 496.18,
+          "end": 499.800692,
+          "content": "making wry faces if it was very sour."
+        },
+        {
+          "start": 499.800692,
+          "end": 504.770298,
+          "content": "Now all this time the woodman's wife had been watching the bear through a crack,"
+        },
+        {
+          "start": 504.827886,
+          "end": 507.769278,
+          "content": "and holding her breath for fear of discovery;"
+        },
+        {
+          "start": 508.725401 ,
+          "end": 512.729831,
+          "content": "but, at last, what with attic being rather dusty,"
+        },
+        {
+          "start": 513.322794,
+          "end": 516.365674,
+          "content": "just as the pot was quite full of golden ripe pears,"
+        },
+        {
+          "start": 516.7,
+          "end": 521.132905,
+          "content": "out she came with the most tremendous sneeze you ever heard"
+        },
+        {
+          "start": 521.995574,
+          "end": 523.904752,
+          "content": "—'A-h-chc-u!'"
+        },
+        {
+          "start": 523.904752,
+          "end": 527.061549,
+          "content": "The bear, thinking someone had fired a gun at him,"
+        },
+        {
+          "start": 527.061549,
+          "end": 529.140737,
+          "content": "dropped the pot into the cottage yard,"
+        },
+        {
+          "start": 529.5,
+          "end": 532.946121,
+          "content": "and fled into the forest as fast as his legs would carry him."
+        },
+        {
+          "start": 533.676776,
+          "end": 536.284368,
+          "content": "So the woodman and his wife got the dhal,"
+        },
+        {
+          "start": 536.835682,
+          "end": 540.244999,
+          "content": "the wood, and the lovely pears,"
+        },
+        {
+          "start": 541,
+          "end": 543.076546,
+          "content": "but the poor bear got nothing"
+        },
+        {
+          "start": 543.524534,
+          "end": 545.412302,
+          "content": "but a very bad stomach-ache"
+        },
+        {
+          "start": 546.215467 ,
+          "end": 548.205664,
+          "content": "from eating unripe fruit."
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 548.8,
+          "end": 551.670359,
+          "content": "And that was the story of the Greedy Bear"
+        },
+        {
+          "start": 552.389146,
+          "end": 555.478587,
+          "content": " - though perhaps it was the two humans who were more greedy."
+        },
+        {
+          "start": 555.478587,
+          "end": 559.487955,
+          "content": "In fact, I feel a bit sorry for that hungry bear!"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 560.362903,
+          "end": 564,
+          "content": "And I just want to give a special shoutout to Sarah from India"
+        },
+        {
+          "start": 564.175358,
+          "end": 566.43893,
+          "content": "who is visually and hearing impaired."
+        },
+        {
+          "start": 566.868639,
+          "end": 570.736363,
+          "content": "She reads our stories using a Braille display called Orbit reader."
+        },
+        {
+          "start": 570.95139,
+          "end": 574.3,
+          "content": "So Sarah, I’m so glad you read our stories!"
+        },
+        {
+          "start": 574.40369,
+          "end": 576.589094,
+          "content": "We wish you every happiness!"
+        },
+        {
+          "start": 576.7,
+          "end": 581.161195,
+          "content": "Humari dua hai, aap humesha kush ra ho!"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "data": [
+        {
+          "start": 581.161195,
+          "end": 590.027755,
+          "content": "From me Jana at Storynory.com, bye for now!"
         }
       ]
     }

@@ -18,6 +18,7 @@ const StoryGreedyBear: React.FC<PageProps> = () => {
             <ScriptBuilder
                 audio={audio}
                 storyPath={`/stories/greedyBear/story.txt`}
+                show={false}
             />
         </StoryBook>
     )

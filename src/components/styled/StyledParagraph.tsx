@@ -6,7 +6,13 @@ interface StyledParagraphLine {
 
 const StyledParagraph = styled.div`
     display: block;
+    // display: none;
     margin-bottom: 1rem;
+    /*
+    &:nth-last-child(-n+1) {
+        display: block;
+    }
+    */
 `
 
 const StyledParagraphLine = styled.div<StyledParagraphLine>`
