@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 
 interface StyledParagraphLine {
-	standalone?: boolean
+    standalone?: boolean
 }
 
 const StyledParagraph = styled.div`
-    border-bottom: 1px solid whitesmoke;
     display: block;
     // display: none;
     margin-bottom: 1rem;
@@ -15,6 +14,9 @@ const StyledParagraph = styled.div`
         display: block;
     }
     */
+    &:last-child {
+        border: 0 none;
+    }
 `
 
 const StyledParagraphLine = styled.div<StyledParagraphLine>`
@@ -22,7 +24,7 @@ const StyledParagraphLine = styled.div<StyledParagraphLine>`
     ${(props) => (props.standalone ? 'width: 100%' : 'flex: 1')};
     &[data-highlight='true'] {
         > div {
-            background: #ffff8d;
+            background: #ffff99;
         }
     }
     > div {
@@ -31,4 +33,8 @@ const StyledParagraphLine = styled.div<StyledParagraphLine>`
     }
 `
 
-export {StyledParagraph, StyledParagraphLine}
+const StyledParagraphTranslation = styled.div`
+    color: #666;
+`
+
+export { StyledParagraph, StyledParagraphLine, StyledParagraphTranslation }

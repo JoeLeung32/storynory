@@ -5,7 +5,11 @@ import {
     CaptionTimestamp,
     TypeAudioTimeFormat
 } from '../../interfaces/Caption'
-import { StyledParagraph, StyledParagraphLine } from '../styled/StyledParagraph'
+import {
+    StyledParagraph,
+    StyledParagraphLine,
+    StyledParagraphTranslation
+} from '../styled/StyledParagraph'
 import WordsData from '../../utils/words'
 import styled from 'styled-components'
 
@@ -72,18 +76,24 @@ const StoryBook: React.FC<Props> = (props) => {
             const storyContent = document.querySelector('.storyContent')
             if (!storyContent) return
             const paragraphs = storyContent.querySelectorAll('.storyParagraph')
-            if (!paragraphs) return
+            const translationTooltip = storyContent.querySelector(
+                '.translationTooltip'
+            )
+            if (!paragraphs || !translationTooltip) return
             setCurrentLineId(null)
             paragraphs.forEach((el) => {
                 if (!(el instanceof HTMLElement)) return
                 const targeted =
                     audio.currentTime >= Number(el?.dataset.start) &&
                     audio.currentTime < Number(el?.dataset.end)
+                const autoScroll =
+                    highlighter &&
+                    !translationTooltip.classList.contains('show')
                 el.dataset.highlight =
                     highlighter && targeted ? 'true' : 'false'
                 if (targeted) {
                     setCurrentLineId(el.id)
-                    if (highlighter) {
+                    if (autoScroll) {
                         el.scrollIntoView({
                             behavior: 'smooth',
                             block: 'center',
@@ -116,7 +126,7 @@ const StoryBook: React.FC<Props> = (props) => {
                         targetWordIndex,
                         targetWordIndex + keyword.length
                     )
-                    const newWord = `<span class="translationTag" data-word-idx="${idx}">${actualWord}</span>`
+                    const newWord = `<span class="translationTag" data-word-idx="${idx}">${actualWord}</span> <i class="text-danger fa-solid fa-language"></i>`
                     scriptContent = scriptContent.replace(actualWord, newWord)
                 }
             })
@@ -130,7 +140,7 @@ const StoryBook: React.FC<Props> = (props) => {
                     data-end={timestampEnd}
                 >
                     <div className={`p-2 px-3`}>
-                        <div className={`text-muted`}>
+                        <StyledParagraphTranslation>
                             {translationCode &&
                                 translation &&
                                 translation[translationCode] && (
@@ -139,7 +149,7 @@ const StoryBook: React.FC<Props> = (props) => {
                                     </small>
                                 )}
                             {!translation && <small>...</small>}
-                        </div>
+                        </StyledParagraphTranslation>
                         <StyledScriptTag
                             className={`script`}
                             dangerouslySetInnerHTML={{ __html: scriptContent }}
@@ -210,6 +220,11 @@ const StoryBook: React.FC<Props> = (props) => {
             const elementHeight = el.target.getBoundingClientRect().height
             const wordIdx = el.target.dataset.wordIdx
             const translation = WordsData[wordIdx].translation[translationCode]
+            const translationThirdParty = WordsData[wordIdx].thirdParty
+            const translationWord = WordsData[wordIdx].word
+            const translationThirdPartyUrls = []
+            let translationToolTipLeft = 0
+            let translationToolTipTop = 0
 
             // Reset
             translationTooltip.classList.remove('show')
@@ -220,26 +235,61 @@ const StoryBook: React.FC<Props> = (props) => {
             // Setup
             translationTooltip.innerHTML = translation.join('')
             translationTooltip.classList.add('show')
-            translationTooltip.style.left = `${
+
+            if (translationThirdParty) {
+                if (translationThirdParty.includes('cambridge')) {
+                    translationThirdPartyUrls.push(
+                        `<a href="https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/${translationWord}" target="_blank">Cambridge Dictionary</a>`
+                    )
+                }
+                if (translationThirdParty.includes('google')) {
+                    translationThirdPartyUrls.push(
+                        `<a href="https://translate.google.com/?sl=en&tl=zh-TW&op=translate&text=${translationWord}" target="_blank">Google Translate</a>`
+                    )
+                }
+                translationTooltip.innerHTML += `<div class="translatedFrom"><strong>Translated from:</strong><br>${translationThirdPartyUrls.join(
+                    ''
+                )}</div>`
+            }
+
+            // Position Left
+            translationToolTipLeft =
                 el.target.getBoundingClientRect().x -
                 offsetLeft -
                 translationTooltip.offsetWidth / 2 +
                 elementWidth / 2
-            }px`
-            translationTooltip.style.top = `${
-                4 +
+            if (translationToolTipLeft < 0) translationToolTipLeft = 0
+            if (
+                translationToolTipLeft + translationTooltip.offsetWidth >=
+                window.innerWidth
+            ) {
+                translationToolTipLeft =
+                    window.innerWidth - translationTooltip.offsetWidth
+            }
+            translationTooltip.style.left = `${translationToolTipLeft}px`
+
+            // Position Top
+            translationToolTipTop =
                 el.target.getBoundingClientRect().y -
                 offsetTop -
-                translationTooltip.offsetHeight -
-                elementHeight / 2
-            }px`
+                elementHeight / 2 -
+                translationTooltip.offsetHeight
+            translationTooltip.style.top = `${translationToolTipTop}px`
+
+            translationTooltip.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+                inline: 'nearest'
+            })
         }
-        const handlerHideShow = (el: any) => {
-            el.target.classList.remove('show')
-        }
-        const handleResize = () => {
+        const hide = () => {
+            if (!(translationTooltip instanceof HTMLElement)) return
             translationTooltip.classList.remove('show')
+            translationTooltip.style.left = '-100%'
+            translationTooltip.style.top = '-100%'
         }
+        const handlerHideShow = (el: any) => hide()
+        const handleResize = () => hide()
 
         translationTooltip.addEventListener('click', handlerHideShow)
         translationTags.forEach((tag) => {
@@ -297,47 +347,61 @@ const StoryBook: React.FC<Props> = (props) => {
 export default StoryBook
 
 const StyledTranslationTooltip = styled.div`
-    background: #ffeb3b;
-    border-radius: 0.4rem;
-    box-shadow: 0 0 1rem rgb(0 0 0 / 0.8%);
-    display: none;
-    font-size: 0.8rem;
+    background: #fff;
+    border: 2px solid #dc3545;
+    border-radius: 10px;
+    box-shadow: 0.5rem 0.5rem 0 rgba(220, 53, 69, 50%);
+    display: block;
+    opacity: 0;
     padding: 8px;
 
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -100%;
+    left: -100%;
     z-index: 1;
     user-select: none;
 
+    max-width: 99.9%;
+
+    &:before {
+        content: 'Dictionary';
+
+        background-color: #dc3545;
+        color: #fff;
+        display: block;
+        margin: -8px;
+        margin-bottom: 8px;
+        padding: 4px 8px;
+    }
+
     ul,
     ol {
-        margin: 0;
         padding-left: 1rem;
+
+        i {
+            color: #000;
+            display: block;
+            font-weight: 200;
+        }
+    }
+
+    a,
+    a:hover,
+    .translatedFrom {
+        color: #666;
+        font-size: 10px;
+        text-decoration: none;
     }
 
     &.show {
-        display: block;
-    }
-
-    &:after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border: 0.5em solid transparent;
-        border-top-color: #ffeb3b;
-        border-bottom: 0;
-        margin-left: -0.5em;
-        margin-bottom: -0.5em;
+        opacity: 1;
     }
 `
 
 const StyledScriptTag = styled.div`
     > .translationTag {
         cursor: pointer;
+        font-weight: bold;
         text-decoration: underline;
         position: relative;
     }

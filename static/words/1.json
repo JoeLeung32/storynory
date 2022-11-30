@@ -1,8 +1,46 @@
 [
   {
+    "word": "the sake of revenge",
+    "translation": {
+      "tc": [
+        "為了報仇"
+      ]
+    },
+    "thirdParty": [
+      "google"
+    ]
+  },
+  {
+    "word": "moiling",
+    "translation": {
+      "tc": [
+        "流淚"
+      ]
+    },
+    "thirdParty": [
+      "google"
+    ]
+  },
+  {
     "word": "North of India",
     "translation": {
-      "tc": ["印度北部"]
-    }
+      "tc": [
+        "印度北部"
+      ]
+    },
+    "thirdParty": [
+      "google"
+    ]
+  },
+  {
+    "word": "topsy-turvy",
+    "translation": {
+      "tc": [
+        "亂七八糟地、狀態"
+      ]
+    },
+    "thirdParty": [
+      "google"
+    ]
   }
 ]

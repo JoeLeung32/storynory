@@ -1,14 +1,1215 @@
 [
   {
-    "word": "Amusing",
+    "word": "ado",
+    "translation": {
+      "tc": [
+        "<p><strong>without wasting more time</strong></p>",
+        "<p>不再浪費時間；立即；乾脆</p>",
+        "<ul>",
+        "<li><i>And so, without further ado, let me introduce tonight's speaker.</i>好了，我就閒話少說，向大家介紹今晚的講者。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "attic",
+    "translation": {
+      "tc": [
+        "<p><strong>the space or room at the top of a building, under the roof, often used for storing things</strong></p>",
+        "<p>閣樓；頂樓</p>",
+        "<ul>",
+        "<li><i>I've got boxes of old clothes in the attic.</i>我的閣樓裡放著好幾箱子舊衣服。</li>",
+        "<li><i>an attic bedroom at the top of the house</i>房子頂部的一間閣樓睡房</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "amusing",
     "translation": {
       "tc": [
         "<p><strong>entertaining</strong></p>",
         "<p>好笑的，有趣的；引人發笑的</p>",
         "<ul>",
-        "<li>an amusing story/person/situation<br>有趣的故事／風趣的人／好笑的場面</li>",
+        "<li><i>an amusing story/person/situation</i>有趣的故事／風趣的人／好笑的場面</li>",
         "</ul>"
       ]
-    }
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "anxiously",
+    "translation": {
+      "tc": [
+        "<p><strong>in a way that shows you are worried or nervous:</strong></p>",
+        "<ul>",
+        "<li><i>We waited anxiously by the phone.</i></li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "appetising",
+    "translation": {
+      "tc": [
+        "<p><strong>Appetizing food or smells make you want to eat.</strong></p>",
+        "<p>開胃的；刺激食慾的</p>",
+        "<ul>",
+        "<li><i>appetizing smells from the kitchen</i>廚房飄來的令人垂涎的香味</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "bargain",
+    "translation": {
+      "tc": [
+        "<p><strong>something on sale at a lower price than its true value</strong></p>",
+        "<p>便宜貨，廉價品</p>",
+        "<ul>",
+        "<li><i>This coat was half-price - a real bargain.</i>這件大衣是以半價購買的——真便宜。</li>",
+        "<li><i>The airline regularly offers last-minute bookings at bargain prices.</i>航空公司定期提供最後時刻的廉價訂票服務。</li>",
+        "<li><i>The sales had started and the bargain hunters (= people looking for things at a low price) were out in force.</i>大減價開始了，那些到處搜尋便宜貨的人傾巢而出。</li>",
+        "</ul>",
+        "<p><strong>an agreement between two people or groups in which each promises to do something in exchange for something else</strong></p>",
+        "<p>協議；交易</p>",
+        "<ul>",
+        "<li><i>\"I'll clean the kitchen if you clean the car.\" \"OK, it's a bargain.\"</i>「如果你洗車我就打掃廚房。」「好，就這麼說定了！」</li>",
+        "<li><i>The management and employees eventually struck/made a bargain (= reached an agreement).</i>勞資雙方最終達成了協議。</li>",
+        "</ul>",
+        "<p><strong>to try to make someone agree to give you something that is better for you, such as a better price or better working conditions</strong></p>",
+        "<p>討價還價（如價格、工資或工作條件等）/p>",
+        "<ul>",
+        "<li><i>Unions bargain with employers for better rates of pay each year.</i>為了爭取更高薪酬，工會每年都要與資方進行談判。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "began",
+    "translation": {
+      "tc": [
+        "<p><strong>past simple of begin</strong></p>",
+        "<p>（begin 的過去式）</p>",
+        "<p><strong>to start to happen or exist</strong></p>",
+        "<p>開始；開始進行（或存在）</p>",
+        "<ul>",
+        "<li><i>What time does the concert begin?</i>音樂會甚麼時候開始？</li>",
+        "<li><i>The bridge was begun five years ago and the estimated cost has already doubled.</i>這座橋五年前開始建造，到現在為止估計成本已經增加了一倍。</li>",
+        "<li><i>The film they want to watch begins at seven.</i>他們要看的電影七點開場。</li>",
+        "<li><i>The meeting began promisingly, but then things started to go wrong.</i>會議開始時很不錯，不過後來出了問題。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "begin",
+    "translation": {
+      "tc": [
+        "<p>開始；開始進行（或存在）</p>",
+        "<ul>",
+        "<li><i>What time does the concert begin?</i>音樂會甚麼時候開始？</li>",
+        "<li><i>The bridge was begun five years ago and the estimated cost has already doubled.</i>這座橋五年前開始建造，到現在為止估計成本已經增加了一倍。</li>",
+        "<li><i>The film they want to watch begins at seven.</i>他們要看的電影七點開場。</li>",
+        "<li><i>The meeting began promisingly, but then things started to go wrong.</i>會議開始時很不錯，不過後來出了問題。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "bough",
+    "translation": {
+      "tc": [
+        "<p><strong>a large branch of a tree</strong></p>",
+        "<p>大樹枝，粗樹枝</p>",
+        "<ul>",
+        "<li><i>an apple/cherry orchard</i>蘋果／櫻桃園</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "brass",
+    "translation": {
+      "tc": [
+        "<p><strong>a bright yellow metal made from copper and zinc</strong></p>",
+        "<p>黃銅</p>",
+        "<ul>",
+        "<li><i>The door handles were made of brass.</i>門把手是黃銅做的。</li>",
+        "</ul>",
+        "<p><strong>a thin piece of brass on the floor or wall in a church, with a picture or writing cut into it</strong></p>",
+        "<p>（教堂地上或牆上，刻有雕像或文字的）黃銅紀念牌</p>",
+        "<ul>",
+        "<li><i>The church has several beautiful medieval brasses.</i>這個教堂有幾塊精美的中世紀黃銅紀念牌。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "burden",
+    "translation": {
+      "tc": [
+        "<p><strong>a heavy load that you carry</strong></p>",
+        "<p>負荷，重負</p>",
+        "<ul>",
+        "<li><i>The little donkey struggled under its heavy burden.</i>小毛驢馱著重物艱難前行。</li>",
+        "</ul>",
+        "<p><strong>something difficult or unpleasant that you have to deal with or worry about</strong></p>",
+        "<p>負擔，重擔</p>",
+        "<ul>",
+        "<li><i>the burden of responsibility</i>責任的重擔</li>",
+        "<li><i>My elderly mother worries that she's a burden to me.</i>我年邁的母親擔心她成為我的拖累。</li>",
+        "<li><i>Buying a house often places a large financial burden on young couples.</i>買房子往往會讓年輕夫婦背上沉重的經濟負擔。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "craftily",
+    "translation": {
+      "tc": [
+        "<p><strong>in a way that is clever, and sometimes also slightly dishonest</strong></p>",
+        "<p>狡猾地；狡詐地，詭計多端地</p>",
+        "<ul>",
+        "<li><i>His parents had craftily concealed from him the fact that they were planning to rent out his room.</i>他的父母處心積慮地對他隱瞞了他們打算出租他房間的事情。</li>",
+        "<li><i>The layout of the store is craftily designed to entice customers to buy more toys.</i>商店的佈局規劃巧妙，以吸引顧客購買更多玩具。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "crammed",
+    "translation": {
+      "tc": [
+        "<p><strong>very full of people or things</strong></p>",
+        "<p>（地方）擠滿的，塞滿的，充滿的</p>",
+        "<ul>",
+        "<li><i>a crammed train/room</i>擁擠的火車／房間</li>",
+        "<li><i>The docks were crammed with/crammed full of people trying to board the boats.</i>碼頭上擠滿了想要上船的人</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "confidentially",
+    "translation": {
+      "tc": [
+        "<p><strong>in a way that is secret or private:</strong></p>",
+        "<ul>",
+        "<li><i>Can I speak to you confidentially?</i></li>",
+        "<li><i>All information supplied will be treated confidentially.</i></li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "cottage",
+    "translation": {
+      "tc": [
+        "<p><strong>a small house, usually in the countryside</strong></p>",
+        "<p>（通常指鄉村中的）小屋，村舍</p>",
+        "<ul>",
+        "<li><i>They live in an idyllic country/thatched cottage, with roses around the door.</i>他們住在田園詩般的鄉村小屋／茅舍，門前玫瑰環繞。</li>",
+        "<li><i>We rented a little beach cottage on the North Caroline coast.</i>我們在北卡羅萊納州海岸租下了一間小小的海濱農舍。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "desperately",
+    "translation": {
+      "tc": [
+        "<p><strong>extremely or very much</strong></p>",
+        "<p>非常；極其</p>",
+        "<ul>",
+        "<li><i>He was desperately ill.</i>他病得很重。</li>",
+        "<li><i>They desperately wanted a child.</i>他們特別想要一個孩子。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "disappointment",
+    "translation": {
+      "tc": [
+        "<p><strong>the feeling of being disappointed</strong></p>",
+        "<p>失望，沮喪</p>",
+        "<ul>",
+        "<li><i>Get tickets early to avoid disappointment.</i>早點預訂以免撲空。</li>",
+        "<li><i>To my (great) disappointment (= sadness), he decided to leave.</i>令我（非常）沮喪的是，他決定離開。</li>",
+        "</ul>",
+        "<p><strong>something or someone that is not what you were hoping it would be\n</strong></p>",
+        "<p>令人失望的人（或事物）</p>",
+        "<ul>",
+        "<li><i>The party turned out to be a huge disappointment.</i>派對辦得令人大失所望。</li>",
+        "<li><i>I always felt I was a disappointment to my parents.</i>我總是覺得自己是一個讓父母失望的孩子。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "dreadful",
+    "translation": {
+      "tc": [
+        "<p><strong>very bad, of very low quality, or shocking and very sad</strong></p>",
+        "<p>可怕的；糟糕的；驚人的</p>",
+        "<ul>",
+        "<li><i>The food was bad and the service was dreadful.</i>食物很差勁，服務也很糟糕。</li>",
+        "<li><i>I was beginning to think I'd made a dreadful mistake.</i>我開始覺得自己犯了個大錯誤。</li>",
+        "<li><i>The news report was so dreadful that I just had to switch it off.</i>那個新聞報道太可怕了，我只好關上電視機不看了。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "dreadfully",
+    "translation": {
+      "tc": [
+        "<p><strong>extremely badly</strong></p>",
+        "<p>非常糟糕地；惡劣地</p>",
+        "<ul>",
+        "<li><i>She behaved dreadfully.</i>她的行爲非常惡劣。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "exhausted",
+    "translation": {
+      "tc": [
+        "<p><strong>extremely tired</strong></p>",
+        "<p>極其疲憊的；精疲力竭的</p>",
+        "<ul>",
+        "<li><i>Exhausted, they fell asleep.</i>他們筋疲力盡，倒頭就睡。</li>",
+        "<li><i>By the time they reached the summit they were exhausted.</i>他們上到山頂時，已經筋疲力竭了。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "fell",
+    "translation": {
+      "tc": [
+        "<p><strong>past simple of fall</strong></p>",
+        "<p>（fall 的過去式）</p>",
+        "<p><strong>to cut down a tree</strong></p>",
+        "<p>砍伐，砍倒（樹木）</p>",
+        "<ul>",
+        "<li><i>A great number of trees were felled to provide space for grazing.</i>大量樹木被砍伐，為放牧提供場地。</li>",
+        "</ul>",
+        "<p><strong>to knock someone down, especially in sports</strong></p>",
+        "<p>（尤指體育運動中）擊倒（某人）</p>",
+        "<ul>",
+        "<li><i>（尤指體育運動中）擊倒（某人）</i>他最後以頭部的一記重拳擊倒了對手。</li>",
+        "</ul>",
+        "<p><strong>to suddenly go down onto the ground or towards the ground without intending to or by accident</strong></p>",
+        "<p>（突然）跌倒，摔倒</p>",
+        "<ul>",
+        "<li><i>The path's very steep, so be careful you don't fall.</i>小路很陡，小心別摔倒。</li>",
+        "<li><i>He fell badly and broke his leg.</i>他重重跌倒，摔斷了腿。</li>",
+        "<li><i>I fell down the stairs and injured my back.</i>我跌下樓梯，背部受了傷。</li>",
+        "<li>...</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "fetched",
+    "translation": {
+      "tc": [
+        "<p><strong>to go to another place to get something or someone and bring it, him, or her back</strong></p>",
+        "<p>（去）拿來，取回；（去）請來</p>",
+        "<ul>",
+        "<li><i><small>[ + two objects ]</small> Could you fetch me my glasses/fetch my glasses for me from the other room, please?</i>你去另一個房間幫我把眼鏡拿過來好嗎？</li>",
+        "<li><i>I have to fetch my mother from the station.</i>我要去車站接我母親。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "flock",
+    "translation": {
+      "tc": [
+        "<p><strong>a group of sheep, goats, or birds</strong></p>",
+        "<p>羊群；鳥群；人群</p>",
+        "<ul>",
+        "<li><i>a flock of sheep/goats/geese</i>一群綿羊／山羊／鵝</li>",
+        "<li><i>The shepherd is bringing his flock down from the hills.</i>牧羊人正把羊群往山下趕。</li>",
+        "</ul>",
+        "<p><strong>a large group of people, usually people of a particular type</strong></p>",
+        "<p>（特定類型的）一群人</p>",
+        "<ul>",
+        "<li><i>A noisy flock of tourists came into the building.</i>一群吵吵嚷嚷的遊客走進了大樓。</li>",
+        "<li><i>The priest invited all the members of his flock (= all the people who go to his church) to attend the special service.</i>牧師邀請教區的所有信徒參加這一特別儀式。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "furious",
+    "translation": {
+      "tc": [
+        "<p><strong>extremely angry</strong></p>",
+        "<p>極其生氣的，怒不可遏的</p>",
+        "<ul>",
+        "<li><i>I was late and he was furious with me.</i>我遲到了，他衝我大發脾氣。</li>",
+        "<li><i>He's furious about/at the way he's been treated.</i>他因自己受到這樣的對待而大發雷霆。</li>",
+        "<li><i>We had a furious debate about the death penalty.</i>我們就死刑問題吵了個天翻地覆。</li>",
+        "</ul>",
+        "<p><strong>using a lot of effort or strength</strong></p>",
+        "<p>強烈的；激烈的</p>",
+        "<ul>",
+        "<li><i>There is a furious struggle going on between the two presidential candidates.</i>兩位總統競選人之間進行著激烈的爭鬥。</li>",
+        "<li><i>He set off running at a furious pace.</i>他出發時猛跑了一陣。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "garret",
+    "translation": {
+      "tc": [
+        "<p><strong>a very small, uncomfortable room at the top of a house</strong></p>",
+        "<p>頂樓；閣樓</p>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "ghee",
+    "translation": {
+      "tc": [
+        "<p><strong>a type of clear butter used in South Asian cooking</strong></p>",
+        "<p>（用於南亞食物烹調的）酥油，印度奶油，精鍊奶油</p>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "glutton",
+    "translation": {
+      "tc": [
+        "<p><strong>a person who regularly eats and drinks more than is needed</strong></p>",
+        "<p>好吃貪杯的人；暴飲暴食者</p>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "gobbled",
+    "translation": {
+      "tc": [
+        "<p><strong>to eat food too fast</strong></p>",
+        "<p>狼吞虎嚥，大口大口地吃</p>",
+        "<ul>",
+        "<li><i>She gobbled her dinner (down/up).</i>她狼吞虎嚥地吃完了晚飯。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "grain",
+    "translation": {
+      "tc": [
+        "<p><strong>wanting a lot more food, money, etc. than you need</strong></p>",
+        "<p>貪吃的；貪財的；貪婪的</p>",
+        "<ul>",
+        "<li><i>greedy, selfish people</i>貪婪自私的人</li>",
+        "<li><i>He's greedy for power/success.</i>他貪戀權力／極度渴望成功。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "greedy",
+    "translation": {
+      "tc": [
+        "<p><strong>a seed or seeds from a plant, especially a plant like a grass such as rice or wheat</strong></p>",
+        "<p>（尤指像稻穀、小麥等像草一樣的植物的）穀粒，穎果，穀（物）</p>",
+        "<ul>",
+        "<li><i>grains of wheat/rice</i>麥／米粒</li>",
+        "</ul>",
+        "<p><strong>a very small amount of a particular quality</strong></p>",
+        "<p>一點兒；微量，少量</p>",
+        "<ul>",
+        "<li><i>There wasn't a grain of truth in anything she said.</i>她無論說甚麼都沒有半句實話在裡面。</li>",
+        "<li><i>Anyone with a grain of common sense would have known what to do.</i>稍微有一點常識的人都會知道應該做甚麼。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "haste",
+    "translation": {
+      "tc": [
+        "<p><strong>(too much) speed</strong></p>",
+        "<p>匆忙，倉促</p>",
+        "<ul>",
+        "<li><i>Unfortunately the report was prepared in haste and contained several inaccuracies.</i>遺憾的是，這份報告準備得有些倉促，裡面有幾處不準確的地方。</li>",
+        "<li><i><small>[ + to infinitive ]</small> In her haste to get up from the table, she knocked over a cup.</i>她匆忙從桌邊站起來，結果碰翻了一個茶杯。</li>",
+        "<li><i>His father had just died and he didn't want to marry with indecent haste.</i>父親剛剛去世，他不想太過匆忙地結婚——那樣做有悖情理。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "hang",
+    "translation": {
+      "tc": [
+        "<p><strong>to fasten or support something at the top leaving the other parts free to move, or to be held in this way</strong></p>",
+        "<p>懸掛，吊；吊著</p>",
+        "<ul>",
+        "<li><i>A heavy gold necklace hung around her neck.</i>她脖子上掛著一串粗重的金項鍊。</li>",
+        "<li><i>Party decorations hung (down) from the ceiling.</i>聚會裝飾物從天花板上垂下來。</li>",
+        "<li><i>The curtains hung in thick folds.</i>窗簾打著密密的摺子垂著。</li>",
+        "<li><i>Hang your coat and hat (up) on the rack over there.</i>把你的大衣和帽子掛在那邊的架子上。</li>",
+        "<li>...</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "hanging",
+    "translation": {
+      "tc": [
+        "<p><strong>to fasten or support something at the top leaving the other parts free to move, or to be held in this way</strong></p>",
+        "<p>懸掛，吊；吊著</p>",
+        "<ul>",
+        "<li><i>A heavy gold necklace hung around her neck.</i>她脖子上掛著一串粗重的金項鍊。</li>",
+        "<li><i>Party decorations hung (down) from the ceiling.</i>聚會裝飾物從天花板上垂下來。</li>",
+        "<li><i>The curtains hung in thick folds.</i>窗簾打著密密的摺子垂著。</li>",
+        "<li><i>Hang your coat and hat (up) on the rack over there.</i>把你的大衣和帽子掛在那邊的架子上。</li>",
+        "<li>...</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "hung",
+    "translation": {
+      "tc": [
+        "<p><strong>past simple and past participle of hang</strong></p>",
+        "<p>（hang的過去式及過去分詞）</p>",
+        "<p><strong>to fasten or support something at the top leaving the other parts free to move, or to be held in this way</strong></p>",
+        "<p>懸掛，吊；吊著</p>",
+        "<ul>",
+        "<li><i>A heavy gold necklace hung around her neck.</i>她脖子上掛著一串粗重的金項鍊。</li>",
+        "<li><i>Party decorations hung (down) from the ceiling.</i>聚會裝飾物從天花板上垂下來。</li>",
+        "<li><i>The curtains hung in thick folds.</i>窗簾打著密密的摺子垂著。</li>",
+        "<li><i>Hang your coat and hat (up) on the rack over there.</i>把你的大衣和帽子掛在那邊的架子上。</li>",
+        "<li>...</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "hundredweight",
+    "translation": {
+      "tc": [
+        "<p><strong>a measure of weight equal to 50.80 kilograms in Britain or 45.36 kilograms in the US</strong></p>",
+        "<p>英擔（重量單位，在英國相當於50.80公斤，在美國等於45.36公斤）</p>",
+        "<ul>",
+        "<li><i>We ordered a hundredweight of coal.</i>我們訂購了一英擔的煤。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "inquisitive",
+    "translation": {
+      "tc": [
+        "<p><strong>wanting to discover as much as you can about things, sometimes in a way that annoys people</strong></p>",
+        "<p>好問的；愛鑽研的；好打聽的</p>",
+        "<ul>",
+        "<li><i>an inquisitive child</i>好奇愛問的小孩</li>",
+        "<li><i>an inquisitive mind</i>愛鑽研的人</li>",
+        "<li><i>She could see inquisitive faces looking out from the windows next door.</i>她可以看到一張張好奇的面孔從隔壁房子的窗戶向外探望。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "lentils",
+    "translation": {
+      "tc": [
+        "<p><strong>a very small dried bean that is cooked and eaten</strong></p>",
+        "<p>小扁豆，兵豆</p>",
+        "<ul>",
+        "<li><i>lentil soup</i>扁豆湯</li>",
+        "<li><i>red/green/brown lentils</i>紅／綠／棕色兵豆</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "licked",
+    "translation": {
+      "tc": [
+        "<p><strong>to move the tongue across the surface of something</strong></p>",
+        "<p>舔，舐</p>",
+        "<ul>",
+        "<li><i>He licked the chocolate off his fingers.</i>他把手指上的巧克力舔乾淨了。</li>",
+        "<li><i>She licked the stamps and stuck them on the parcel.</i>她舔了一下郵票，然後貼在包裹上。</li>",
+        "</ul>",
+        "<p><strong>If flames or waves lick something, they pass over it quickly or touch it lightly like a tongue.</strong></p>",
+        "<p>（火焰）蔓延，掠過，吞捲；（波浪）拍擊，沖刷</p>",
+        "<ul>",
+        "<li><i>Within a few seconds flames were licking at the curtains.</i>幾秒鐘之內火舌就蔓延到了窗簾。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "mischief",
+    "translation": {
+      "tc": [
+        "<p><strong>behaviour, especially a child's, that is slightly bad but is not intended to cause serious harm or damage</strong></p>",
+        "<p>（尤指兒童的）惡作劇，淘氣，搗蛋</p>",
+        "<ul>",
+        "<li><i>She's a lively little girl, full of mischief.</i>她是一個活潑好動的小姑娘，特別愛淘氣。</li>",
+        "<li><i>He needs a hobby to keep him busy and stop him from getting into mischief.</i>他需要培養一個愛好讓他有事可忙，不再調皮搗蛋。</li>",
+        "<li><i>Maybe a new bike would keep him out of mischief.</i>也許一輛新腳踏車會讓他不再淘氣。</li>",
+        "<li><i>I hope you haven't been up to any mischief while I was gone.</i>我希望我不在時你沒有搞甚麼惡作劇。</li>",
+        "</ul>",
+        "<p><strong>damage or harm</strong></p>",
+        "<p>損害；傷害；危害</p>",
+        "<ul>",
+        "<li><i>criminal mischief</i>刑事毀壞</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "mercy",
+    "translation": {
+      "tc": [
+        "<p><strong>kindness that makes you forgive someone, usually someone that you have authority over</strong></p>",
+        "<p>慈悲，憐憫；仁慈，寬容</p>",
+        "<ul>",
+        "<li><i>She appealed to the judge to have mercy on her husband.</i>她請求法官寬恕她的丈夫。</li>",
+        "<li><i>The prisoners pleaded for mercy.</i>囚犯都懇求從輕發落。</li>",
+        "<li><i>The gunmen showed no mercy, killing innocent men and women.</i>那些槍手毫無憐憫之心，濫殺無辜男女。</li>",
+        "</ul>",
+        "<p><strong>an event or situation that you are grateful for because it stops something unpleasant</strong></p>",
+        "<p>恩惠；解脫</p>",
+        "<ul>",
+        "<li><i>After months of suffering, his death was a mercy.</i>遭受了數月痛苦的折磨後，死對他來說是一種解脫。</li>",
+        "<li><i>They were on a mercy mission to take food to the refugees when they were attacked.</i>他們遇襲時正在執行一項為難民運送食品的救援任務。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "morsel",
+    "translation": {
+      "tc": [
+        "<p><strong>a very small piece of food</strong></p>",
+        "<p>（食物的）一口，一小份</p>",
+        "<ul>",
+        "<li><i>a morsel of cheese</i>一小塊起司</li>",
+        "<li><i>The prisoners ate every last morsel.</i>囚犯把最後一丁點食物都吃了個乾淨。</li>",
+        "</ul>",
+        "<p><strong>a very small piece or amount</strong></p>",
+        "<p>一點點，點滴</p>",
+        "<ul>",
+        "<li><i>a morsel of good news</i>一點點好消息</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "mouthful",
+    "translation": {
+      "tc": [
+        "<p><strong>an area of land where fruit trees (but not orange trees or other citrus trees) are grown</strong></p>",
+        "<p>果園</p>",
+        "<ul>",
+        "<li><i>an apple/cherry orchard</i>蘋果／櫻桃園</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "orchard",
+    "translation": {
+      "tc": [
+        "<p><strong>an amount of food or drink that fills your mouth, or that you put into your mouth at one time</strong></p>",
+        "<p>滿口；一口</p>",
+        "<ul>",
+        "<li><i>He only ate a few mouthfuls of meat.</i>他只吃了幾口肉。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "pale",
+    "translation": {
+      "tc": [
+        "<p><strong>used to describe a person's face or skin if it has less colour than usual, for example when the person is or ill or frightened, or if it has less colour than people generally have</strong></p>",
+        "<p>（臉色或膚色）蒼白的，白的</p>",
+        "<ul>",
+        "<li><i>You're looking pale - are you feeling well?</i>你看起來臉色蒼白——你病了嗎？</li>",
+        "<li><i>She has a naturally pale complexion and dark hair.</i>她天生膚色白皙，頭髮烏黑。</li>",
+        "</ul>",
+        "<p><strong>A pale light or colour is not bright or strong.</strong></p>",
+        "<p>暗淡的；淺的，淡的</p>",
+        "<ul>",
+        "<li><i>She wore a pale blue hat.</i>她戴著一頂淺藍色的帽子。</li>",
+        "<li><i>pale winter sunlight</i>冬天慘澹的日光</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "particularly",
+    "translation": {
+      "tc": [
+        "<p><strong>especially, or more than usual</strong></p>",
+        "<p>特別，尤其，異乎尋常地</p>",
+        "<ul>",
+        "<li><i>We're particularly interested to hear from people who speak two or more European languages.</i>我們特別希望能收到說兩種或以上歐洲語言的人的來信。</li>",
+        "<li><i>I didn't particularly want to go, but I had to.</i>我並不是特別想去，但我不得不去。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "peering",
+    "translation": {
+      "tc": [
+        "<p><strong>to look carefully or with difficulty</strong></p>",
+        "<p>仔細看，端詳；費力地看</p>",
+        "<ul>",
+        "<li><i>When no one answered the door, she peered through the window to see if anyone was there.</i>沒有人開門，她就費力地透過窗戶往裡望去，看是否有人在。</li>",
+        "<li><i>The driver was peering into the distance trying to read the road sign.</i>司機費力地看著遠方，想要看清路標。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "Perhaps",
+    "translation": {
+      "tc": [
+        "<p><strong>used to show that something is possible or that you are not certain about something</strong></p>",
+        "<p>或許，可能</p>",
+        "<ul>",
+        "<li><i>He hasn't written to me recently - perhaps he's lost my address.</i>他最近沒寫信給我——也許他把我的地址弄丟了。</li>",
+        "<li><i>Perhaps the most important question has not been asked.</i>或許還沒有人提出最重要的問題。</li>",
+        "<li><i>We plan to travel to Europe - to Spain or Italy perhaps.</i>我們打算去歐洲旅行，也許去西班牙或義大利。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "plentiful",
+    "translation": {
+      "tc": [
+        "<p><strong>If something is plentiful, there is a lot of it available.</strong></p>",
+        "<p>豐富的，充足的，多的</p>",
+        "<ul>",
+        "<li><i>Strawberries are plentiful in the summer.</i>夏天草莓很多。</li>",
+        "<li><i>I took a plentiful supply of games to keep the children amused.</i>我準備了夠多的遊戲供孩子們玩。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "portion",
+    "translation": {
+      "tc": [
+        "<p><strong>a part or share of something larger</strong></p>",
+        "<p>一部分；一份</p>",
+        "<ul>",
+        "<li><i>A large/major portion of the company's profit goes straight back into new projects.</i>公司利潤的一大部分／主要部分又直接投入了新的專案計劃。</li>",
+        "<li><i>I accept my portion of the blame.</i>我承擔部分責任。</li>",
+        "</ul>",
+        "<p><strong>the amount of a particular food that is served to one person, especially in a restaurant or a shop that sells food ready to be eaten</strong></p>",
+        "<p>（食物的）一份，一客</p>",
+        "<ul>",
+        "<li><i>The portions are very generous in this restaurant.</i>這家餐廳每道菜量都很足。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "prayed",
+    "translation": {
+      "tc": [
+        "<p><strong>to speak to a god either privately or in a religious ceremony in order to express love, admiration, or thanks or in order to ask for something</strong></p>",
+        "<p>禱告，祈禱</p>",
+        "<ul>",
+        "<li><i>She knelt and prayed silently.</i>她跪下默默祈禱。</li>",
+        "<li><i>Let us pray for the victims of this terrible disaster.</i>讓我們為這次可怕災難的受害者祈禱吧。</li>",
+        "</ul>",
+        "<p><strong>to hope for something very much</strong></p>",
+        "<p>強烈地希望；祈望，祈求</p>",
+        "<ul>",
+        "<li><i>We're praying for good weather for tomorrow's game.</i>我們祈禱明天的比賽有個好天氣。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "quite",
+    "translation": {
+      "tc": [
+        "<p><strong>completely</strong></p>",
+        "<p>完全地，徹底地</p>",
+        "<ul>",
+        "<li><i>The two situations are quite different.</i>兩種情況截然不同。</li>",
+        "<li><i>The colours almost match but not quite.</i>顏色差不多相配，但不完全協調。</li>",
+        "<li><i>I enjoyed her new book though it's not quite as good as her last one.</i>我喜歡她的新書，儘管沒有她上一本那麼好。</li>",
+        "<li><i>Quite honestly/frankly, the thought of it terrified me.</i>坦白/坦率地講，想到它我就害怕。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "quarrelling",
+    "translation": {
+      "tc": [
+        "<p><strong>an angry disagreement between two or more people or groups</strong></p>",
+        "<p>爭吵，不和</p>",
+        "<ul>",
+        "<li><i>They had a bitter quarrel about/over some money three years ago and they haven't spoken to each other since.</i>他們三年前因為錢的問題有過一次激烈的爭吵，從此以後就互不理睬了。</li>",
+        "<li><i>We have no quarrel with the people of your country (= we have no reason to disagree with or dislike them).</i>我們沒有理由對貴國的人民感到不滿。</li>",
+        "<li><i>They seem to have patched up their quarrel (= finished their disagreement and started to be friendly).</i>他們似乎在爭吵後言歸於好了。</li>",
+        "<li><i>What did you quarrel about/over?</i>你們為甚麼而爭吵？</li>",
+        "<li><i>She quarrelled with everyone in the village.</i>她跟村裡的每一個人都爭吵過。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "rampage",
+    "translation": {
+      "tc": [
+        "<p><strong>to go through an area making a lot of noise and causing damage</strong></p>",
+        "<p>橫衝直撞；撒野</p>",
+        "<ul>",
+        "<li><i>The demonstrators rampaged through the town, smashing windows and setting fire to cars.</i>示威者們橫衝直撞穿過城鎮，沿途砸壞窗戶、燒毀車輛。</li>",
+        "<li><i>Several villages were destroyed by rampaging soldiers.</i>好幾個村子被狂暴撒野的士兵搗毀。</li>",
+        "</ul>",
+        "<p><strong>violent and usually wild behaviour</strong></p>",
+        "<p>橫衝直撞；撒野；狂暴行爲</p>",
+        "<ul>",
+        "<li><i>Rioters went on a/the rampage through the city.</i>暴亂分子在城中橫衝直撞，胡作非為。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "rage",
+    "translation": {
+      "tc": [
+        "<p><strong>(a period of) extreme or violent anger</strong></p>",
+        "<p>（一陣）盛怒；（一陣）狂怒；（一陣）暴怒</p>",
+        "<ul>",
+        "<li><i>Her sudden towering rages were terrifying.</i>她突然暴跳如雷，很嚇人。</li>",
+        "<li><i>I was frightened because I had never seen him in such a rage before.</i>以前從未見他如此狂怒，我被嚇壞了。</li>",
+        "<li><i>He flew into a fit of rage over the smallest mistake.</i>微不足道的小錯誤就會使他大發雷霆。</li>",
+        "</ul>",
+        "<p><strong>an exciting or entertaining event involving a lot of activity</strong></p>",
+        "<p>熱鬧的活動</p>",
+        "<ul>",
+        "<li><i>The party was a rage.</i>派對辦得熱鬧極了。</li>",
+        "</ul>",
+        "<p><strong>to speak very angrily to someone</strong></p>",
+        "<p>怒斥；發怒，發脾氣</p>",
+        "<ul>",
+        "<li><i>He raged at (= spoke angrily to) us for forgetting to order a replacement.</i>我們忘了訂購替換件，他對我們大發雷霆。</li>",
+        "</ul>",
+        "<p><strong>to happen in a strong or violent way</strong></p>",
+        "<p>激烈進行；猛烈發作；肆虐</p>",
+        "<ul>",
+        "<li><i>The storm raged outside.</i>屋外暴風雨大作。</li>",
+        "<li><i>A flu epidemic is raging in/through local schools.</i>一場流感在當地各學校肆虐。</li>",
+        "<li><i>The argument rages on (= continues strongly).</i>正在進行激烈的爭論。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "retorted",
+    "translation": {
+      "tc": [
+        "<p><strong>to answer someone quickly in an angry or funny way</strong></p>",
+        "<p>（憤怒或風趣地）反駁，回嘴</p>",
+        "<ul>",
+        "<li><i><small>[ + speech ]</small> \",That doesn't concern you!\" she retorted.</i>「那不關你的事！」她反駁道。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "ripe",
+    "translation": {
+      "tc": [
+        "<p><strong>(of fruit or crops) completely developed and ready to be collected or eaten</strong></p>",
+        "<p>（果實或莊稼）成熟的</p>",
+        "<ul>",
+        "<li><i>Those bananas aren't ripe yet - they're still green.</i>那些香蕉還沒有成熟——還是綠的。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "ripening",
+    "translation": {
+      "tc": [
+        "<p><strong>to (cause to) become ripe</strong></p>",
+        "<p>（使）成熟</p>",
+        "<ul>",
+        "<li><i>The summer sunshine ripened the melons.</i>在夏日陽光的照射下，瓜熟了。</li>",
+        "<li><i>These melons are ripening nicely.</i>這些瓜馬上就熟透了。</li>",
+        "</ul>",
+        "<p><strong>to develop to a suitable condition for something to happen</strong></p>",
+        "<p>時機成熟；條件成熟</p>",
+        "<ul>",
+        "<li><i>My plans are ripening - now all I need is official approval.</i>我的計劃就要瓜熟蒂落了——現在就差官方的批准了。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "saffron",
+    "translation": {
+      "tc": [
+        "<p><strong>a dark yellow substance obtained from a flower and used as a spice to give colour and flavour to food</strong></p>",
+        "<p>番紅花粉（用於給食物增色提味）</p>",
+        "<ul>",
+        "<li><i>saffron rice</i>番紅花米飯</li>",
+        "</ul>",
+        "<p><strong>having a dark yellow colour</strong></p>",
+        "<p>番紅花色的，暗黃色的</p>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "savoury",
+    "translation": {
+      "tc": [
+        "<p><strong>Savoury food is salty or spicy and not sweet in taste.</strong></p>",
+        "<p>鹹的；辛辣的</p>",
+        "<ul>",
+        "<li><i>a savoury dish/sauce/flavour</i>帶鹹味的一道菜／一種調料／一種味道</li>",
+        "<li><i>savoury dumplings/pancakes</i>鹹湯圓／薄餅</li>",
+        "<li><i>A pie can be sweet or savoury.</i>餡餅可以是甜的或鹹的。</li>",
+        "</ul>",
+        "<p><strong>If you say that something is not savoury, you mean that it is not pleasant or socially acceptable.</strong></p>",
+        "<p>令人愉快的；名聲好的；受歡迎的</p>",
+        "<ul>",
+        "<li><i>That hotel doesn't have a very savoury reputation.</i>那家旅館的聲譽不太好。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "seizing",
+    "translation": {
+      "tc": [
+        "<p><strong>to take something quickly and keep or hold it</strong></p>",
+        "<p>抓住；奪過</p>",
+        "<ul>",
+        "<li><i>I seized his arm and made him turn to look at me.</i>我抓住他的手臂，使他轉身看著我。</li>",
+        "</ul>",
+        "<p><strong>to take using sudden force</strong></p>",
+        "<p>奪取；攫取；抓獲</p>",
+        "<ul>",
+        "<li><i>The rebels have seized ten soldiers to use as hostages.</i>叛亂者俘獲了十名士兵作爲人質。</li>",
+        "<li><i>Political instability helped the army to seize power.</i>政治動盪使軍隊攫取了權力。</li>",
+        "<li><i>Troops yesterday seized control of the broadcasting station.</i>昨天部隊奪取了廣播電台的控制權。</li>",
+        "</ul>",
+        "<p><strong>If the police or other officials seize something, they take possession of it with legal authority.</strong></p>",
+        "<p>沒收；查獲</p>",
+        "<ul>",
+        "<li><i>Customs officers at Heathrow have seized 60 kilos of heroin.</i>希思洛機場的海關官員查獲了60公斤海洛因。</li>",
+        "</ul>",
+        "<p><strong>If a strong emotion or pain seizes you, you feel it suddenly.</strong></p>",
+        "<p>（強烈情感或劇痛）突然侵襲</p>",
+        "<ul>",
+        "<li><i>I was suddenly seized by/with a feeling of great insecurity and loneliness.</i>我突然感到很沒有安全感，很孤獨。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "smacking",
+    "translation": {
+      "tc": [
+        "<p><strong>to hit someone or something forcefully with the flat inside part of your hand, producing a short, loud noise, especially as a way of punishing a child:</strong></p>",
+        "<ul>",
+        "<li><i>I never smack my children.</i></li>",
+        "<li><i>I'll smack your bottom if you don't behave yourself.</i></li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "supper",
+    "translation": {
+      "tc": [
+        "<p><strong>a main meal eaten in the evening</strong></p>",
+        "<p>晚飯，晚餐</p>",
+        "<ul>",
+        "<li><i>Why don't you come to/for supper tonight?</i>你今天一起來吃晚飯好嗎?</li>",
+        "<li><i>你今天一起來吃晚飯好嗎?</i>他們早早吃完晚飯，去看電影了。</li>",
+        "</ul>",
+        "<p><strong>a small meal eaten in the late evening</strong></p>",
+        "<p>夜宵</p>",
+        "<ul>",
+        "<li><i>We usually have tea at about 5.30 p.m. , then supper before we go to bed.</li>",
+        "<li><i>我們通常會在下午五點半吃晚飯，然後在睡覺前再吃些夜宵。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "swinging",
+    "translation": {
+      "tc": [
+        "<p><strong>exciting and fashionable</strong></p>",
+        "<p>令人興奮的；時尚的</p>",
+        "<ul>",
+        "<li><i>It's a nostalgia trip back into the youth culture of the swinging 60s.</i>這是一趟體驗風靡一時的60年代青年文化懷舊之旅。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "terribly",
+    "translation": {
+      "tc": [
+        "<p><strong>very badly</strong></p>",
+        "<p>很糟；很不好</p>",
+        "<ul>",
+        "<li><i>I slept terribly last night.</i>我昨晚睡得很不好。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "toiling",
+    "translation": {
+      "tc": [
+        "<p><strong>hard work, especially work that makes you feel physically tired</strong></p>",
+        "<p>（尤指體力上的）苦工</p>",
+        "<ul>",
+        "<li><i>Lindi has achieved her comfortable life only after years of hard toil.</i>林迪在做了多年的苦工後才過上舒適的生活。</li>",
+        "</ul>",
+        "<p><strong>to work hard</strong></p>",
+        "<p>苦幹，努力工作</p>",
+        "<ul>",
+        "<li><i>Farm workers have been toiling in the 100-degree heat over the past week.</i>在過去的一週中農場工人一直在100華氏度的高溫下艱苦工作。</li>",
+        "<li><i>After toiling away at work all week, it's good to relax.</i>在辛苦工作整整一個星期後，放鬆一下挺好。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
+  },
+  {
+    "word": "uncommonly",
+    "translation": {
+      "tc": [
+        "<p><strong>extremely</strong></p>",
+        "<p>極其；極端地；異常地</p>",
+        "<ul>",
+        "<li><i>She was uncommonly brave too.</i>她也異常勇敢。</li>",
+        "</ul>"
+      ]
+    },
+    "thirdParty": [
+      "cambridge"
+    ]
   }
 ]
