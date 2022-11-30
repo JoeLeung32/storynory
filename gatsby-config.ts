@@ -3,11 +3,8 @@ import type { GatsbyConfig } from 'gatsby'
 const config: GatsbyConfig = {
     siteMetadata: {
         title: `storynory`,
-        siteUrl: `https://www.yourdomain.tld`,
+        siteUrl: `https://storynory.chunkit.hk`
     },
-    // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
-    // If you use VSCode you can also use the GraphQL plugin
-    // Learn more at: https://gatsby.dev/graphql-typegen
     graphqlTypegen: true,
     plugins: [
         'gatsby-plugin-styled-components',
@@ -20,19 +17,26 @@ const config: GatsbyConfig = {
             resolve: 'gatsby-source-filesystem',
             options: {
                 name: 'images',
-                path: './src/images/',
+                path: './src/images/'
             },
-            __key: 'images',
+            __key: 'images'
         },
         {
             resolve: 'gatsby-source-filesystem',
             options: {
                 name: 'pages',
-                path: './src/pages/',
+                path: './src/pages/'
             },
-            __key: 'pages',
+            __key: 'pages'
         },
-    ],
+        {
+            resolve: 'gatsby-source-filesystem',
+            options: {
+                name: 'words',
+                path: './words/'
+            }
+        }
+    ]
 }
 
 export default config

@@ -6,9 +6,7 @@
         "為了報仇"
       ]
     },
-    "thirdParty": [
-      "google"
-    ]
+    "thirdParty": "google"
   },
   {
     "word": "moiling",
@@ -17,9 +15,7 @@
         "流淚"
       ]
     },
-    "thirdParty": [
-      "google"
-    ]
+    "thirdParty": "google"
   },
   {
     "word": "North of India",
@@ -28,9 +24,7 @@
         "印度北部"
       ]
     },
-    "thirdParty": [
-      "google"
-    ]
+    "thirdParty": "google"
   },
   {
     "word": "topsy-turvy",
@@ -39,8 +33,6 @@
         "亂七八糟地、狀態"
       ]
     },
-    "thirdParty": [
-      "google"
-    ]
+    "thirdParty": "google"
   }
 ]

@@ -1,4 +1,6 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react'
+import { graphql, useStaticQuery } from 'gatsby'
+import styled from 'styled-components'
 import {
     Caption,
     CaptionLine,
@@ -10,8 +12,7 @@ import {
     StyledParagraphLine,
     StyledParagraphTranslation
 } from '../styled/StyledParagraph'
-import WordsData from '../../utils/words'
-import styled from 'styled-components'
+import { marked } from 'marked'
 
 interface Props {
     audioSourceUrl: string
@@ -22,6 +23,15 @@ interface Props {
     }
     children: React.ReactElement | undefined
     translationCode?: any
+}
+
+interface MdxNodes {
+    frontmatter: {
+        title?: string
+        slug?: string
+        thirdParty?: string
+    }
+    body?: string
 }
 
 const timeLoopDefault = {
@@ -38,29 +48,24 @@ const StoryBook: React.FC<Props> = (props) => {
     const [currentTime, setCurrentTime] = useState(0)
     const [timeLoop, setTimeLoop] = useState<CaptionTimestamp>(timeLoopDefault)
     const [currentLineId, setCurrentLineId] = useState<string | null>(null)
-    const audioLoadedData = (event: SyntheticEvent) => {
-        handleAudio(event.target as HTMLAudioElement)
-        setAudio(event.target as HTMLAudioElement)
-    }
     const audioControl = {
         set: async (start: TypeAudioTimeFormat, end: TypeAudioTimeFormat) => {
+            if (!audio) return
             setTimeLoop({
                 start: start,
                 end: end
             })
-            await audioControl.play(start)
-        },
-        play: async (start: TypeAudioTimeFormat) => {
-            if (!audio) return
-            if (start !== null) audio.currentTime = start
+            audio.currentTime = start || 0
             await audio.play()
-        },
-        pause: () => {
-            if (!audio) return
-            audio.pause()
         }
     }
-    const handleTimeUpdate = () => {
+    const handleAudioOnLoadedData = (event: SyntheticEvent) => {
+        const object = event.target as HTMLAudioElement
+        if (!object) return
+        handleAudio(object)
+        setAudio(object)
+    }
+    const handleAudioOnTimeUpdate = () => {
         const doLooping = () => {
             if (!audio) return
             if (!timeLoop) return
@@ -107,17 +112,33 @@ const StoryBook: React.FC<Props> = (props) => {
         doLooping()
         doHighlightAndScroll()
     }
+    const graphqlQueryWordsMdx = (() => {
+        const {
+            allMdx: { nodes }
+        } = useStaticQuery(graphql`
+            {
+                allMdx {
+                    nodes {
+                        frontmatter {
+                            title
+                            slug
+                            thirdParty
+                        }
+                        body
+                    }
+                }
+            }
+        `)
+        return nodes
+    })()
     const parserParagraph = (data: [CaptionLine], parentId: string) => {
         const charsRegExp = new RegExp(/[ ,.;:~\-=#_"'“‘()\[\]{}]/)
-        return data.map((line, idx) => {
-            const eleId = `${parentId}l${idx}`
-            const standalone = line.standalone
-            const timestampStart = line.start
-            const timestampEnd = line.end
-            const translation = line.translation
+        const doTranslationTag = (line: CaptionLine) => {
             let scriptContent = line.content
-            WordsData.forEach((word, idx) => {
-                const keyword = word.word
+            if (!graphqlQueryWordsMdx) return scriptContent
+            graphqlQueryWordsMdx.forEach((node: MdxNodes, idx: number) => {
+                if (!node.frontmatter.slug) return
+                const keyword = node.frontmatter.slug.toString()
                 const targetWordIndex = scriptContent
                     .toLowerCase()
                     .search(keyword.toLowerCase())
@@ -141,6 +162,15 @@ const StoryBook: React.FC<Props> = (props) => {
                     scriptContent = scriptContent.replace(actualWord, newWord)
                 }
             })
+            return scriptContent
+        }
+        return data.map((line, idx) => {
+            const eleId = `${parentId}l${idx}`
+            const standalone = line.standalone
+            const timestampStart = line.start
+            const timestampEnd = line.end
+            const translation = line.translation
+            const scriptContent = doTranslationTag(line)
             return (
                 <StyledParagraphLine
                     key={idx}
@@ -230,10 +260,12 @@ const StoryBook: React.FC<Props> = (props) => {
             const elementWidth = el.target.getBoundingClientRect().width
             const elementHeight = el.target.getBoundingClientRect().height
             const wordIdx = el.target.dataset.wordIdx
-            const translation = WordsData[wordIdx].translation[translationCode]
-            const translationThirdParty = WordsData[wordIdx].thirdParty
-            const translationWord = WordsData[wordIdx].word
-            const translationThirdPartyUrls = []
+            const translation = graphqlQueryWordsMdx[wordIdx].body
+            const translationThirdParty =
+                graphqlQueryWordsMdx[wordIdx].frontmatter.thirdParty
+            const translationWord =
+                graphqlQueryWordsMdx[wordIdx].frontmatter.title
+            let translationThirdPartyUrls = ''
             let translationToolTipLeft = 0
             let translationToolTipTop = 0
 
@@ -244,24 +276,23 @@ const StoryBook: React.FC<Props> = (props) => {
             translationTooltip.style.top = `0px`
 
             // Setup
-            translationTooltip.innerHTML = translation.join('')
+            translationTooltip.innerHTML = marked.parse(translation)
             translationTooltip.classList.add('show')
 
-            if (translationThirdParty) {
-                if (translationThirdParty.includes('cambridge')) {
-                    translationThirdPartyUrls.push(
-                        `<a href="https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/${translationWord}" target="_blank">Cambridge Dictionary</a>`
-                    )
+            switch (translationThirdParty) {
+                case 'cambridge': {
+                    translationThirdPartyUrls = `<a href="https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/${translationWord}" target="_blank">Cambridge Dictionary</a>`
+                    break
                 }
-                if (translationThirdParty.includes('google')) {
-                    translationThirdPartyUrls.push(
-                        `<a href="https://translate.google.com/?sl=en&tl=zh-TW&op=translate&text=${translationWord}" target="_blank">Google Translate</a>`
-                    )
+                case 'google': {
+                    translationThirdPartyUrls = `<a href="https://translate.google.com/?sl=en&tl=zh-TW&op=translate&text=${translationWord}" target="_blank">Google Translate</a>`
+                    break
                 }
-                translationTooltip.innerHTML += `<div class="translatedFrom"><strong>Translated from:</strong><br>${translationThirdPartyUrls.join(
-                    ''
-                )}</div>`
+                default: {
+                    break
+                }
             }
+            translationTooltip.innerHTML += `<div class="translatedFrom"><strong>Translated from:</strong><br>${translationThirdPartyUrls}</div>`
 
             // Position Left
             translationToolTipLeft =
@@ -322,8 +353,9 @@ const StoryBook: React.FC<Props> = (props) => {
             <div>
                 <audio
                     controls
-                    onTimeUpdate={handleTimeUpdate}
-                    onLoadedData={audioLoadedData}
+                    preload={`auto`}
+                    onLoadedData={handleAudioOnLoadedData}
+                    onTimeUpdate={handleAudioOnTimeUpdate}
                 >
                     <source src={audioSourceUrl} type={`audio/mp3`} />
                     Your browser does not support the audio element.
