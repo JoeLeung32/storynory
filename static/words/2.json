@@ -2,7 +2,13 @@
   {
     "word": "Amusing",
     "translation": {
-      "tc": "有趣, 好玩兒, 滑稽的"
+      "tc": [
+        "<p><strong>entertaining</strong></p>",
+        "<p>好笑的，有趣的；引人發笑的</p>",
+        "<ul>",
+        "<li>an amusing story/person/situation<br>有趣的故事／風趣的人／好笑的場面</li>",
+        "</ul>"
+      ]
     }
   }
 ]
