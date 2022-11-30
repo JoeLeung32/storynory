@@ -108,6 +108,7 @@ const StoryBook: React.FC<Props> = (props) => {
         doHighlightAndScroll()
     }
     const parserParagraph = (data: [CaptionLine], parentId: string) => {
+        const charsRegExp = new RegExp(/[ ,.;:~\-=#_"'“‘()\[\]{}]/)
         return data.map((line, idx) => {
             const eleId = `${parentId}l${idx}`
             const standalone = line.standalone
@@ -116,13 +117,23 @@ const StoryBook: React.FC<Props> = (props) => {
             const translation = line.translation
             let scriptContent = line.content
             WordsData.forEach((word, idx) => {
-                let actualWord = ''
                 const keyword = word.word
                 const targetWordIndex = scriptContent
                     .toLowerCase()
                     .search(keyword.toLowerCase())
-                if (targetWordIndex >= 0) {
-                    actualWord = scriptContent.substring(
+                const targetWordIndexPrevString = scriptContent.substring(
+                    targetWordIndex - 1,
+                    targetWordIndex
+                )
+                const targetWordIndexNextString = scriptContent.substring(
+                    targetWordIndex + keyword.length,
+                    targetWordIndex + keyword.length + 1
+                )
+                const isMatchedCharsRexExp =
+                    targetWordIndexPrevString.search(charsRegExp) === 0 &&
+                    targetWordIndexNextString.search(charsRegExp) === 0
+                if (targetWordIndex >= 0 && isMatchedCharsRexExp) {
+                    const actualWord = scriptContent.substring(
                         targetWordIndex,
                         targetWordIndex + keyword.length
                     )
