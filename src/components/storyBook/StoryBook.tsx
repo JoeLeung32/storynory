@@ -120,13 +120,12 @@ const StoryBook: React.FC<Props> = (props) => {
         }
         const handlerHideShowTooltip = () => hideToolTip()
         const handleResize = () => hideToolTip()
-        const handleClick = (el: PointerEvent) => {
+        const handleClick = (el: MouseEvent) => {
             const target = el.target as HTMLElement
             const wordIdx = target.dataset.wordIdx
             if (!wordIdx) return
             const mdxData = graphqlQueryWordsMdx[wordIdx]
             const translationWord = mdxData.frontmatter.title
-            console.log('~>', mdxData)
             let state: TranslationContent = {
                 wordId: wordIdx,
                 target,
@@ -150,7 +149,7 @@ const StoryBook: React.FC<Props> = (props) => {
             setTranslationObject(state)
             hideBottomUp()
         }
-        const handleShowMore = (el: PointerEvent) => {
+        const handleShowMore = (el: MouseEvent) => {
             const target = el.target as HTMLElement
             const parentWrap = target.closest(
                 '.translationTooltip'
@@ -185,13 +184,13 @@ const StoryBook: React.FC<Props> = (props) => {
         reset()
         translationTags.forEach((tag) => {
             tag.addEventListener('click', (el) => {
-                if (el instanceof PointerEvent) handleClick(el)
+                if (el instanceof MouseEvent) handleClick(el)
             })
         })
         translationTooltip
             .querySelector('.translationTooltipShowMore')
             ?.addEventListener('click', (el) => {
-                if (el instanceof PointerEvent) handleShowMore(el)
+                if (el instanceof MouseEvent) handleShowMore(el)
             })
         translationTooltip
             .querySelector('.btnClose')
