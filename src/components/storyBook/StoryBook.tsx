@@ -1,18 +1,11 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
-import {
-    Caption,
-    CaptionLine,
-    CaptionTimestamp,
-    TypeAudioTimeFormat
-} from '../../interfaces/Caption'
-import {
-    StyledParagraph,
-    StyledParagraphLine,
-    StyledParagraphTranslation
-} from '../styled/StyledParagraph'
+import { graphql, useStaticQuery } from 'gatsby'
 import { marked } from 'marked'
+import { Caption, CaptionTimestamp } from '../../interfaces/Caption'
+import { StyledTranslationTooltip } from '../styled/StyledTranslationTooltip'
+import { StyledTranslationBottomUp } from '../styled/StyledTranslationButtomUp'
+import StoryBookParagraph, { MdxPartOfSpeech } from './StoryBookParagraph'
 
 interface Props {
     audioSourceUrl: string
@@ -21,17 +14,15 @@ interface Props {
     captions: {
         map(element: (caption: Caption, idx: string) => JSX.Element): any
     }
+    translationCode: string
     children: React.ReactElement | undefined
-    translationCode?: any
 }
 
-interface MdxNodes {
-    frontmatter: {
-        title?: string
-        slug?: string
-        thirdParty?: string
-    }
-    body?: string
+interface TranslationContent {
+    wordId?: string
+    target?: HTMLElement
+    thirdPartyUrls?: string
+    partOfSpeech: MdxPartOfSpeech[]
 }
 
 const timeLoopDefault = {
@@ -40,25 +31,23 @@ const timeLoopDefault = {
 }
 
 const StoryBook: React.FC<Props> = (props) => {
-    const { children } = props
+    // Declare
+    const { storyName, captions, children, translationCode } = props
     const { audioSourceUrl, handleAudio } = props
-    const { storyName, captions, translationCode } = props
     const [highlighter, setHighlighter] = useState<boolean>(true)
     const [audio, setAudio] = useState<HTMLAudioElement>()
     const [currentTime, setCurrentTime] = useState(0)
     const [timeLoop, setTimeLoop] = useState<CaptionTimestamp>(timeLoopDefault)
-    const [currentLineId, setCurrentLineId] = useState<string | null>(null)
-    const audioControl = {
-        set: async (start: TypeAudioTimeFormat, end: TypeAudioTimeFormat) => {
-            if (!audio) return
-            setTimeLoop({
-                start: start,
-                end: end
-            })
-            audio.currentTime = start || 0
-            await audio.play()
-        }
-    }
+    const [currentScriptId, setCurrentScriptId] = useState<string | null>(null)
+    const [translationObject, setTranslationObject] =
+        useState<TranslationContent>()
+    // Functions
+    const graphqlQueryWordsMdx = (() => {
+        const {
+            allMdx: { nodes }
+        } = useStaticQuery(graphqlAllMdxWords)
+        return nodes
+    })()
     const handleAudioOnLoadedData = (event: SyntheticEvent) => {
         const object = event.target as HTMLAudioElement
         if (!object) return
@@ -78,26 +67,20 @@ const StoryBook: React.FC<Props> = (props) => {
         const doHighlightAndScroll = () => {
             if (!audio) return
             if (!document) return
-            const storyContent = document.querySelector('.storyContent')
-            if (!storyContent) return
-            const paragraphs = storyContent.querySelectorAll('.storyParagraph')
-            const translationTooltip = storyContent.querySelector(
-                '.translationTooltip'
-            )
+            const sc = document.querySelector('.storyContent')
+            if (!sc) return
+            const paragraphs = sc.querySelectorAll('.storyParagraph')
+            const translationTooltip = sc.querySelector('.translationTooltip')
             if (!paragraphs || !translationTooltip) return
-            setCurrentLineId(null)
-            paragraphs.forEach((el) => {
-                if (!(el instanceof HTMLElement)) return
-                const targeted =
-                    audio.currentTime >= Number(el?.dataset.start) &&
-                    audio.currentTime < Number(el?.dataset.end)
-                const autoScroll =
-                    highlighter &&
-                    !translationTooltip.classList.contains('show')
-                el.dataset.highlight =
-                    highlighter && targeted ? 'true' : 'false'
+            const implement = (el: HTMLElement) => {
+                const ct = audio.currentTime
+                const ds = el?.dataset
+                const isShown = translationTooltip.classList.contains('show')
+                const targeted = ct >= Number(ds.start) && ct < Number(ds.end)
+                const autoScroll = highlighter && !isShown
+                ds.highlight = highlighter && targeted ? 'true' : 'false'
                 if (targeted) {
-                    setCurrentLineId(el.id)
+                    setCurrentScriptId(el.id)
                     if (autoScroll) {
                         el.scrollIntoView({
                             behavior: 'smooth',
@@ -106,247 +89,171 @@ const StoryBook: React.FC<Props> = (props) => {
                         })
                     }
                 }
+            }
+            setCurrentScriptId(null)
+            paragraphs.forEach((el) => {
+                if (el instanceof HTMLElement) implement(el)
             })
         }
         if (audio) setCurrentTime(audio.currentTime)
         doLooping()
         doHighlightAndScroll()
     }
-    const graphqlQueryWordsMdx = (() => {
-        const {
-            allMdx: { nodes }
-        } = useStaticQuery(graphql`
-            {
-                allMdx {
-                    nodes {
-                        frontmatter {
-                            title
-                            slug
-                            thirdParty
-                        }
-                        body
-                    }
-                }
-            }
-        `)
-        return nodes
-    })()
-    const parserParagraph = (data: [CaptionLine], parentId: string) => {
-        const charsRegExp = new RegExp(/[ ,.;:~\-=#_"'“‘()\[\]{}]/)
-        const doTranslationTag = (line: CaptionLine) => {
-            let scriptContent = line.content
-            if (!graphqlQueryWordsMdx) return scriptContent
-            graphqlQueryWordsMdx.forEach((node: MdxNodes, idx: number) => {
-                if (!node.frontmatter.slug) return
-                const keyword = node.frontmatter.slug.toString()
-                const targetWordIndex = scriptContent
-                    .toLowerCase()
-                    .search(keyword.toLowerCase())
-                const targetWordIndexPrevString = scriptContent.substring(
-                    targetWordIndex - 1,
-                    targetWordIndex
-                )
-                const targetWordIndexNextString = scriptContent.substring(
-                    targetWordIndex + keyword.length,
-                    targetWordIndex + keyword.length + 1
-                )
-                const isMatchedCharsRexExp =
-                    targetWordIndexPrevString.search(charsRegExp) === 0 &&
-                    targetWordIndexNextString.search(charsRegExp) === 0
-                if (targetWordIndex >= 0 && isMatchedCharsRexExp) {
-                    const actualWord = scriptContent.substring(
-                        targetWordIndex,
-                        targetWordIndex + keyword.length
-                    )
-                    const newWord = `<span class="translationTag" data-word-idx="${idx}">${actualWord}</span> <i class="text-danger fa-solid fa-language"></i>`
-                    scriptContent = scriptContent.replace(actualWord, newWord)
-                }
-            })
-            return scriptContent
-        }
-        return data.map((line, idx) => {
-            const eleId = `${parentId}l${idx}`
-            const standalone = line.standalone
-            const timestampStart = line.start
-            const timestampEnd = line.end
-            const translation = line.translation
-            const scriptContent = doTranslationTag(line)
-            return (
-                <StyledParagraphLine
-                    key={idx}
-                    standalone={standalone}
-                    id={eleId}
-                    className={`storyParagraph m-0 py-3 py-md-0`}
-                    data-start={timestampStart}
-                    data-end={timestampEnd}
-                >
-                    <div className={`p-2 px-3`}>
-                        <StyledParagraphTranslation>
-                            {translationCode &&
-                                translation &&
-                                translation[translationCode] && (
-                                    <small>
-                                        {translation[translationCode]}
-                                    </small>
-                                )}
-                            {!translation && <small>...</small>}
-                        </StyledParagraphTranslation>
-                        <StyledScriptTag
-                            className={`script`}
-                            dangerouslySetInnerHTML={{ __html: scriptContent }}
-                        ></StyledScriptTag>
-                        <div>
-                            <button
-                                title={`Loop this one`}
-                                className={`btn btn-sm btn-link`}
-                                onClick={() =>
-                                    audioControl.set(
-                                        timestampStart,
-                                        timestampEnd
-                                    )
-                                }
-                            >
-                                <i className="fa-solid fa-repeat"></i>
-                            </button>
-                            {(eleId !== currentLineId || audio?.paused) && (
-                                <button
-                                    title={`Play from here`}
-                                    className={`btn btn-sm btn-link`}
-                                    onClick={() =>
-                                        audioControl.set(timestampStart, null)
-                                    }
-                                >
-                                    <i className="fa-solid fa-play"></i>
-                                </button>
-                            )}
-                            {eleId === currentLineId && !audio?.paused && (
-                                <button
-                                    title={`Pause`}
-                                    className={`btn btn-sm btn-link`}
-                                    onClick={() => audio?.pause()}
-                                >
-                                    <i className="fa-solid fa-pause"></i>
-                                </button>
-                            )}
-                            <button
-                                title={`Stop highlight and auto-scroll`}
-                                className={`btn btn-sm btn-link ${
-                                    highlighter
-                                        ? 'text-primary'
-                                        : 'text-secondary'
-                                }`}
-                                onClick={() => setHighlighter(!highlighter)}
-                            >
-                                <i className="fa-solid fa-highlighter"></i>
-                            </button>
-                        </div>
-                    </div>
-                </StyledParagraphLine>
-            )
-        })
-    }
     useEffect(() => {
-        const storyContent = document.querySelector('.storyContent')
-        if (!storyContent) return
-        const translationTooltip = storyContent.querySelector(
+        const sc = document.querySelector('.storyContent')
+        if (!sc) return
+        const translationTooltip = sc.querySelector(
             '.translationTooltip'
-        )
-        if (!translationTooltip) return
-        const translationTags = storyContent.querySelectorAll('.translationTag')
-        const handlerClick = (el: any) => {
-            if (!(translationTooltip instanceof HTMLElement)) return
-            const offsetTop = storyContent.getBoundingClientRect().top
-            const offsetLeft = storyContent.getBoundingClientRect().left
-            const elementWidth = el.target.getBoundingClientRect().width
-            const elementHeight = el.target.getBoundingClientRect().height
-            const wordIdx = el.target.dataset.wordIdx
-            const translation = graphqlQueryWordsMdx[wordIdx].body
-            const translationThirdParty =
-                graphqlQueryWordsMdx[wordIdx].frontmatter.thirdParty
-            const translationWord =
-                graphqlQueryWordsMdx[wordIdx].frontmatter.title
-            let translationThirdPartyUrls = ''
-            let translationToolTipLeft = 0
-            let translationToolTipTop = 0
-
-            // Reset
-            translationTooltip.classList.remove('show')
-            translationTooltip.innerHTML = ``
-            translationTooltip.style.left = `0px`
-            translationTooltip.style.top = `0px`
-
-            // Setup
-            translationTooltip.innerHTML = marked.parse(translation)
-            translationTooltip.classList.add('show')
-
-            switch (translationThirdParty) {
-                case 'cambridge': {
-                    translationThirdPartyUrls = `<a href="https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/${translationWord}" target="_blank">Cambridge Dictionary</a>`
-                    break
-                }
-                case 'google': {
-                    translationThirdPartyUrls = `<a href="https://translate.google.com/?sl=en&tl=zh-TW&op=translate&text=${translationWord}" target="_blank">Google Translate</a>`
-                    break
-                }
-                default: {
-                    break
-                }
-            }
-            translationTooltip.innerHTML += `<div class="translatedFrom"><strong>Translated from:</strong><br>${translationThirdPartyUrls}</div>`
-
-            // Position Left
-            translationToolTipLeft =
-                el.target.getBoundingClientRect().x -
-                offsetLeft -
-                translationTooltip.offsetWidth / 2 +
-                elementWidth / 2
-            if (translationToolTipLeft < 0) translationToolTipLeft = 0
-            if (
-                translationToolTipLeft + translationTooltip.offsetWidth >=
-                window.innerWidth
-            ) {
-                translationToolTipLeft =
-                    window.innerWidth - translationTooltip.offsetWidth
-            }
-            translationTooltip.style.left = `${translationToolTipLeft}px`
-
-            // Position Top
-            translationToolTipTop =
-                el.target.getBoundingClientRect().y -
-                offsetTop -
-                elementHeight / 2 -
-                translationTooltip.offsetHeight
-            translationTooltip.style.top = `${translationToolTipTop}px`
-
-            translationTooltip.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-                inline: 'nearest'
-            })
-        }
-        const hide = () => {
-            if (!(translationTooltip instanceof HTMLElement)) return
+        ) as HTMLElement
+        const translationBottomUp = sc.querySelector(
+            '.translationBottomUp'
+        ) as HTMLElement
+        if (!translationTooltip || !translationBottomUp) return
+        const translationTags = sc.querySelectorAll('.translationTag')
+        const hideToolTip = () => {
             translationTooltip.classList.remove('show')
             translationTooltip.style.left = '-100%'
             translationTooltip.style.top = '-100%'
         }
-        const handlerHideShow = (el: any) => hide()
-        const handleResize = () => hide()
-
-        translationTooltip.addEventListener('click', handlerHideShow)
-        translationTags.forEach((tag) => {
-            tag.addEventListener('click', handlerClick)
-        })
-        window.addEventListener('resize', handleResize)
-        return () => {
-            translationTooltip.removeEventListener('click', handlerHideShow)
+        const hideBottomUp = () => {
+            translationBottomUp.classList.remove('show')
+        }
+        const handlerHideShowTooltip = () => hideToolTip()
+        const handleResize = () => hideToolTip()
+        const handleClick = (el: PointerEvent) => {
+            const target = el.target as HTMLElement
+            const wordIdx = target.dataset.wordIdx
+            if (!wordIdx) return
+            const mdxData = graphqlQueryWordsMdx[wordIdx]
+            const translationWord = mdxData.frontmatter.title
+            console.log('~>', mdxData)
+            let state: TranslationContent = {
+                wordId: wordIdx,
+                target,
+                partOfSpeech: mdxData.frontmatter.partOfSpeech,
+                thirdPartyUrls: ``
+            }
+            switch (mdxData.frontmatter.thirdParty) {
+                case 'cambridge': {
+                    state.thirdPartyUrls = `<a href="https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/${translationWord}" target="_blank">Cambridge Dictionary</a>`
+                    break
+                }
+                case 'google': {
+                    state.thirdPartyUrls = `<a href="https://translate.google.com/?sl=en&tl=zh-TW&op=translate&text=${translationWord}" target="_blank">Google Translate</a>`
+                    break
+                }
+                default: {
+                    state.thirdPartyUrls = ``
+                    break
+                }
+            }
+            setTranslationObject(state)
+            hideBottomUp()
+        }
+        const handleShowMore = (el: PointerEvent) => {
+            const target = el.target as HTMLElement
+            const parentWrap = target.closest(
+                '.translationTooltip'
+            ) as HTMLElement
+            if (!parentWrap) return
+            const wordIdx = parentWrap.dataset.wordId
+            translationBottomUp.dataset.wordId = wordIdx
+            translationBottomUp.classList.add('show')
+            translationBottomUp
+                .querySelector('.btnClose')
+                ?.addEventListener('click', hideBottomUp)
+            hideToolTip()
+        }
+        const reset = () => {
             translationTags.forEach((tag) => {
-                tag.removeEventListener('click', handlerClick)
+                tag.removeEventListener('click', (el) => {
+                    if (el instanceof PointerEvent) handleClick(el)
+                })
             })
+            translationTooltip
+                .querySelector('.translationTooltipShowMore')
+                ?.removeEventListener('click', (el) => {
+                    if (el instanceof PointerEvent) handleShowMore(el)
+                })
+            translationTooltip
+                .querySelector('.btnClose')
+                ?.removeEventListener('click', handlerHideShowTooltip)
+            // translationTooltip.removeEventListener('click', handlerHideShowTooltip)
             window.removeEventListener('resize', handleResize)
         }
-    }, [])
 
+        reset()
+        translationTags.forEach((tag) => {
+            tag.addEventListener('click', (el) => {
+                if (el instanceof PointerEvent) handleClick(el)
+            })
+        })
+        translationTooltip
+            .querySelector('.translationTooltipShowMore')
+            ?.addEventListener('click', (el) => {
+                if (el instanceof PointerEvent) handleShowMore(el)
+            })
+        translationTooltip
+            .querySelector('.btnClose')
+            ?.addEventListener('click', handlerHideShowTooltip)
+        // translationTooltip.addEventListener('click', handlerHideShowTooltip)
+        window.addEventListener('resize', handleResize)
+        return () => reset()
+    }, [])
+    useEffect(() => {
+        if (!translationObject || !translationObject.target) return
+        const { target } = translationObject
+        const storyContent = document.querySelector('.storyContent')
+        if (!storyContent) return
+        const translationTooltip = storyContent.querySelector(
+            '.translationTooltip'
+        ) as HTMLElement
+        const offsetTop = storyContent.getBoundingClientRect().top
+        const offsetLeft = storyContent.getBoundingClientRect().left
+        const elementWidth = target.getBoundingClientRect().width
+        const elementHeight = target.getBoundingClientRect().height
+        let translationToolTipLeft = 0
+        let translationToolTipTop = 0
+
+        // Position Left
+        translationToolTipLeft =
+            target.getBoundingClientRect().x -
+            offsetLeft -
+            translationTooltip.offsetWidth / 2 +
+            elementWidth / 2
+        if (translationToolTipLeft < 0) translationToolTipLeft = 0
+        if (
+            translationToolTipLeft + translationTooltip.offsetWidth >=
+            window.innerWidth
+        ) {
+            translationToolTipLeft =
+                window.innerWidth - translationTooltip.offsetWidth
+        }
+        translationTooltip.style.left = `${translationToolTipLeft}px`
+
+        // Position Top
+        translationToolTipTop =
+            target.getBoundingClientRect().y -
+            offsetTop -
+            elementHeight / 2 -
+            translationTooltip.offsetHeight
+        translationTooltip.style.top = `${translationToolTipTop}px`
+
+        translationTooltip.classList.add('show')
+        translationTooltip.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'nearest'
+        })
+        return () => {
+            translationTooltip.classList.remove('show')
+            translationTooltip.style.left = '-100%'
+            translationTooltip.style.top = '-100%'
+        }
+    }, [translationObject])
+
+    // @ts-ignore
+    // @ts-ignore
     return (
         <main className={`container-fluid`}>
             <h1>{storyName}</h1>
@@ -368,19 +275,137 @@ const StoryBook: React.FC<Props> = (props) => {
             <StyledStoryContent className={`storyContent`}>
                 <StyledTranslationTooltip
                     className={`translationTooltip`}
-                ></StyledTranslationTooltip>
+                    data-word-id={translationObject?.wordId}
+                >
+                    <header className={`d-flex justify-content-between`}>
+                        <div>Dictionary</div>
+                        <div className={`btnClose`}>
+                            <i className="fa-solid fa-xmark"></i>
+                        </div>
+                    </header>
+                    <div className={`p-2`}>
+                        <div className={`mb-2 content`}>
+                            <p className="badge bg-primary m-0">
+                                {translationObject?.partOfSpeech[0].type}
+                            </p>
+                            <p className={`m-0 fw-bold`}>
+                                {translationObject &&
+                                    marked.parseInline(
+                                        translationObject.partOfSpeech[0].en
+                                    )}
+                            </p>
+                            <p className={`m-0`}>
+                                {translationObject &&
+                                    marked.parseInline(
+                                        translationObject.partOfSpeech[0][
+                                            translationCode
+                                        ]
+                                    )}
+                            </p>
+                        </div>
+                        <div className={`mb-2`}>
+                            <button
+                                className={`translationTooltipShowMore btn btn-sm btn-info`}
+                            >
+                                Show More
+                            </button>
+                        </div>
+                        <div className={`translatedFrom`}>
+                            <strong>Translated from:</strong>
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html:
+                                        translationObject?.thirdPartyUrls || ''
+                                }}
+                            ></div>
+                        </div>
+                    </div>
+                </StyledTranslationTooltip>
                 {captions.map((caption: Caption, idx: string) => {
                     const eleId = `p${idx}`
                     return (
                         <React.Fragment key={idx}>
                             {caption.type === 'paragraph' && (
-                                <StyledParagraph id={eleId}>
-                                    {parserParagraph(caption.data, eleId)}
-                                </StyledParagraph>
+                                <StoryBookParagraph
+                                    id={eleId}
+                                    data={caption.data}
+                                    currentScriptId={currentScriptId}
+                                    translationCode={translationCode}
+                                    wordsMdx={graphqlQueryWordsMdx}
+                                    audio={audio}
+                                    handleAudioTimeLoop={setTimeLoop}
+                                    handleHighlighter={setHighlighter}
+                                ></StoryBookParagraph>
                             )}
                         </React.Fragment>
                     )
                 })}
+                <StyledTranslationBottomUp
+                    className={`translationBottomUp`}
+                    data-word-id={`null`}
+                >
+                    <header className={`d-flex justify-content-between`}>
+                        <div>Dictionary</div>
+                        <div className={`btnClose`}>
+                            <i className="fa-solid fa-xmark"></i>
+                        </div>
+                    </header>
+                    <div className={`p-2`}>
+                        <div className={`mb-2 content`}>
+                            {translationObject?.partOfSpeech.map((data) => {
+                                return (
+                                    <>
+                                        <p className="badge bg-primary m-0">
+                                            {data.type}
+                                        </p>
+                                        <p className={`m-0 fw-bold`}>
+                                            {translationObject &&
+                                                marked.parseInline(data.en)}
+                                        </p>
+                                        <p className={`m-0`}>
+                                            {translationObject &&
+                                                marked.parseInline(
+                                                    data[translationCode]
+                                                )}
+                                        </p>
+                                        <ul className={`mt-2`}>
+                                            {data.examples.map((li) => (
+                                                <li>
+                                                    <i>{li.en}</i>
+                                                    <br />
+                                                    {li[translationCode]}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        {data.moreExamples && (
+                                            <div className={`bg-info mt-2 p-2`}>
+                                                <p className={`m-0 fw-bold`}>
+                                                    More Examples
+                                                </p>
+                                                <ul className={`m-0`}>
+                                                    {data.moreExamples.map(
+                                                        (li) => (
+                                                            <li>{li}</li>
+                                                        )
+                                                    )}
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </>
+                                )
+                            })}
+                        </div>
+                        <div className={`translatedFrom`}>
+                            <strong>Translated from:</strong>
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html:
+                                        translationObject?.thirdPartyUrls || ''
+                                }}
+                            ></div>
+                        </div>
+                    </div>
+                </StyledTranslationBottomUp>
             </StyledStoryContent>
             {children}
         </main>
@@ -389,67 +414,31 @@ const StoryBook: React.FC<Props> = (props) => {
 
 export default StoryBook
 
-const StyledTranslationTooltip = styled.div`
-    background: #fff;
-    border: 2px solid #dc3545;
-    border-radius: 10px;
-    box-shadow: 0.5rem 0.5rem 0 rgba(220, 53, 69, 50%);
-    display: block;
-    opacity: 0;
-    padding: 8px;
-
-    position: absolute;
-    top: -100%;
-    left: -100%;
-    z-index: 1;
-    user-select: none;
-
-    max-width: 99.9%;
-
-    &:before {
-        content: 'Dictionary';
-
-        background-color: #dc3545;
-        color: #fff;
-        display: block;
-        margin: -8px;
-        margin-bottom: 8px;
-        padding: 4px 8px;
-    }
-
-    ul,
-    ol {
-        padding-left: 1rem;
-
-        i {
-            color: #000;
-            display: block;
-            font-weight: 200;
-        }
-    }
-
-    a,
-    a:hover,
-    .translatedFrom {
-        color: #666;
-        font-size: 10px;
-        text-decoration: none;
-    }
-
-    &.show {
-        opacity: 1;
-    }
-`
-
-const StyledScriptTag = styled.div`
-    > .translationTag {
-        cursor: pointer;
-        font-weight: bold;
-        text-decoration: underline;
-        position: relative;
-    }
-`
-
 const StyledStoryContent = styled.div`
     position: relative;
+`
+
+const graphqlAllMdxWords = graphql`
+    {
+        allMdx {
+            nodes {
+                frontmatter {
+                    slug
+                    title
+                    thirdParty
+                    partOfSpeech {
+                        type
+                        en
+                        tc
+                        examples {
+                            en
+                            tc
+                        }
+                        moreExamples
+                    }
+                }
+                body
+            }
+        }
+    }
 `
