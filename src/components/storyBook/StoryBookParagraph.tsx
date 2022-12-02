@@ -27,7 +27,7 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
     const { pause, handleAudioPause } = props
     const { highlighter, handleHighlighter } = props
     const { currentScriptId, wordsMdx } = props
-    const charsRegExp = new RegExp(/[ ,.;:~\-=#_"'“‘()\[\]{}]/)
+    const charsRegExp = new RegExp(/[ ,.;:~\-=#_"'“‘()\[\]{}?!]/)
     const audioControl = {
         set: async (start: TypeAudioTimeFormat, end: TypeAudioTimeFormat) => {
             if (!handleAudioTimeLoop) return

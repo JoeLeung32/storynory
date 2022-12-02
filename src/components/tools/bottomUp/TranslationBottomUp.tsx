@@ -12,10 +12,11 @@ interface Props {
 
 const TranslationBottomUp: React.FC<Props> = (props) => {
     const { translationCode, translationObject } = props
-    const parseMarkdownInline = (type: string) =>
-        translationObject &&
-        marked.parseInline(translationObject.partOfSpeech[0][type])
-
+    const parseMarkdownInline = (idx: number, type: string) => {
+        if (!translationObject) return
+        const txt = translationObject.partOfSpeech[idx][type]
+        return !txt ? txt : marked.parseInline(txt)
+    }
     return (
         <StyledTranslationBottomUp
             className={`translationBottomUp rounded-top`}
@@ -42,19 +43,22 @@ const TranslationBottomUp: React.FC<Props> = (props) => {
                                     {data.type}
                                 </p>
                                 <p className={`m-0 fw-bold`}>
-                                    {parseMarkdownInline('en')}
+                                    {parseMarkdownInline(idx, 'en')}
                                 </p>
                                 <p className={`m-0`}>
-                                    {parseMarkdownInline(translationCode)}
+                                    {parseMarkdownInline(idx, translationCode)}
                                 </p>
                                 <ul className={`mt-2`}>
-                                    {data.examples.map((li, liIdx: number) => (
-                                        <li key={liIdx}>
-                                            <i>{li.en}</i>
-                                            <br />
-                                            {li[translationCode]}
-                                        </li>
-                                    ))}
+                                    {data.examples &&
+                                        data.examples.map(
+                                            (li, liIdx: number) => (
+                                                <li key={liIdx}>
+                                                    <i>{li.en}</i>
+                                                    <br />
+                                                    {li[translationCode]}
+                                                </li>
+                                            )
+                                        )}
                                 </ul>
                                 {data.moreExamples && (
                                     <div

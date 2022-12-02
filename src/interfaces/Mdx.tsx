@@ -12,9 +12,10 @@ interface MdxPartOfSpeech extends MdxPartOfSpeechExample {
 
 interface MdxWordsNodes {
     frontmatter: {
+        thirdParty?: string
         slug?: string
         title?: string
-        thirdParty?: string
+        refer?: string
         partOfSpeech?: MdxPartOfSpeech[]
     }
     body?: string

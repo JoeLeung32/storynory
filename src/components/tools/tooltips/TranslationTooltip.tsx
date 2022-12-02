@@ -13,6 +13,7 @@ interface PropsForTranslatedFrom {
 
 interface PropsForTranslationTooltip extends PropsForTranslatedFrom {
     translationCode: string
+    handleTranslationObject?: any
 }
 
 export const TranslatedFrom: React.FC<PropsForTranslatedFrom> = (props) => {
@@ -31,9 +32,16 @@ export const TranslatedFrom: React.FC<PropsForTranslatedFrom> = (props) => {
 
 const TranslationTooltip: React.FC<PropsForTranslationTooltip> = (props) => {
     const { translationCode, translationObject } = props
-    const parseMarkdownInline = (type: string) =>
-        translationObject &&
-        marked.parseInline(translationObject.partOfSpeech[0][type])
+    // const { handleTranslationObject } = props
+    const parseMarkdownInline = (type: string) => {
+        if (!translationObject) return
+        const txt = translationObject.partOfSpeech[0][type]
+        return !txt ? txt : marked.parseInline(txt)
+    }
+    const handleLearnMore = () => {
+        console.log('~>TODO', translationObject?.refer)
+        //handleTranslationObject
+    }
     useEffect(() => {
         if (!translationObject || !translationObject.target) return
         const { target } = translationObject
@@ -115,6 +123,19 @@ const TranslationTooltip: React.FC<PropsForTranslationTooltip> = (props) => {
                         {parseMarkdownInline(translationCode)}
                     </p>
                 </div>
+                {translationObject?.refer && (
+                    <div className={`mb-2`}>
+                        <p className={`m-0`}>
+                            <strong>Learn:</strong>&nbsp;
+                            <a
+                                className={`link-primary`}
+                                onClick={handleLearnMore}
+                            >
+                                {translationObject?.refer}
+                            </a>
+                        </p>
+                    </div>
+                )}
                 <div className={`mb-2`}>
                     <button
                         className={`btn btn-sm btn-info`}

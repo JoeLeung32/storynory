@@ -28,9 +28,13 @@ const StyledTranslationTooltip = styled.div`
         }
     }
 
-    a,
-    a:hover,
-    .translatedFrom {
+    a {
+        cursor: pointer;
+    }
+
+    .translatedFrom,
+    .translatedFrom a,
+    .translatedFrom a:hover {
         color: #666;
         font-size: 10px;
         text-decoration: none;

@@ -120,6 +120,7 @@ const StoryBook: React.FC<Props> = (props) => {
             if (!wordId) return
             const mdxData = graphqlQueryWordsMdx[wordId]
             const word = mdxData.frontmatter.title
+            const refer = mdxData.frontmatter.refer
             const thirdParty =
                 thirdPartyUrls[
                     mdxData.frontmatter
@@ -128,6 +129,7 @@ const StoryBook: React.FC<Props> = (props) => {
             setTranslationObject({
                 wordId,
                 word,
+                refer,
                 target,
                 partOfSpeech: mdxData.frontmatter.partOfSpeech,
                 thirdPartyUrls: `<a href="${thirdParty.baseUrl}${word}" target="_blank">${thirdParty.name}</a>`
@@ -145,6 +147,7 @@ const StoryBook: React.FC<Props> = (props) => {
                 <TranslationTooltip
                     translationCode={translationCode}
                     translationObject={translationObject}
+                    handleTranslationObject={setTranslationObject}
                 ></TranslationTooltip>
                 {captions.map((caption: Caption, idx: string) => (
                     <React.Fragment key={idx}>
@@ -186,9 +189,10 @@ const graphqlAllMdxWords = graphql`
         allMdx {
             nodes {
                 frontmatter {
+                    thirdParty
                     slug
                     title
-                    thirdParty
+                    refer
                     partOfSpeech {
                         type
                         en
