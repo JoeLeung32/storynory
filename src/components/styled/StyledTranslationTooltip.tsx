@@ -3,7 +3,6 @@ import styled from 'styled-components'
 const StyledTranslationTooltip = styled.div`
     background: #fff;
     border: 2px solid #dc3545;
-    border-radius: 10px;
     box-shadow: 0.5rem 0.5rem 0 rgba(220, 53, 69, 50%);
     display: block;
     opacity: 0;

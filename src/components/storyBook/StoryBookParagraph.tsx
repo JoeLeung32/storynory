@@ -1,65 +1,55 @@
-import React, { useState } from 'react'
-import { CaptionLine, TypeAudioTimeFormat } from '../../interfaces/Caption'
+import React from 'react'
+import styled from 'styled-components'
 import {
     StyledParagraphLine,
     StyledParagraphTranslation
 } from '../styled/StyledParagraph'
-import styled from 'styled-components'
+import { CaptionLine, TypeAudioTimeFormat } from '../../interfaces/Caption'
+import { MdxWordsNodes } from '../../interfaces/Mdx'
 
 interface Props {
     id: string
     data: [CaptionLine]
     currentScriptId?: string | null
-    translationCode: string
+    translationCode?: string
     wordsMdx?: any
     audio?: HTMLAudioElement
-    handleAudioTimeLoop: any
-    handleHighlighter: any
-}
-
-export interface MdxPartOfSpeechExample {
-    en: string
-    tc?: string
-    [x: string]: any
-}
-
-export interface MdxPartOfSpeech extends MdxPartOfSpeechExample {
-    type: string
-    examples: MdxPartOfSpeechExample[]
-    moreExamples: string[]
-}
-
-interface MdxNodes {
-    frontmatter: {
-        slug?: string
-        title?: string
-        thirdParty?: string
-        partOfSpeech?: MdxPartOfSpeech[]
-    }
-    body?: string
+    handleAudioTimeLoop?: any
+    pause?: boolean
+    handleAudioPause?: any
+    highlighter?: boolean
+    handleHighlighter?: any
 }
 
 const StoryBookParagraph: React.FC<Props> = (props) => {
     const { data, id: parentId, translationCode } = props
-    const { audio, handleAudioTimeLoop, handleHighlighter } = props
+    const { audio, handleAudioTimeLoop } = props
+    const { pause, handleAudioPause } = props
+    const { highlighter, handleHighlighter } = props
     const { currentScriptId, wordsMdx } = props
-    const [highlighter, setHighlighter] = useState<boolean>(true)
     const charsRegExp = new RegExp(/[ ,.;:~\-=#_"'“‘()\[\]{}]/)
     const audioControl = {
         set: async (start: TypeAudioTimeFormat, end: TypeAudioTimeFormat) => {
-            if (!audio) return
+            if (!handleAudioTimeLoop) return
             handleAudioTimeLoop({
                 start: start,
                 end: end
             })
+            if (!audio) return
             audio.currentTime = start || 0
             await audio.play()
+            handleAudioPause(false)
+        },
+        pause: () => {
+            if (!audio) return
+            audio?.pause()
+            handleAudioPause(true)
         }
     }
     const doTranslationTag = (line: CaptionLine) => {
         let scriptContent = line.content
         if (!wordsMdx) return scriptContent
-        wordsMdx.forEach((node: MdxNodes, idx: number) => {
+        wordsMdx.forEach((node: MdxWordsNodes, idx: number) => {
             if (!node.frontmatter.slug) return
             const keyword = node.frontmatter.slug.toString()
             const targetWordIndex = scriptContent
@@ -87,6 +77,56 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
         })
         return scriptContent
     }
+    const doButtonGroup = (line: CaptionLine, idx: number) => {
+        const eleId = `${parentId}l${idx}`
+        const timestampStart = line.start
+        const timestampEnd = line.end
+        const btnPlayShow = eleId !== currentScriptId || pause
+        const btnPauseShow = eleId === currentScriptId && !pause
+        return (
+            <div>
+                <button
+                    title={`Loop this one`}
+                    className={`btn btn-sm btn-link`}
+                    onClick={() =>
+                        audioControl.set(timestampStart, timestampEnd)
+                    }
+                >
+                    <i className="fa-solid fa-repeat"></i>
+                </button>
+                {btnPlayShow && (
+                    <button
+                        title={`Play from here`}
+                        className={`btn btn-sm btn-link`}
+                        onClick={() => audioControl.set(timestampStart, null)}
+                    >
+                        <i className="fa-solid fa-play"></i>
+                    </button>
+                )}
+                {btnPauseShow && (
+                    <button
+                        title={`Pause`}
+                        className={`btn btn-sm btn-link`}
+                        onClick={() => audioControl.pause()}
+                    >
+                        <i className="fa-solid fa-pause"></i>
+                    </button>
+                )}
+                <button
+                    title={`Stop highlight and auto-scroll`}
+                    className={`btn btn-sm btn-link ${
+                        highlighter ? 'text-primary' : 'text-secondary'
+                    }`}
+                    onClick={() => {
+                        const rs = !highlighter
+                        handleHighlighter(rs)
+                    }}
+                >
+                    <i className="fa-solid fa-highlighter"></i>
+                </button>
+            </div>
+        )
+    }
     return (
         <>
             {data.map((line, idx) => {
@@ -96,6 +136,10 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                 const timestampEnd = line.end
                 const translation = line.translation
                 const scriptContent = doTranslationTag(line)
+                const hadTranslation =
+                    translationCode &&
+                    translation &&
+                    translation[translationCode]
                 return (
                     <StyledParagraphLine
                         key={idx}
@@ -107,14 +151,11 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                     >
                         <div className={`p-2 px-3`}>
                             <StyledParagraphTranslation>
-                                {translationCode &&
-                                    translation &&
-                                    translation[translationCode] && (
-                                        <small>
-                                            {translation[translationCode]}
-                                        </small>
-                                    )}
-                                {!translation && <small>...</small>}
+                                {hadTranslation && (
+                                    <small>
+                                        {translation[translationCode]}
+                                    </small>
+                                )}
                             </StyledParagraphTranslation>
                             <StyledScriptTag
                                 className={`script`}
@@ -122,60 +163,7 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                                     __html: scriptContent
                                 }}
                             ></StyledScriptTag>
-                            <div>
-                                <button
-                                    title={`Loop this one`}
-                                    className={`btn btn-sm btn-link`}
-                                    onClick={() =>
-                                        audioControl.set(
-                                            timestampStart,
-                                            timestampEnd
-                                        )
-                                    }
-                                >
-                                    <i className="fa-solid fa-repeat"></i>
-                                </button>
-                                {(eleId !== currentScriptId ||
-                                    audio?.paused) && (
-                                    <button
-                                        title={`Play from here`}
-                                        className={`btn btn-sm btn-link`}
-                                        onClick={() =>
-                                            audioControl.set(
-                                                timestampStart,
-                                                null
-                                            )
-                                        }
-                                    >
-                                        <i className="fa-solid fa-play"></i>
-                                    </button>
-                                )}
-                                {eleId === currentScriptId &&
-                                    !audio?.paused && (
-                                        <button
-                                            title={`Pause`}
-                                            className={`btn btn-sm btn-link`}
-                                            onClick={() => audio?.pause()}
-                                        >
-                                            <i className="fa-solid fa-pause"></i>
-                                        </button>
-                                    )}
-                                <button
-                                    title={`Stop highlight and auto-scroll`}
-                                    className={`btn btn-sm btn-link ${
-                                        highlighter
-                                            ? 'text-primary'
-                                            : 'text-secondary'
-                                    }`}
-                                    onClick={() => {
-                                        const rs = !highlighter
-                                        handleHighlighter(rs)
-                                        setHighlighter(rs)
-                                    }}
-                                >
-                                    <i className="fa-solid fa-highlighter"></i>
-                                </button>
-                            </div>
+                            {doButtonGroup(line, idx)}
                         </div>
                     </StyledParagraphLine>
                 )

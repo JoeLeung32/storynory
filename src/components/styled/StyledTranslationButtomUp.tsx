@@ -3,9 +3,6 @@ import styled from 'styled-components'
 const StyledTranslationBottomUp = styled.div`
     background: #fff;
     border: 2px solid #dc3545;
-    border-radius: 0;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
     display: block;
     opacity: 0;
     overflow: scroll;
