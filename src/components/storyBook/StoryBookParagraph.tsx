@@ -13,7 +13,7 @@ interface Props {
     currentScriptId?: string | null
     translationCode?: string
     wordsMdx?: any
-    audio?: HTMLAudioElement
+    audio?: HTMLAudioElement | null
     handleAudioTimeLoop?: any
     pause?: boolean
     handleAudioPause?: any

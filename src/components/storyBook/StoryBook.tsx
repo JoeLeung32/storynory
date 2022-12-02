@@ -34,7 +34,9 @@ const StoryBook: React.FC<Props> = (props) => {
     // Declare
     const { storyName, captions, children, translationCode } = props
     const { audioSourceUrl, handleAudio } = props
-    const audioRef = useRef<HTMLAudioElement>(new Audio(audioSourceUrl))
+    const audioRef = useRef<HTMLAudioElement>(
+        typeof window !== 'undefined' ? new Audio(audioSourceUrl) : null
+    )
     const [pause, setPause] = useState(audioRef.current?.paused)
     const audio = audioRef.current
     const [timeLoop, setTimeLoop] = useState<CaptionTimestamp>()
@@ -51,7 +53,7 @@ const StoryBook: React.FC<Props> = (props) => {
     })()
     const handleAudioOnTimeUpdate = () => {
         const doLooping = () => {
-            if (!timeLoop) return
+            if (!audio || !timeLoop) return
             if (timeLoop.start && timeLoop.start >= audio.currentTime) {
                 audio.currentTime = timeLoop.start || 0
             } else if (timeLoop.end && timeLoop.end <= audio.currentTime) {
