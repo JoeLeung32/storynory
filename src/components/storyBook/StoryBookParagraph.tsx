@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import styled from 'styled-components'
 import {
     StyledParagraphLine,
@@ -54,9 +54,12 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
             })
         }
     }
-    const doTranslationTag = (parentIdx: string, line: CaptionLine) => {
+    const TranslationTag = (parentIdx: string, line: CaptionLine) => {
         let scriptContent = line.content
         if (!wordsMdx) return scriptContent
+
+        const matchedCase: string[] = []
+        const matchedPair: { [x: string]: number } = {}
         wordsMdx.forEach((node: MdxWordsNodes, idx: number) => {
             if (!node.frontmatter.slug) return
             const keyword = node.frontmatter.slug.toString()
@@ -79,13 +82,46 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                     targetWordIndex,
                     targetWordIndex + keyword.length
                 )
-                const newWord = `<span class="translationTag" data-word-idx="${idx}">${actualWord}</span> <i class="text-danger fa-solid fa-language"></i>`
-                scriptContent = scriptContent.replaceAll(actualWord, newWord)
+                matchedCase.push(actualWord)
+                matchedPair[actualWord] = idx
             }
         })
+        if (!matchedCase || !matchedCase.length) return scriptContent
+
         return scriptContent
+            .split(new RegExp(matchedCase.join('|')))
+            .map((string, index) => {
+                const targetedWord = matchedCase[index]
+                if (!targetedWord)
+                    return <React.Fragment key={index}>{string}</React.Fragment>
+                const handleClick = (event: SyntheticEvent) => {
+                    const target = event.target as HTMLElement
+                    storyDispatch({
+                        type: 'translationBottomUp',
+                        payload: {
+                            ...story.translationBottomUp,
+                            wordId: target.dataset.wordIdx,
+                            display: true
+                        }
+                    })
+                }
+                return (
+                    <React.Fragment key={index}>
+                        {string}
+                        <span
+                            className={`translationTag`}
+                            data-word-idx={matchedPair[targetedWord]}
+                            onClick={handleClick}
+                        >
+                            {targetedWord}
+                        </span>
+                        &nbsp;
+                        <i className="text-danger fa-solid fa-language"></i>
+                    </React.Fragment>
+                )
+            })
     }
-    const doButtonGroup = (line: CaptionLine, idx: number) => {
+    const ButtonGroup = (line: CaptionLine, idx: number) => {
         const eleId = `${parentId}l${idx}`
         const timestampStart = line.start
         const timestampEnd = line.end
@@ -142,7 +178,6 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                 const timestampStart = line.start
                 const timestampEnd = line.end
                 const translation = line.translation
-                const scriptContent = doTranslationTag(eleId, line)
                 const hadTranslation =
                     locale && translation && translation[locale]
                 return (
@@ -150,9 +185,12 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                         key={idx}
                         standalone={standalone}
                         id={eleId}
-                        className={`storyParagraph m-0 py-3 py-md-0`}
                         data-start={timestampStart}
                         data-end={timestampEnd}
+                        data-highlight={
+                            story.currentParagraphId === eleId &&
+                            story.highlighter
+                        }
                     >
                         <div className={`p-2 px-3`}>
                             <StyledParagraphTranslation>
@@ -160,13 +198,10 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                                     <small>{translation[locale]}</small>
                                 )}
                             </StyledParagraphTranslation>
-                            <StyledScriptTag
-                                className={`script`}
-                                dangerouslySetInnerHTML={{
-                                    __html: scriptContent
-                                }}
-                            ></StyledScriptTag>
-                            {doButtonGroup(line, idx)}
+                            <StyledScriptTag>
+                                {TranslationTag(eleId, line)}
+                            </StyledScriptTag>
+                            {ButtonGroup(line, idx)}
                         </div>
                     </StyledParagraphLine>
                 )

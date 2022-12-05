@@ -17,7 +17,6 @@ type ActionType =
     | { type: 'audioPause'; payload: boolean }
     | { type: 'audioTimeLoop'; payload: CaptionTimestamp }
     | { type: 'highlighter'; payload: boolean }
-    | { type: 'currentParagraph'; payload: CaptionLine }
     | { type: 'currentParagraphId'; payload: string }
     | {
           type: 'translationBottomUp'

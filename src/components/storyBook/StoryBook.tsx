@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import { Caption } from '../../interfaces/Caption'
 import StoryBookParagraph from './StoryBookParagraph'
-import { DOMTranslationTag } from '../../utils/DOM'
+import { DOMStory } from '../../utils/DOM'
 import { useStory } from '../../context/StoryContext'
 import TranslationBottomUp from '../tools/bottomUp/TranslationBottomUp'
 
@@ -10,9 +10,7 @@ interface Props {
     audioSourceUrl: string
     handleAudio: any
     storyName: string
-    captions: {
-        map(element: (caption: Caption, idx: string) => JSX.Element): any
-    }
+    captions: Caption[]
     locale: string
     children: React.ReactElement | undefined
 }
@@ -39,31 +37,35 @@ const StoryBook: React.FC<Props> = (props) => {
         }
         const doHighlightAndScroll = () => {
             if (!audio) return
-            const paragraphs = document.querySelectorAll(
-                '.storyContent .storyParagraph'
+            const ct = audio.currentTime
+            if (!captions) return
+            const paragraphs = captions.map((c) =>
+                c.type === 'paragraph' ? c.data : null
             )
-            if (!paragraphs) return
-            const implement = (ele: HTMLElement) => {
-                const ct = audio.currentTime
-                const ds = ele?.dataset
-                const targeted = ct >= Number(ds.start) && ct < Number(ds.end)
-                const autoScroll = story.highlighter
-                ds.highlight = story.highlighter && targeted ? 'true' : 'false'
-                if (!targeted) return
-                storyDispatch({
-                    type: 'currentParagraphId',
-                    payload: ele.id
-                })
-                if (!autoScroll) return
-                ele.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                    inline: 'nearest'
-                })
-            }
-            paragraphs.forEach((el) => {
-                implement(el as HTMLElement)
+            const currentParagraphIndex = paragraphs
+                .map((line, idx) =>
+                    line && line?.length
+                        ? line.map((l, lidx) =>
+                              ct >= Number(l.start) && ct < Number(l.end)
+                                  ? {
+                                        id: `p${idx}l${lidx}`,
+                                        content: l.content,
+                                        start: l.start,
+                                        end: l.end
+                                    }
+                                  : null
+                          )
+                        : null
+                )
+                .flatMap((p) => p)
+                .filter((p) => p)
+                .pop()
+            if (!currentParagraphIndex) return
+            storyDispatch({
+                type: 'currentParagraphId',
+                payload: currentParagraphIndex.id
             })
+            DOMStory.autoScrollTo(currentParagraphIndex.id, story.highlighter)
         }
         doLooping()
         doHighlightAndScroll()
@@ -92,28 +94,12 @@ const StoryBook: React.FC<Props> = (props) => {
         story.highlighter,
         story.audioTimeLoop
     ])
-    useEffect(() => {
-        const handleClick = (event: Event) => {
-            const target = event.target as HTMLElement
-            storyDispatch({
-                type: 'translationBottomUp',
-                payload: {
-                    ...story.translationBottomUp,
-                    wordId: target.dataset.wordIdx,
-                    display: true
-                }
-            })
-        }
-        DOMTranslationTag.unset(handleClick) // TODO: No DOM
-        DOMTranslationTag.setup(handleClick) // TODO: No DOM
-        return () => DOMTranslationTag.unset(handleClick) // TODO: No DOM
-    }, [])
     // Output
     return (
         <main className={`container-fluid`}>
             <h1>{storyName}</h1>
             <StyledStoryContent className={`storyContent`}>
-                {captions.map((caption: Caption, idx: string) => (
+                {captions.map((caption: Caption, idx: number) => (
                     <React.Fragment key={idx}>
                         {caption.type === 'paragraph' && (
                             <StoryBookParagraph

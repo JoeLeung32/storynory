@@ -1,22 +1,11 @@
-export const DOMTranslationTag = {
-    setup: (handleClick: any) => {
-        const translationTags = document.querySelectorAll(
-            '.storyContent .translationTag'
-        )
-        if (!translationTags) return
-        translationTags.forEach((tag) => {
-            tag.addEventListener('click', (event) => handleClick(event))
+export const DOMStory = {
+    autoScrollTo: (id: string, highlighter: boolean) => {
+        const paragraph = document.querySelector(`.storyContent #${id}`)
+        if (!paragraph || !highlighter) return
+        paragraph.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+            inline: 'nearest'
         })
-        // window.addEventListener('resize', DOMTranslationToolTip.hide)
-    },
-    unset: (handleClick: any) => {
-        const translationTags = document.querySelectorAll(
-            '.storyContent .translationTag'
-        )
-        if (!translationTags) return
-        translationTags.forEach((tag) => {
-            tag.removeEventListener('click', (el) => handleClick(el))
-        })
-        // window.removeEventListener('resize', DOMTranslationToolTip.hide)
     }
 }
