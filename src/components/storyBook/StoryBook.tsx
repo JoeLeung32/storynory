@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { Caption, CaptionTimestamp } from '../../interfaces/Caption'
+import { Caption } from '../../interfaces/Caption'
 import StoryBookParagraph from './StoryBookParagraph'
 import { DOMTranslationTag } from '../../utils/DOM'
 import { useStory } from '../../context/StoryContext'
-import TranslationTooltip from '../tools/tooltips/TranslationTooltip'
 import TranslationBottomUp from '../tools/bottomUp/TranslationBottomUp'
 
 interface Props {
@@ -30,7 +29,7 @@ const StoryBook: React.FC<Props> = (props) => {
     // Functions
     const handleAudioOnTimeUpdate = () => {
         const doLooping = () => {
-            const tl = story.timeLoop
+            const tl = story.audioTimeLoop
             if (!audio || !tl) return
             if (tl.start && tl.start >= audio.currentTime) {
                 audio.currentTime = tl.start || 0
@@ -43,58 +42,31 @@ const StoryBook: React.FC<Props> = (props) => {
             const paragraphs = document.querySelectorAll(
                 '.storyContent .storyParagraph'
             )
-            const translationTooltip = document.querySelector(
-                '.storyContent .translationTooltip'
-            )
-            if (!paragraphs || !translationTooltip) return
-            const implement = (el: HTMLElement) => {
+            if (!paragraphs) return
+            const implement = (ele: HTMLElement) => {
                 const ct = audio.currentTime
-                const ds = el?.dataset
-                const isShown = translationTooltip.classList.contains('show')
+                const ds = ele?.dataset
                 const targeted = ct >= Number(ds.start) && ct < Number(ds.end)
-                const autoScroll = story.highlighter && !isShown
+                const autoScroll = story.highlighter
                 ds.highlight = story.highlighter && targeted ? 'true' : 'false'
                 if (!targeted) return
                 storyDispatch({
                     type: 'currentParagraphId',
-                    payload: el.id
+                    payload: ele.id
                 })
                 if (!autoScroll) return
-                el.scrollIntoView({
+                ele.scrollIntoView({
                     behavior: 'smooth',
                     block: 'center',
                     inline: 'nearest'
                 })
             }
-            storyDispatch({
-                type: 'currentParagraphId',
-                payload: ''
-            })
             paragraphs.forEach((el) => {
                 implement(el as HTMLElement)
             })
         }
         doLooping()
         doHighlightAndScroll()
-    }
-    // Context Control
-    const handleAudioPause = (data: boolean) => {
-        storyDispatch({
-            type: 'audioPause',
-            payload: data
-        })
-    }
-    const handleAudioTimeLoop = (data: CaptionTimestamp) => {
-        storyDispatch({
-            type: 'audioTimeLoop',
-            payload: data
-        })
-    }
-    const handleHighlighter = (data: boolean) => {
-        storyDispatch({
-            type: 'highlighter',
-            payload: data
-        })
     }
     // Life Cycle
     const effects = {
@@ -118,20 +90,17 @@ const StoryBook: React.FC<Props> = (props) => {
     useEffect(effects.audioInitial, [])
     useEffect(effects.audioEventListenerRefresh, [
         story.highlighter,
-        story.timeLoop
+        story.audioTimeLoop
     ])
     useEffect(() => {
-        const handleClick = (el: Event) => {
-            const target = el.target as HTMLElement
-            const wordId = target.dataset.wordIdx
+        const handleClick = (event: Event) => {
+            const target = event.target as HTMLElement
             storyDispatch({
-                type: 'translation',
+                type: 'translationBottomUp',
                 payload: {
-                    ...story.translation,
-                    wordId: wordId || '',
-                    tooltip: {
-                        display: true
-                    }
+                    ...story.translationBottomUp,
+                    wordId: target.dataset.wordIdx,
+                    display: true
                 }
             })
         }
@@ -144,21 +113,14 @@ const StoryBook: React.FC<Props> = (props) => {
         <main className={`container-fluid`}>
             <h1>{storyName}</h1>
             <StyledStoryContent className={`storyContent`}>
-                <TranslationTooltip locale={locale}></TranslationTooltip>
                 {captions.map((caption: Caption, idx: string) => (
                     <React.Fragment key={idx}>
                         {caption.type === 'paragraph' && (
                             <StoryBookParagraph
                                 id={`p${idx}`}
-                                data={caption.data}
-                                currentScriptId={story.currentParagraphId}
                                 locale={locale}
                                 audio={audio}
-                                handleAudioTimeLoop={handleAudioTimeLoop}
-                                pause={story.pause}
-                                handleAudioPause={handleAudioPause}
-                                highlighter={story.highlighter}
-                                handleHighlighter={handleHighlighter}
+                                data={caption.data}
                             ></StoryBookParagraph>
                         )}
                     </React.Fragment>

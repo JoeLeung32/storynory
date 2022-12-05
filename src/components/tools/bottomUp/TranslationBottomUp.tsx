@@ -1,10 +1,50 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 import { marked } from 'marked'
 import { StyledTranslationBottomUp } from '../../styled/StyledTranslationButtomUp'
-import { TranslatedFrom } from '../tooltips/TranslationTooltip'
 import { useStory } from '../../../context/StoryContext'
 import { useWordData } from '../../../context/WordData'
 import { MdxPartOfSpeech } from '../../../interfaces/Mdx'
+
+interface ThirdPartyUrl {
+    [x: string]: {
+        name: string
+        baseUrl: string
+    }
+}
+
+const thirdPartyUrls: ThirdPartyUrl = {
+    cambridge: {
+        name: `Cambridge Dictionary`,
+        baseUrl: `https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/`
+    },
+    google: {
+        name: `Google Translate`,
+        baseUrl: `https://translate.google.com/?sl=en&tl=zh-TW&op=translate&text=`
+    }
+}
+
+export const TranslatedFrom: React.FC = () => {
+    const { story } = useStory()
+    const word = useWordData.index(story.translationBottomUp.wordId || '')
+    if (!word) return <></>
+    const title = word.frontmatter?.title
+    const thirdParty = word.frontmatter?.thirdParty
+    let result = null
+    let url = null
+    if (typeof thirdPartyUrls[thirdParty] === undefined) return null
+    result = thirdPartyUrls[thirdParty]
+    url = `<a href="${result.baseUrl}${title}" target="_blank">${result.name}</a>`
+    return (
+        <div className={`translatedFrom`}>
+            <strong>Translated from:</strong>
+            <div
+                dangerouslySetInnerHTML={{
+                    __html: url
+                }}
+            ></div>
+        </div>
+    )
+}
 
 interface Props {
     locale: string
@@ -12,7 +52,7 @@ interface Props {
 
 const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
     const { story, storyDispatch } = useStory()
-    const word = useWordData.index(story.translation.wordId)
+    const word = useWordData.index(story.translationBottomUp.wordId || '')
     const parseMarkdownInline = (index: number, type: string) => {
         if (!word) return
         const txt = word.frontmatter.partOfSpeech[index][type]
@@ -20,24 +60,34 @@ const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
     }
     const handleBtnClose = () => {
         storyDispatch({
-            type: 'translation',
+            type: 'translationBottomUp',
             payload: {
-                ...story.translation,
-                wordId: '',
-                bottomUp: {
-                    display: false
-                }
+                display: false
             }
         })
     }
-    console.log('~>', story.translation)
+    const handleBtnRefer = (event: SyntheticEvent) => {
+        const target = event.target as HTMLElement
+        const refer = target.dataset.refer
+        if (!refer) return
+        const referWordId = useWordData.searchCache(refer)
+        if (!referWordId) return
+        storyDispatch({
+            type: 'translationBottomUp',
+            payload: {
+                ...story.translationBottomUp,
+                wordId: referWordId.toString(),
+                display: true
+            }
+        })
+    }
     if (!word) return <></>
     return (
         <StyledTranslationBottomUp
             className={`translationBottomUp rounded-top ${
-                story.translation.bottomUp.display ? 'show' : ''
+                story.translationBottomUp.display ? 'show' : ''
             }`}
-            data-word-id={story.translation.wordId}
+            data-word-id={story.translationBottomUp.wordId}
         >
             <header className={`d-flex justify-content-between`}>
                 <div>Dictionary</div>
@@ -69,6 +119,22 @@ const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
                                             locale
                                         )}
                                     </p>
+                                    {word.frontmatter?.refer && (
+                                        <div className={`mb-2`}>
+                                            <p className={`m-0`}>
+                                                <strong>Learn:</strong>&nbsp;
+                                                <a
+                                                    className={`link-primary`}
+                                                    onClick={handleBtnRefer}
+                                                    data-refer={
+                                                        word.frontmatter?.refer
+                                                    }
+                                                >
+                                                    {word.frontmatter?.refer}
+                                                </a>
+                                            </p>
+                                        </div>
+                                    )}
                                     <ul className={`mt-2`}>
                                         {data.examples &&
                                             data.examples.map(

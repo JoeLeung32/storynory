@@ -1,47 +1,53 @@
-import React, { createContext, useContext, useReducer } from 'react'
-import { CaptionTimestamp } from '../interfaces/Caption'
+import React, {
+    createContext,
+    useContext,
+    useEffect,
+    useReducer,
+    useRef
+} from 'react'
+import { CaptionLine, CaptionTimestamp } from '../interfaces/Caption'
+
+interface TranslationBottomUpInterface {
+    wordId?: string | null
+    display: boolean
+}
 
 type ActionType =
     | { type: 'clean'; payload: {} }
     | { type: 'audioPause'; payload: boolean }
     | { type: 'audioTimeLoop'; payload: CaptionTimestamp }
     | { type: 'highlighter'; payload: boolean }
+    | { type: 'currentParagraph'; payload: CaptionLine }
     | { type: 'currentParagraphId'; payload: string }
     | {
-          type: 'translation'
-          payload: {
-              wordId: string
-              tooltip?: {
-                  display?: boolean
-                  posTop?: string
-                  posLeft?: string
-              }
-              bottomUp?: {
-                  display: boolean
-              }
-          }
+          type: 'translationBottomUp'
+          payload: TranslationBottomUpInterface
       }
 
 const initialState = {
-    pause: false,
-    timeLoop: {} as CaptionTimestamp,
+    callbackFire: false,
+    audioPause: false,
+    audioTimeLoop: {} as CaptionTimestamp,
     highlighter: true,
     currentParagraphId: '',
-    translation: {
-        wordId: '',
-        tooltip: {
-            display: false,
-            posTop: '-100%',
-            posLeft: '-100%'
-        },
-        bottomUp: {
-            display: false
-        }
-    }
+    currentParagraph: {
+        content: '',
+        start: null,
+        end: null
+    } as CaptionLine,
+    translationBottomUp: {
+        display: false
+    } as TranslationBottomUpInterface
 }
+
+/*
+type Callback = (story: typeof initialState) => void
+type Dispatch<A, B> = (value: A, callback?: B) => void
+*/
 
 interface StoryInterface {
     story: typeof initialState
+    // storyDispatch: Dispatch<ActionType, Callback>
     storyDispatch: React.Dispatch<ActionType>
 }
 
@@ -51,45 +57,19 @@ const StoryContext = createContext<StoryInterface>({
 })
 
 const reducer = (state: typeof initialState, action: ActionType) => {
-    switch (action.type) {
+    const { type: actionType, payload } = action
+    switch (actionType) {
         case 'clean': {
             return {
                 ...state,
                 highlighter: true
             }
         }
-        case 'audioPause': {
-            return {
-                ...state,
-                pause: action.payload
-            }
-        }
-        case 'audioTimeLoop': {
-            return {
-                ...state,
-                timeLoop: action.payload
-            }
-        }
-        case 'highlighter': {
-            return {
-                ...state,
-                highlighter: action.payload
-            }
-        }
-        case 'currentParagraphId': {
-            return {
-                ...state,
-                currentParagraphId: action.payload
-            }
-        }
-        case 'translation': {
-            return {
-                ...state,
-                translation: action.payload
-            }
-        }
         default: {
-            throw new Error()
+            return {
+                ...state,
+                [actionType]: payload
+            }
         }
     }
 }
@@ -99,7 +79,18 @@ interface Props {
 }
 
 export const StoryProvider: React.FC<Props> = ({ children }) => {
+    const callbackRef = useRef((story: typeof initialState) => {})
     const [story, storyDispatch] = useReducer(reducer, initialState)
+    /*
+    const customDispatch = (action: ActionType, callback?: Callback) => {
+        if (typeof callback === 'function') callbackRef.current = callback
+        storyDispatch(action)
+    }
+    */
+    useEffect(() => {
+        callbackRef.current && callbackRef.current(story)
+    }, [story])
+
     return (
         <StoryContext.Provider
             value={{

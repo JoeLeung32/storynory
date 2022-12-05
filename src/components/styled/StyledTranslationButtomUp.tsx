@@ -14,7 +14,7 @@ const StyledTranslationBottomUp = styled.div`
     user-select: none;
 
     width: 100%;
-    max-height: 50%;
+    max-height: 45%;
 
     header {
         background-color: #dc3545;
