@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import { graphql, useStaticQuery } from 'gatsby'
 import { Caption, CaptionTimestamp } from '../../interfaces/Caption'
-import { TranslationContent } from '../../interfaces/Translation'
 import StoryBookParagraph from './StoryBookParagraph'
+import { DOMTranslationTag } from '../../utils/DOM'
+import { useStory } from '../../context/StoryContext'
 import TranslationTooltip from '../tools/tooltips/TranslationTooltip'
 import TranslationBottomUp from '../tools/bottomUp/TranslationBottomUp'
-import { DOMTranslationTag, DOMTranslationToolTip } from '../../utils/DOM'
 
 interface Props {
     audioSourceUrl: string
@@ -15,49 +14,28 @@ interface Props {
     captions: {
         map(element: (caption: Caption, idx: string) => JSX.Element): any
     }
-    translationCode: string
+    locale: string
     children: React.ReactElement | undefined
-}
-
-const thirdPartyUrls = {
-    cambridge: {
-        name: `Cambridge Dictionary`,
-        baseUrl: `https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/`
-    },
-    google: {
-        name: `Google Translate`,
-        baseUrl: `https://translate.google.com/?sl=en&tl=zh-TW&op=translate&text=`
-    }
 }
 
 const StoryBook: React.FC<Props> = (props) => {
     // Declare
-    const { storyName, captions, children, translationCode } = props
+    const { storyName, captions, children, locale } = props
     const { audioSourceUrl, handleAudio } = props
     const audioRef = useRef<HTMLAudioElement>(
         typeof window !== 'undefined' ? new Audio(audioSourceUrl) : null
     )
-    const [pause, setPause] = useState(audioRef.current?.paused)
     const audio = audioRef.current
-    const [timeLoop, setTimeLoop] = useState<CaptionTimestamp>()
-    const [highlighter, setHighlighter] = useState<boolean>(true)
-    const [currentScriptId, setCurrentScriptId] = useState<string | null>(null)
-    const [translationObject, setTranslationObject] =
-        useState<TranslationContent>()
+    const { story, storyDispatch } = useStory()
     // Functions
-    const graphqlQueryWordsMdx = (() => {
-        const {
-            allMdx: { nodes }
-        } = useStaticQuery(graphqlAllMdxWords)
-        return nodes
-    })()
     const handleAudioOnTimeUpdate = () => {
         const doLooping = () => {
-            if (!audio || !timeLoop) return
-            if (timeLoop.start && timeLoop.start >= audio.currentTime) {
-                audio.currentTime = timeLoop.start || 0
-            } else if (timeLoop.end && timeLoop.end <= audio.currentTime) {
-                audio.currentTime = timeLoop.start || 0
+            const tl = story.timeLoop
+            if (!audio || !tl) return
+            if (tl.start && tl.start >= audio.currentTime) {
+                audio.currentTime = tl.start || 0
+            } else if (tl.end && tl.end <= audio.currentTime) {
+                audio.currentTime = tl.start || 0
             }
         }
         const doHighlightAndScroll = () => {
@@ -74,10 +52,13 @@ const StoryBook: React.FC<Props> = (props) => {
                 const ds = el?.dataset
                 const isShown = translationTooltip.classList.contains('show')
                 const targeted = ct >= Number(ds.start) && ct < Number(ds.end)
-                const autoScroll = highlighter && !isShown
-                ds.highlight = highlighter && targeted ? 'true' : 'false'
+                const autoScroll = story.highlighter && !isShown
+                ds.highlight = story.highlighter && targeted ? 'true' : 'false'
                 if (!targeted) return
-                setCurrentScriptId(el.id)
+                storyDispatch({
+                    type: 'currentParagraphId',
+                    payload: el.id
+                })
                 if (!autoScroll) return
                 el.scrollIntoView({
                     behavior: 'smooth',
@@ -85,13 +66,35 @@ const StoryBook: React.FC<Props> = (props) => {
                     inline: 'nearest'
                 })
             }
-            setCurrentScriptId(null)
+            storyDispatch({
+                type: 'currentParagraphId',
+                payload: ''
+            })
             paragraphs.forEach((el) => {
                 implement(el as HTMLElement)
             })
         }
         doLooping()
         doHighlightAndScroll()
+    }
+    // Context Control
+    const handleAudioPause = (data: boolean) => {
+        storyDispatch({
+            type: 'audioPause',
+            payload: data
+        })
+    }
+    const handleAudioTimeLoop = (data: CaptionTimestamp) => {
+        storyDispatch({
+            type: 'audioTimeLoop',
+            payload: data
+        })
+    }
+    const handleHighlighter = (data: boolean) => {
+        storyDispatch({
+            type: 'highlighter',
+            payload: data
+        })
     }
     // Life Cycle
     const effects = {
@@ -113,67 +116,54 @@ const StoryBook: React.FC<Props> = (props) => {
         }
     }
     useEffect(effects.audioInitial, [])
-    useEffect(effects.audioEventListenerRefresh, [highlighter, timeLoop])
+    useEffect(effects.audioEventListenerRefresh, [
+        story.highlighter,
+        story.timeLoop
+    ])
     useEffect(() => {
         const handleClick = (el: Event) => {
-            DOMTranslationToolTip.show()
             const target = el.target as HTMLElement
             const wordId = target.dataset.wordIdx
-            if (!wordId) return
-            const mdxData = graphqlQueryWordsMdx[wordId]
-            const word = mdxData.frontmatter.title
-            const refer = mdxData.frontmatter.refer
-            const thirdParty =
-                thirdPartyUrls[
-                    mdxData.frontmatter
-                        .thirdParty as keyof typeof thirdPartyUrls
-                ]
-            setTranslationObject({
-                wordId,
-                word,
-                refer,
-                target,
-                partOfSpeech: mdxData.frontmatter.partOfSpeech,
-                thirdPartyUrls: `<a href="${thirdParty.baseUrl}${word}" target="_blank">${thirdParty.name}</a>`
+            storyDispatch({
+                type: 'translation',
+                payload: {
+                    ...story.translation,
+                    wordId: wordId || '',
+                    tooltip: {
+                        display: true
+                    }
+                }
             })
         }
-        DOMTranslationTag.unset(handleClick)
-        DOMTranslationTag.setup(handleClick)
-        return () => DOMTranslationTag.unset(handleClick)
+        DOMTranslationTag.unset(handleClick) // TODO: No DOM
+        DOMTranslationTag.setup(handleClick) // TODO: No DOM
+        return () => DOMTranslationTag.unset(handleClick) // TODO: No DOM
     }, [])
     // Output
     return (
         <main className={`container-fluid`}>
             <h1>{storyName}</h1>
             <StyledStoryContent className={`storyContent`}>
-                <TranslationTooltip
-                    translationCode={translationCode}
-                    translationObject={translationObject}
-                    handleTranslationObject={setTranslationObject}
-                ></TranslationTooltip>
+                <TranslationTooltip locale={locale}></TranslationTooltip>
                 {captions.map((caption: Caption, idx: string) => (
                     <React.Fragment key={idx}>
                         {caption.type === 'paragraph' && (
                             <StoryBookParagraph
                                 id={`p${idx}`}
                                 data={caption.data}
-                                currentScriptId={currentScriptId}
-                                translationCode={translationCode}
-                                wordsMdx={graphqlQueryWordsMdx}
+                                currentScriptId={story.currentParagraphId}
+                                locale={locale}
                                 audio={audio}
-                                handleAudioTimeLoop={setTimeLoop}
-                                pause={pause}
-                                handleAudioPause={setPause}
-                                highlighter={highlighter}
-                                handleHighlighter={setHighlighter}
+                                handleAudioTimeLoop={handleAudioTimeLoop}
+                                pause={story.pause}
+                                handleAudioPause={handleAudioPause}
+                                highlighter={story.highlighter}
+                                handleHighlighter={handleHighlighter}
                             ></StoryBookParagraph>
                         )}
                     </React.Fragment>
                 ))}
-                <TranslationBottomUp
-                    translationCode={translationCode}
-                    translationObject={translationObject}
-                ></TranslationBottomUp>
+                <TranslationBottomUp locale={locale}></TranslationBottomUp>
             </StyledStoryContent>
             {children}
         </main>
@@ -184,30 +174,4 @@ export default StoryBook
 
 const StyledStoryContent = styled.div`
     position: relative;
-`
-
-const graphqlAllMdxWords = graphql`
-    {
-        allMdx {
-            nodes {
-                frontmatter {
-                    thirdParty
-                    slug
-                    title
-                    refer
-                    partOfSpeech {
-                        type
-                        en
-                        tc
-                        examples {
-                            en
-                            tc
-                        }
-                        moreExamples
-                    }
-                }
-                body
-            }
-        }
-    }
 `

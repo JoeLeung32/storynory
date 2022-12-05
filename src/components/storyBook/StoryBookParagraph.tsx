@@ -6,12 +6,13 @@ import {
 } from '../styled/StyledParagraph'
 import { CaptionLine, TypeAudioTimeFormat } from '../../interfaces/Caption'
 import { MdxWordsNodes } from '../../interfaces/Mdx'
+import { useWordData } from '../../context/WordData'
 
 interface Props {
     id: string
     data: [CaptionLine]
     currentScriptId?: string | null
-    translationCode?: string
+    locale?: string
     wordsMdx?: any
     audio?: HTMLAudioElement | null
     handleAudioTimeLoop?: any
@@ -22,11 +23,12 @@ interface Props {
 }
 
 const StoryBookParagraph: React.FC<Props> = (props) => {
-    const { data, id: parentId, translationCode } = props
+    const { data, id: parentId, locale } = props
     const { audio, handleAudioTimeLoop } = props
     const { pause, handleAudioPause } = props
     const { highlighter, handleHighlighter } = props
-    const { currentScriptId, wordsMdx } = props
+    const { currentScriptId } = props
+    const wordsMdx = useWordData.all()
     const charsRegExp = new RegExp(/[ ,.;:~\-=#_"'“‘()\[\]{}?!]/)
     const audioControl = {
         set: async (start: TypeAudioTimeFormat, end: TypeAudioTimeFormat) => {
@@ -118,8 +120,7 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                         highlighter ? 'text-primary' : 'text-secondary'
                     }`}
                     onClick={() => {
-                        const rs = !highlighter
-                        handleHighlighter(rs)
+                        handleHighlighter(!highlighter)
                     }}
                 >
                     <i className="fa-solid fa-highlighter"></i>
@@ -137,9 +138,7 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                 const translation = line.translation
                 const scriptContent = doTranslationTag(line)
                 const hadTranslation =
-                    translationCode &&
-                    translation &&
-                    translation[translationCode]
+                    locale && translation && translation[locale]
                 return (
                     <StyledParagraphLine
                         key={idx}
@@ -152,9 +151,7 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                         <div className={`p-2 px-3`}>
                             <StyledParagraphTranslation>
                                 {hadTranslation && (
-                                    <small>
-                                        {translation[translationCode]}
-                                    </small>
+                                    <small>{translation[locale]}</small>
                                 )}
                             </StyledParagraphTranslation>
                             <StyledScriptTag

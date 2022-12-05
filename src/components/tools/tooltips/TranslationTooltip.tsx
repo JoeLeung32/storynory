@@ -1,52 +1,97 @@
 import React, { useEffect } from 'react'
 import { marked } from 'marked'
-import { TranslationContent } from '../../../interfaces/Translation'
 import { StyledTranslationTooltip } from '../../styled/StyledTranslationTooltip'
-import {
-    DOMTranslationBottomUp,
-    DOMTranslationToolTip
-} from '../../../utils/DOM'
+import { useStory } from '../../../context/StoryContext'
+import { useWordData } from '../../../context/WordData'
 
-interface PropsForTranslatedFrom {
-    translationObject?: TranslationContent
+interface ThirdPartyUrl {
+    [x: string]: {
+        name: string
+        baseUrl: string
+    }
 }
 
-interface PropsForTranslationTooltip extends PropsForTranslatedFrom {
-    translationCode: string
-    handleTranslationObject?: any
+const thirdPartyUrls: ThirdPartyUrl = {
+    cambridge: {
+        name: `Cambridge Dictionary`,
+        baseUrl: `https://dictionary.cambridge.org/zht/詞典/英語-漢語-繁體/`
+    },
+    google: {
+        name: `Google Translate`,
+        baseUrl: `https://translate.google.com/?sl=en&tl=zh-TW&op=translate&text=`
+    }
 }
 
-export const TranslatedFrom: React.FC<PropsForTranslatedFrom> = (props) => {
-    const { translationObject } = props
+interface PropsForTranslationTooltip {
+    locale: string
+}
+
+export const TranslatedFrom: React.FC = () => {
+    const { story } = useStory()
+    const word = useWordData.index(story.translation.wordId)
+    const title = word.frontmatter?.title
+    const thirdParty = word.frontmatter?.thirdParty
+    let result = null
+    let url = null
+    if (typeof thirdPartyUrls[thirdParty] === undefined) return null
+    result = thirdPartyUrls[thirdParty]
+    url = `<a href="${result.baseUrl}${title}" target="_blank">${result.name}</a>`
     return (
         <div className={`translatedFrom`}>
             <strong>Translated from:</strong>
             <div
                 dangerouslySetInnerHTML={{
-                    __html: translationObject?.thirdPartyUrls || ''
+                    __html: url
                 }}
             ></div>
         </div>
     )
 }
 
-const TranslationTooltip: React.FC<PropsForTranslationTooltip> = (props) => {
-    const { translationCode, translationObject } = props
-    // const { handleTranslationObject } = props
+const TranslationTooltip: React.FC<PropsForTranslationTooltip> = ({
+    locale
+}) => {
+    const { story, storyDispatch } = useStory()
+    const word = useWordData.index(story.translation.wordId)
     const parseMarkdownInline = (type: string) => {
-        if (!translationObject) return
-        const txt = translationObject.partOfSpeech[0][type]
+        if (!word) return
+        const txt = word.frontmatter.partOfSpeech[0][type]
         return !txt ? txt : marked.parseInline(txt)
     }
-    const handleLearnMore = () => {
-        console.log('~>TODO', translationObject?.refer)
-        //handleTranslationObject
+    const handleBtnClose = () => {
+        storyDispatch({
+            type: 'translation',
+            payload: {
+                ...story.translation,
+                wordId: '',
+                tooltip: {
+                    display: false
+                }
+            }
+        })
+    }
+    const handleBtnDetail = () => {
+        storyDispatch({
+            type: 'translation',
+            payload: {
+                ...story.translation,
+                tooltip: {
+                    display: false
+                },
+                bottomUp: {
+                    display: true
+                }
+            }
+        })
     }
     useEffect(() => {
-        if (!translationObject || !translationObject.target) return
-        const { target } = translationObject
+        if (!story.translation.wordId.length) return
+        if (!story.translation.tooltip.display) return
         const storyContent = document.querySelector(
             '.storyContent'
+        ) as HTMLElement
+        const target = document.querySelector(
+            `.storyContent .translationTag[data-word-idx="${story.translation.wordId}"]`
         ) as HTMLElement
         const translationTooltip = document.querySelector(
             '.storyContent .translationTooltip'
@@ -72,7 +117,6 @@ const TranslationTooltip: React.FC<PropsForTranslationTooltip> = (props) => {
             translationToolTipLeft =
                 window.innerWidth - translationTooltip.offsetWidth
         }
-        translationTooltip.style.left = `${translationToolTipLeft}px`
 
         // Position Top
         translationToolTipTop =
@@ -81,57 +125,83 @@ const TranslationTooltip: React.FC<PropsForTranslationTooltip> = (props) => {
             elementHeight / 2 -
             translationTooltip.offsetHeight
         if (translationToolTipTop < 0) translationToolTipTop = 0
-        translationTooltip.style.top = `${translationToolTipTop}px`
 
-        translationTooltip.classList.add('show')
+        storyDispatch({
+            type: 'translation',
+            payload: {
+                ...story.translation,
+                wordId: story.translation.wordId,
+                tooltip: {
+                    ...story.translation.tooltip,
+                    posLeft: `${translationToolTipLeft}px`,
+                    posTop: `${translationToolTipTop}px`
+                }
+            }
+        })
+        return () => {
+            storyDispatch({
+                type: 'translation',
+                payload: {
+                    ...story.translation,
+                    wordId: story.translation.wordId,
+                    tooltip: {
+                        display: false,
+                        posLeft: `-100%`,
+                        posTop: `-100%`
+                    }
+                }
+            })
+        }
+    }, [word])
+    useEffect(() => {
+        if (!story.translation.tooltip.display) return
+        if (!story.translation.tooltip.posTop) return
+        const translationTooltip = document.querySelector(
+            '.storyContent .translationTooltip'
+        ) as HTMLElement
+        if (!translationTooltip) return
         translationTooltip.scrollIntoView({
             behavior: 'smooth',
             block: 'center',
             inline: 'nearest'
         })
-        return () => {
-            translationTooltip.classList.remove('show')
-            translationTooltip.style.left = '-100%'
-            translationTooltip.style.top = '-100%'
-        }
-    }, [translationObject])
+        return () => {}
+    }, [story.translation.tooltip.display, story.translation.tooltip.posTop])
 
+    if (!word) return <></>
     return (
         <StyledTranslationTooltip
             className={`translationTooltip rounded`}
-            data-word-id={translationObject?.wordId}
+            data-word-id={story.translation.wordId}
+            style={{
+                opacity: story.translation.tooltip.display ? '1' : '0',
+                left: story.translation.tooltip.posLeft,
+                top: story.translation.tooltip.posTop
+            }}
         >
             <header className={`d-flex justify-content-between`}>
                 <div>Dictionary</div>
-                <div
-                    className={`btnClose`}
-                    onClick={DOMTranslationToolTip.hide}
-                >
+                <div className={`btnClose`} onClick={handleBtnClose}>
                     <i className="fa-solid fa-xmark"></i>
                 </div>
             </header>
             <div className={`p-2`}>
                 <div className={`mb-2 content`}>
                     <p className="m-0 fw-bold text-capitalize">
-                        {translationObject?.word}
+                        {word.frontmatter?.title}
                     </p>
                     <p className="badge bg-primary m-0 my-1">
-                        {translationObject?.partOfSpeech[0].type}
+                        {word.frontmatter?.partOfSpeech[0].type}
                     </p>
                     <p className={`m-0 fw-bold`}>{parseMarkdownInline('en')}</p>
-                    <p className={`m-0`}>
-                        {parseMarkdownInline(translationCode)}
-                    </p>
+                    <p className={`m-0`}>{parseMarkdownInline(locale)}</p>
                 </div>
-                {translationObject?.refer && (
+                {word.frontmatter?.refer && (
                     <div className={`mb-2`}>
                         <p className={`m-0`}>
                             <strong>Learn:</strong>&nbsp;
-                            <a
-                                className={`link-primary`}
-                                onClick={handleLearnMore}
-                            >
-                                {translationObject?.refer}
+                            <a className={`link-primary`} onClick={() => {}}>
+                                {word.frontmatter?.refer}
                             </a>
                         </p>
                     </div>
@@ -139,12 +209,12 @@ const TranslationTooltip: React.FC<PropsForTranslationTooltip> = (props) => {
                 <div className={`mb-2`}>
                     <button
                         className={`btn btn-sm btn-info`}
-                        onClick={(ev) => DOMTranslationBottomUp.show(ev)}
+                        onClick={handleBtnDetail}
                     >
                         Show More
                     </button>
                 </div>
-                <TranslatedFrom translationObject={translationObject} />
+                <TranslatedFrom />
             </div>
         </StyledTranslationTooltip>
     )

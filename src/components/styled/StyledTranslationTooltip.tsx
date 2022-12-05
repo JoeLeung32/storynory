@@ -39,10 +39,6 @@ const StyledTranslationTooltip = styled.div`
         font-size: 10px;
         text-decoration: none;
     }
-
-    &.show {
-        opacity: 1;
-    }
 `
 
 export { StyledTranslationTooltip }
