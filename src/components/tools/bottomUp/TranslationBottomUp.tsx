@@ -125,8 +125,11 @@ const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
                         ) => {
                             return (
                                 <React.Fragment key={idx}>
-                                    {data.type.split(',').map((type) => (
-                                        <p className="badge bg-primary m-0 my-1 me-1">
+                                    {data.type.split(',').map((type, tIdx) => (
+                                        <p
+                                            key={tIdx}
+                                            className="badge bg-primary m-0 my-1 me-1"
+                                        >
                                             {type}
                                         </p>
                                     ))}
