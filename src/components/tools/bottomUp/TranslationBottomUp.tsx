@@ -20,6 +20,14 @@ const thirdPartyUrls: ThirdPartyUrl = {
     google: {
         name: `Google Translate`,
         baseUrl: `https://translate.google.com/?sl=en&tl=zh-TW&op=translate&text=`
+    },
+    liushengyingyu: {
+        name: `留聲詞典`,
+        baseUrl: `https://dictionary.liushengyingyu.com/zh-hant/ec/`
+    },
+    chinesewords: {
+        name: `漢語網`,
+        baseUrl: `https://www.chinesewords.org/en/`
     }
 }
 
@@ -117,9 +125,11 @@ const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
                         ) => {
                             return (
                                 <React.Fragment key={idx}>
-                                    <p className="badge bg-primary m-0 my-1">
-                                        {data.type}
-                                    </p>
+                                    {data.type.split(',').map((type) => (
+                                        <p className="badge bg-primary m-0 my-1 me-1">
+                                            {type}
+                                        </p>
+                                    ))}
                                     <p className={`m-0 fw-bold`}>
                                         {parseMarkdownInline(
                                             word.frontmatter.partOfSpeech[

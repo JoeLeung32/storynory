@@ -63,23 +63,18 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
         wordsMdx.forEach((node: MdxWordsNodes, idx: number) => {
             if (!node.frontmatter.slug) return
             const wordSearch = (word: string, content: string) => {
-                const targetWordIndex = content
+                const wordIndex = content
                     .toLowerCase()
                     .search(word.toLowerCase())
-                const twiPrevString = content.substring(
-                    targetWordIndex - 1,
-                    targetWordIndex
-                )
-                const twiNextString = content.substring(
-                    targetWordIndex + word.length,
-                    targetWordIndex + word.length + 1
+                const prevTxt = content.substring(wordIndex - 1, wordIndex)
+                const nextTxt = content.substring(
+                    wordIndex + word.length,
+                    wordIndex + word.length + 1
                 )
                 const isMatchedCharsRexExp =
-                    twiPrevString.search(charsRegExp) === 0 &&
-                    twiNextString.search(charsRegExp) === 0
-                return isMatchedCharsRexExp
-                    ? { word, index: targetWordIndex }
-                    : null
+                    prevTxt.search(charsRegExp) === 0 &&
+                    nextTxt.search(charsRegExp) === 0
+                return isMatchedCharsRexExp ? { word, index: wordIndex } : null
             }
             const slug = node.frontmatter.slug.toString()
             const variation = node.frontmatter?.variation || []
