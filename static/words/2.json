@@ -1,33 +1,5 @@
 [
   {
-    "word": "begin",
-    "translation": {
-      "tc": [
-        "<p>開始；開始進行（或存在）</p>",
-        "<ul>",
-        "<li><i>What time does the concert begin?</i>音樂會甚麼時候開始？</li>",
-        "<li><i>The bridge was begun five years ago and the estimated cost has already doubled.</i>這座橋五年前開始建造，到現在為止估計成本已經增加了一倍。</li>",
-        "<li><i>The film they want to watch begins at seven.</i>他們要看的電影七點開場。</li>",
-        "<li><i>The meeting began promisingly, but then things started to go wrong.</i>會議開始時很不錯，不過後來出了問題。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "bough",
-    "translation": {
-      "tc": [
-        "<p><strong>a large branch of a tree</strong></p>",
-        "<p>大樹枝，粗樹枝</p>",
-        "<ul>",
-        "<li><i>an apple/cherry orchard</i>蘋果／櫻桃園</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
     "word": "brass",
     "translation": {
       "tc": [
@@ -310,19 +282,6 @@
     "thirdParty": "cambridge"
   },
   {
-    "word": "gobbled",
-    "translation": {
-      "tc": [
-        "<p><strong>to eat food too fast</strong></p>",
-        "<p>狼吞虎嚥，大口大口地吃</p>",
-        "<ul>",
-        "<li><i>She gobbled her dinner (down/up).</i>她狼吞虎嚥地吃完了晚飯。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
     "word": "greedy",
     "translation": {
       "tc": [
@@ -336,21 +295,6 @@
         "<ul>",
         "<li><i>There wasn't a grain of truth in anything she said.</i>她無論說甚麼都沒有半句實話在裡面。</li>",
         "<li><i>Anyone with a grain of common sense would have known what to do.</i>稍微有一點常識的人都會知道應該做甚麼。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "haste",
-    "translation": {
-      "tc": [
-        "<p><strong>(too much) speed</strong></p>",
-        "<p>匆忙，倉促</p>",
-        "<ul>",
-        "<li><i>Unfortunately the report was prepared in haste and contained several inaccuracies.</i>遺憾的是，這份報告準備得有些倉促，裡面有幾處不準確的地方。</li>",
-        "<li><i><small>[ + to infinitive ]</small> In her haste to get up from the table, she knocked over a cup.</i>她匆忙從桌邊站起來，結果碰翻了一個茶杯。</li>",
-        "<li><i>His father had just died and he didn't want to marry with indecent haste.</i>父親剛剛去世，他不想太過匆忙地結婚——那樣做有悖情理。</li>",
         "</ul>"
       ]
     },
@@ -409,35 +353,6 @@
     },
     "thirdParty": "cambridge"
   },
-  {
-    "word": "hundredweight",
-    "translation": {
-      "tc": [
-        "<p><strong>a measure of weight equal to 50.80 kilograms in Britain or 45.36 kilograms in the US</strong></p>",
-        "<p>英擔（重量單位，在英國相當於50.80公斤，在美國等於45.36公斤）</p>",
-        "<ul>",
-        "<li><i>We ordered a hundredweight of coal.</i>我們訂購了一英擔的煤。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "inquisitive",
-    "translation": {
-      "tc": [
-        "<p><strong>wanting to discover as much as you can about things, sometimes in a way that annoys people</strong></p>",
-        "<p>好問的；愛鑽研的；好打聽的</p>",
-        "<ul>",
-        "<li><i>an inquisitive child</i>好奇愛問的小孩</li>",
-        "<li><i>an inquisitive mind</i>愛鑽研的人</li>",
-        "<li><i>She could see inquisitive faces looking out from the windows next door.</i>她可以看到一張張好奇的面孔從隔壁房子的窗戶向外探望。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
     "word": "lentils",
     "translation": {
       "tc": [
@@ -532,32 +447,6 @@
     "thirdParty": "cambridge"
   },
   {
-    "word": "mouthful",
-    "translation": {
-      "tc": [
-        "<p><strong>an area of land where fruit trees (but not orange trees or other citrus trees) are grown</strong></p>",
-        "<p>果園</p>",
-        "<ul>",
-        "<li><i>an apple/cherry orchard</i>蘋果／櫻桃園</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "orchard",
-    "translation": {
-      "tc": [
-        "<p><strong>an amount of food or drink that fills your mouth, or that you put into your mouth at one time</strong></p>",
-        "<p>滿口；一口</p>",
-        "<ul>",
-        "<li><i>He only ate a few mouthfuls of meat.</i>他只吃了幾口肉。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
     "word": "pale",
     "translation": {
       "tc": [
@@ -572,20 +461,6 @@
         "<ul>",
         "<li><i>She wore a pale blue hat.</i>她戴著一頂淺藍色的帽子。</li>",
         "<li><i>pale winter sunlight</i>冬天慘澹的日光</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "particularly",
-    "translation": {
-      "tc": [
-        "<p><strong>especially, or more than usual</strong></p>",
-        "<p>特別，尤其，異乎尋常地</p>",
-        "<ul>",
-        "<li><i>We're particularly interested to hear from people who speak two or more European languages.</i>我們特別希望能收到說兩種或以上歐洲語言的人的來信。</li>",
-        "<li><i>I didn't particularly want to go, but I had to.</i>我並不是特別想去，但我不得不去。</li>",
         "</ul>"
       ]
     },
@@ -615,20 +490,6 @@
         "<li><i>He hasn't written to me recently - perhaps he's lost my address.</i>他最近沒寫信給我——也許他把我的地址弄丟了。</li>",
         "<li><i>Perhaps the most important question has not been asked.</i>或許還沒有人提出最重要的問題。</li>",
         "<li><i>We plan to travel to Europe - to Spain or Italy perhaps.</i>我們打算去歐洲旅行，也許去西班牙或義大利。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "plentiful",
-    "translation": {
-      "tc": [
-        "<p><strong>If something is plentiful, there is a lot of it available.</strong></p>",
-        "<p>豐富的，充足的，多的</p>",
-        "<ul>",
-        "<li><i>Strawberries are plentiful in the summer.</i>夏天草莓很多。</li>",
-        "<li><i>I took a plentiful supply of games to keep the children amused.</i>我準備了夠多的遊戲供孩子們玩。</li>",
         "</ul>"
       ]
     },
@@ -900,19 +761,6 @@
     "thirdParty": "cambridge"
   },
   {
-    "word": "swinging",
-    "translation": {
-      "tc": [
-        "<p><strong>exciting and fashionable</strong></p>",
-        "<p>令人興奮的；時尚的</p>",
-        "<ul>",
-        "<li><i>It's a nostalgia trip back into the youth culture of the swinging 60s.</i>這是一趟體驗風靡一時的60年代青年文化懷舊之旅。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
     "word": "terribly",
     "translation": {
       "tc": [
@@ -939,19 +787,6 @@
         "<ul>",
         "<li><i>Farm workers have been toiling in the 100-degree heat over the past week.</i>在過去的一週中農場工人一直在100華氏度的高溫下艱苦工作。</li>",
         "<li><i>After toiling away at work all week, it's good to relax.</i>在辛苦工作整整一個星期後，放鬆一下挺好。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "uncommonly",
-    "translation": {
-      "tc": [
-        "<p><strong>extremely</strong></p>",
-        "<p>極其；極端地；異常地</p>",
-        "<ul>",
-        "<li><i>She was uncommonly brave too.</i>她也異常勇敢。</li>",
         "</ul>"
       ]
     },

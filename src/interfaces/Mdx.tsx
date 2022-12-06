@@ -14,6 +14,7 @@ interface MdxWordsNodes {
     frontmatter: {
         thirdParty?: string
         slug?: string
+        variation?: string[]
         title?: string
         refer?: string
         partOfSpeech?: MdxPartOfSpeech[]

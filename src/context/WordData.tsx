@@ -19,7 +19,9 @@ export const useWordData = {
     searchCache: (word: string) => {
         return (
             useWordData.cache.findIndex(
-                ({ frontmatter }: MdxWordsNodes) => frontmatter.slug === word
+                ({ frontmatter }: MdxWordsNodes) =>
+                    frontmatter.slug === word ||
+                    (frontmatter.variation || []).includes(word)
             ) || null
         )
     }
@@ -32,6 +34,7 @@ const graphqlAllMdxWords = graphql`
                 frontmatter {
                     thirdParty
                     slug
+                    variation
                     title
                     refer
                     partOfSpeech {

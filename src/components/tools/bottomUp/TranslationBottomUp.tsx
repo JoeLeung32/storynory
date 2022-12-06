@@ -54,11 +54,8 @@ const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
     const { story, storyDispatch } = useStory()
     const word = useWordData.index(story.translationBottomUp.wordId || '')
     const divRef = useRef() as React.MutableRefObject<HTMLDivElement>
-    const parseMarkdownInline = (index: number, type: string) => {
-        if (!word) return
-        const txt = word.frontmatter.partOfSpeech[index][type]
-        return !txt ? txt : marked.parseInline(txt)
-    }
+    const parseMarkdownInline = (text: string) =>
+        !text ? text : marked.parseInline(text)
     const handleBtnClose = () => {
         storyDispatch({
             type: 'translationBottomUp',
@@ -124,12 +121,17 @@ const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
                                         {data.type}
                                     </p>
                                     <p className={`m-0 fw-bold`}>
-                                        {parseMarkdownInline(Number(idx), 'en')}
+                                        {parseMarkdownInline(
+                                            word.frontmatter.partOfSpeech[
+                                                Number(idx)
+                                            ]['en']
+                                        )}
                                     </p>
                                     <p className={`m-0`}>
                                         {parseMarkdownInline(
-                                            Number(idx),
-                                            locale
+                                            word.frontmatter.partOfSpeech[
+                                                Number(idx)
+                                            ][locale]
                                         )}
                                     </p>
                                     {word.frontmatter?.refer && (

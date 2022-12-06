@@ -62,29 +62,38 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
         const matchedPair: { [x: string]: number } = {}
         wordsMdx.forEach((node: MdxWordsNodes, idx: number) => {
             if (!node.frontmatter.slug) return
-            const keyword = node.frontmatter.slug.toString()
-            const targetWordIndex = scriptContent
-                .toLowerCase()
-                .search(keyword.toLowerCase())
-            const twiPrevString = scriptContent.substring(
-                targetWordIndex - 1,
-                targetWordIndex
-            )
-            const twiNextString = scriptContent.substring(
-                targetWordIndex + keyword.length,
-                targetWordIndex + keyword.length + 1
-            )
-            const isMatchedCharsRexExp =
-                twiPrevString.search(charsRegExp) === 0 &&
-                twiNextString.search(charsRegExp) === 0
-            if (targetWordIndex >= 0 && isMatchedCharsRexExp) {
-                const actualWord = scriptContent.substring(
-                    targetWordIndex,
-                    targetWordIndex + keyword.length
+            const wordSearch = (word: string, content: string) => {
+                const targetWordIndex = content
+                    .toLowerCase()
+                    .search(word.toLowerCase())
+                const twiPrevString = content.substring(
+                    targetWordIndex - 1,
+                    targetWordIndex
                 )
-                matchedCase.push(actualWord)
-                matchedPair[actualWord] = idx
+                const twiNextString = content.substring(
+                    targetWordIndex + word.length,
+                    targetWordIndex + word.length + 1
+                )
+                const isMatchedCharsRexExp =
+                    twiPrevString.search(charsRegExp) === 0 &&
+                    twiNextString.search(charsRegExp) === 0
+                return isMatchedCharsRexExp
+                    ? { word, index: targetWordIndex }
+                    : null
             }
+            const slug = node.frontmatter.slug.toString()
+            const variation = node.frontmatter?.variation || []
+            const keyword = [slug, ...variation]
+                .map((str) => wordSearch(str, scriptContent))
+                .filter((k) => k)
+                .pop() as { word: string; index: number } | null
+            if (!keyword || !keyword.word || keyword.index < 0) return
+            const actualWord = scriptContent.substring(
+                keyword.index,
+                keyword.index + keyword.word.length
+            )
+            matchedCase.push(actualWord)
+            matchedPair[actualWord] = idx
         })
         if (!matchedCase || !matchedCase.length) return scriptContent
 
