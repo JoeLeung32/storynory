@@ -26,8 +26,8 @@ const StoryBook: React.FC<Props> = (props) => {
     const { story, storyDispatch } = useStory()
     // Functions
     const handleAudioOnTimeUpdate = () => {
-        const doLooping = () => {
-            const tl = story.audioTimeLoop
+        const doRepeat = () => {
+            const tl = story.audioRepeat
             if (!audio || !tl) return
             if (tl.start && tl.start >= audio.currentTime) {
                 audio.currentTime = tl.start || 0
@@ -67,7 +67,7 @@ const StoryBook: React.FC<Props> = (props) => {
             })
             DOMStory.autoScrollTo(currentParagraphIndex.id, story.highlighter)
         }
-        doLooping()
+        doRepeat()
         doHighlightAndScroll()
     }
     // Life Cycle
@@ -92,7 +92,7 @@ const StoryBook: React.FC<Props> = (props) => {
     useEffect(effects.audioInitial, [])
     useEffect(effects.audioEventListenerRefresh, [
         story.highlighter,
-        story.audioTimeLoop
+        story.audioRepeat
     ])
     // Output
     return (

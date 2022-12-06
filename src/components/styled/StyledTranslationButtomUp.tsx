@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const StyledTranslationBottomUp = styled.div`
     background: #fff;
     border: 2px solid #dc3545;
+    box-shadow: inset 0 2px #dc3545;
     display: block;
     opacity: 0;
     overflow: scroll;

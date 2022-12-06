@@ -8,6 +8,7 @@ import React, {
 import { CaptionLine, CaptionTimestamp } from '../interfaces/Caption'
 
 interface TranslationBottomUpInterface {
+    tagIdx?: string | null
     wordId?: string | null
     display: boolean
 }
@@ -15,7 +16,7 @@ interface TranslationBottomUpInterface {
 type ActionType =
     | { type: 'clean'; payload: {} }
     | { type: 'audioPause'; payload: boolean }
-    | { type: 'audioTimeLoop'; payload: CaptionTimestamp }
+    | { type: 'audioRepeat'; payload: CaptionTimestamp }
     | { type: 'highlighter'; payload: boolean }
     | { type: 'currentParagraphId'; payload: string }
     | {
@@ -26,7 +27,7 @@ type ActionType =
 const initialState = {
     callbackFire: false,
     audioPause: false,
-    audioTimeLoop: {} as CaptionTimestamp,
+    audioRepeat: {} as CaptionTimestamp,
     highlighter: true,
     currentParagraphId: '',
     currentParagraph: {

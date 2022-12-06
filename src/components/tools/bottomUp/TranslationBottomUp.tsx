@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react'
+import React, { SyntheticEvent, useEffect, useRef } from 'react'
 import { marked } from 'marked'
 import { StyledTranslationBottomUp } from '../../styled/StyledTranslationButtomUp'
 import { useStory } from '../../../context/StoryContext'
@@ -53,6 +53,7 @@ interface Props {
 const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
     const { story, storyDispatch } = useStory()
     const word = useWordData.index(story.translationBottomUp.wordId || '')
+    const divRef = useRef() as React.MutableRefObject<HTMLDivElement>
     const parseMarkdownInline = (index: number, type: string) => {
         if (!word) return
         const txt = word.frontmatter.partOfSpeech[index][type]
@@ -81,9 +82,21 @@ const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
             }
         })
     }
+    useEffect(() => {
+        if (!story.translationBottomUp.display) return
+        if (!divRef.current) return
+        divRef.current.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
+        return () => {}
+    }, [story.translationBottomUp])
+
     if (!word) return <></>
     return (
         <StyledTranslationBottomUp
+            ref={divRef}
             className={`translationBottomUp rounded-top ${
                 story.translationBottomUp.display ? 'show' : ''
             }`}
@@ -165,6 +178,7 @@ const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
                                             </ul>
                                         </div>
                                     )}
+                                    <hr className={`my-4`} />
                                 </React.Fragment>
                             )
                         }

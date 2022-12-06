@@ -22,11 +22,6 @@ const StyledParagraph = styled.div`
 const StyledParagraphLine = styled.div<StyledParagraphLine>`
     display: inline-flex;
     ${(props) => (props.standalone ? 'width: 100%' : 'flex: 1')};
-    &[data-highlight='true'] {
-        > div {
-            background: #ffff99;
-        }
-    }
     > div {
         align-items: center;
         border-radius: 1rem;

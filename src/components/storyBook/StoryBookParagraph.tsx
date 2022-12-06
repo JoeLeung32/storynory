@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import {
     StyledParagraphLine,
@@ -31,7 +31,7 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
         },
         set: async (start: TypeAudioTimeFormat, end: TypeAudioTimeFormat) => {
             storyDispatch({
-                type: 'audioTimeLoop',
+                type: 'audioRepeat',
                 payload: {
                     start: start,
                     end: end
@@ -91,16 +91,17 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
         return scriptContent
             .split(new RegExp(matchedCase.join('|')))
             .map((string, index) => {
-                const targetedWord = matchedCase[index]
-                if (!targetedWord)
+                const tagIdx = `${parentIdx}t${index}`
+                const tagWord = matchedCase[index]
+                if (!tagWord)
                     return <React.Fragment key={index}>{string}</React.Fragment>
-                const handleClick = (event: SyntheticEvent) => {
-                    const target = event.target as HTMLElement
+                const handleClick = () => {
                     storyDispatch({
                         type: 'translationBottomUp',
                         payload: {
                             ...story.translationBottomUp,
-                            wordId: target.dataset.wordIdx,
+                            tagIdx: tagIdx,
+                            wordId: matchedPair[tagWord].toString(),
                             display: true
                         }
                     })
@@ -109,19 +110,24 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                     <React.Fragment key={index}>
                         {string}
                         <span
-                            className={`translationTag`}
-                            data-word-idx={matchedPair[targetedWord]}
+                            className={`translationTag ${
+                                story.translationBottomUp.tagIdx === tagIdx
+                                    ? 'bg-warning'
+                                    : null
+                            }`}
+                            data-tag-idx={tagIdx}
+                            data-word-idx={matchedPair[tagWord]}
                             onClick={handleClick}
                         >
-                            {targetedWord}
+                            <span>{tagWord}</span>
+                            &nbsp;
+                            <i className="text-danger fa-solid fa-language"></i>
                         </span>
-                        &nbsp;
-                        <i className="text-danger fa-solid fa-language"></i>
                     </React.Fragment>
                 )
             })
     }
-    const ButtonGroup = (line: CaptionLine, idx: number) => {
+    const doButtonGroup = (line: CaptionLine, idx: number) => {
         const eleId = `${parentId}l${idx}`
         const timestampStart = line.start
         const timestampEnd = line.end
@@ -129,44 +135,50 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
             eleId !== story.currentParagraphId || story.audioPause
         const btnPauseShow =
             eleId === story.currentParagraphId && !story.audioPause
+        const BtnRepeat = () => (
+            <button
+                title={`Repeat this one`}
+                className={`btn btn-sm btn-link`}
+                onClick={() => audioControl.set(timestampStart, timestampEnd)}
+            >
+                <i className="fa-solid fa-repeat"></i>
+            </button>
+        )
+        const BtnPlay = () => (
+            <button
+                title={`Play from here`}
+                className={`btn btn-sm btn-link`}
+                onClick={() => audioControl.set(timestampStart, null)}
+            >
+                <i className="fa-solid fa-play"></i>
+            </button>
+        )
+        const BtnPause = () => (
+            <button
+                title={`Pause`}
+                className={`btn btn-sm btn-link`}
+                onClick={() => audioControl.pause()}
+            >
+                <i className="fa-solid fa-pause"></i>
+            </button>
+        )
+        const BtnHighlight = () => (
+            <button
+                title={`Stop highlight and auto-scroll`}
+                className={`btn btn-sm btn-link ${
+                    story.highlighter ? 'text-primary' : 'text-secondary'
+                }`}
+                onClick={() => audioControl.highlight()}
+            >
+                <i className="fa-solid fa-highlighter"></i>
+            </button>
+        )
         return (
             <div>
-                <button
-                    title={`Loop this one`}
-                    className={`btn btn-sm btn-link`}
-                    onClick={() =>
-                        audioControl.set(timestampStart, timestampEnd)
-                    }
-                >
-                    <i className="fa-solid fa-repeat"></i>
-                </button>
-                {btnPlayShow && (
-                    <button
-                        title={`Play from here`}
-                        className={`btn btn-sm btn-link`}
-                        onClick={() => audioControl.set(timestampStart, null)}
-                    >
-                        <i className="fa-solid fa-play"></i>
-                    </button>
-                )}
-                {btnPauseShow && (
-                    <button
-                        title={`Pause`}
-                        className={`btn btn-sm btn-link`}
-                        onClick={() => audioControl.pause()}
-                    >
-                        <i className="fa-solid fa-pause"></i>
-                    </button>
-                )}
-                <button
-                    title={`Stop highlight and auto-scroll`}
-                    className={`btn btn-sm btn-link ${
-                        story.highlighter ? 'text-primary' : 'text-secondary'
-                    }`}
-                    onClick={() => audioControl.highlight()}
-                >
-                    <i className="fa-solid fa-highlighter"></i>
-                </button>
+                <BtnRepeat />
+                {btnPlayShow && <BtnPlay />}
+                {btnPauseShow && <BtnPause />}
+                <BtnHighlight />
             </div>
         )
     }
@@ -192,7 +204,14 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                             story.highlighter
                         }
                     >
-                        <div className={`p-2 px-3`}>
+                        <div
+                            className={`p-2 px-3 ${
+                                story.currentParagraphId === eleId &&
+                                story.highlighter
+                                    ? 'alert alert-warning'
+                                    : ''
+                            }`}
+                        >
                             <StyledParagraphTranslation>
                                 {hadTranslation && (
                                     <small>{translation[locale]}</small>
@@ -201,7 +220,7 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                             <StyledScriptTag>
                                 {TranslationTag(eleId, line)}
                             </StyledScriptTag>
-                            {ButtonGroup(line, idx)}
+                            {doButtonGroup(line, idx)}
                         </div>
                     </StyledParagraphLine>
                 )
@@ -215,8 +234,10 @@ export default StoryBookParagraph
 const StyledScriptTag = styled.div`
     > .translationTag {
         cursor: pointer;
-        font-weight: bold;
-        text-decoration: underline;
-        position: relative;
+        span {
+            font-weight: bold;
+            text-decoration: underline;
+            position: relative;
+        }
     }
 `
