@@ -125,14 +125,17 @@ const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
                         ) => {
                             return (
                                 <React.Fragment key={idx}>
-                                    {data.type.split(',').map((type, tIdx) => (
-                                        <p
-                                            key={tIdx}
-                                            className="badge bg-primary m-0 my-1 me-1"
-                                        >
-                                            {type}
-                                        </p>
-                                    ))}
+                                    {data.type &&
+                                        data.type
+                                            .split(',')
+                                            .map((type, tIdx) => (
+                                                <p
+                                                    key={tIdx}
+                                                    className="badge bg-primary m-0 my-1 me-1"
+                                                >
+                                                    {type}
+                                                </p>
+                                            ))}
                                     <p className={`m-0 fw-bold`}>
                                         {parseMarkdownInline(
                                             word.frontmatter.partOfSpeech[
