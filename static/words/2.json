@@ -1,43 +1,5 @@
 [
   {
-    "word": "brass",
-    "translation": {
-      "tc": [
-        "<p><strong>a bright yellow metal made from copper and zinc</strong></p>",
-        "<p>黃銅</p>",
-        "<ul>",
-        "<li><i>The door handles were made of brass.</i>門把手是黃銅做的。</li>",
-        "</ul>",
-        "<p><strong>a thin piece of brass on the floor or wall in a church, with a picture or writing cut into it</strong></p>",
-        "<p>（教堂地上或牆上，刻有雕像或文字的）黃銅紀念牌</p>",
-        "<ul>",
-        "<li><i>The church has several beautiful medieval brasses.</i>這個教堂有幾塊精美的中世紀黃銅紀念牌。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "burden",
-    "translation": {
-      "tc": [
-        "<p><strong>a heavy load that you carry</strong></p>",
-        "<p>負荷，重負</p>",
-        "<ul>",
-        "<li><i>The little donkey struggled under its heavy burden.</i>小毛驢馱著重物艱難前行。</li>",
-        "</ul>",
-        "<p><strong>something difficult or unpleasant that you have to deal with or worry about</strong></p>",
-        "<p>負擔，重擔</p>",
-        "<ul>",
-        "<li><i>the burden of responsibility</i>責任的重擔</li>",
-        "<li><i>My elderly mother worries that she's a burden to me.</i>我年邁的母親擔心她成為我的拖累。</li>",
-        "<li><i>Buying a house often places a large financial burden on young couples.</i>買房子往往會讓年輕夫婦背上沉重的經濟負擔。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
     "word": "fell",
     "translation": {
       "tc": [
@@ -217,19 +179,6 @@
         "<li><i>The curtains hung in thick folds.</i>窗簾打著密密的摺子垂著。</li>",
         "<li><i>Hang your coat and hat (up) on the rack over there.</i>把你的大衣和帽子掛在那邊的架子上。</li>",
         "<li>...</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-    "word": "lentils",
-    "translation": {
-      "tc": [
-        "<p><strong>a very small dried bean that is cooked and eaten</strong></p>",
-        "<p>小扁豆，兵豆</p>",
-        "<ul>",
-        "<li><i>lentil soup</i>扁豆湯</li>",
-        "<li><i>red/green/brown lentils</i>紅／綠／棕色兵豆</li>",
         "</ul>"
       ]
     },
@@ -419,42 +368,6 @@
     "thirdParty": "cambridge"
   },
   {
-    "word": "quarrelling",
-    "translation": {
-      "tc": [
-        "<p><strong>an angry disagreement between two or more people or groups</strong></p>",
-        "<p>爭吵，不和</p>",
-        "<ul>",
-        "<li><i>They had a bitter quarrel about/over some money three years ago and they haven't spoken to each other since.</i>他們三年前因為錢的問題有過一次激烈的爭吵，從此以後就互不理睬了。</li>",
-        "<li><i>We have no quarrel with the people of your country (= we have no reason to disagree with or dislike them).</i>我們沒有理由對貴國的人民感到不滿。</li>",
-        "<li><i>They seem to have patched up their quarrel (= finished their disagreement and started to be friendly).</i>他們似乎在爭吵後言歸於好了。</li>",
-        "<li><i>What did you quarrel about/over?</i>你們為甚麼而爭吵？</li>",
-        "<li><i>She quarrelled with everyone in the village.</i>她跟村裡的每一個人都爭吵過。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "rampage",
-    "translation": {
-      "tc": [
-        "<p><strong>to go through an area making a lot of noise and causing damage</strong></p>",
-        "<p>橫衝直撞；撒野</p>",
-        "<ul>",
-        "<li><i>The demonstrators rampaged through the town, smashing windows and setting fire to cars.</i>示威者們橫衝直撞穿過城鎮，沿途砸壞窗戶、燒毀車輛。</li>",
-        "<li><i>Several villages were destroyed by rampaging soldiers.</i>好幾個村子被狂暴撒野的士兵搗毀。</li>",
-        "</ul>",
-        "<p><strong>violent and usually wild behaviour</strong></p>",
-        "<p>橫衝直撞；撒野；狂暴行爲</p>",
-        "<ul>",
-        "<li><i>Rioters went on a/the rampage through the city.</i>暴亂分子在城中橫衝直撞，胡作非為。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
     "word": "rage",
     "translation": {
       "tc": [
@@ -481,86 +394,6 @@
         "<li><i>The storm raged outside.</i>屋外暴風雨大作。</li>",
         "<li><i>A flu epidemic is raging in/through local schools.</i>一場流感在當地各學校肆虐。</li>",
         "<li><i>The argument rages on (= continues strongly).</i>正在進行激烈的爭論。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "retorted",
-    "translation": {
-      "tc": [
-        "<p><strong>to answer someone quickly in an angry or funny way</strong></p>",
-        "<p>（憤怒或風趣地）反駁，回嘴</p>",
-        "<ul>",
-        "<li><i><small>[ + speech ]</small> \",That doesn't concern you!\" she retorted.</i>「那不關你的事！」她反駁道。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "ripe",
-    "translation": {
-      "tc": [
-        "<p><strong>(of fruit or crops) completely developed and ready to be collected or eaten</strong></p>",
-        "<p>（果實或莊稼）成熟的</p>",
-        "<ul>",
-        "<li><i>Those bananas aren't ripe yet - they're still green.</i>那些香蕉還沒有成熟——還是綠的。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "ripening",
-    "translation": {
-      "tc": [
-        "<p><strong>to (cause to) become ripe</strong></p>",
-        "<p>（使）成熟</p>",
-        "<ul>",
-        "<li><i>The summer sunshine ripened the melons.</i>在夏日陽光的照射下，瓜熟了。</li>",
-        "<li><i>These melons are ripening nicely.</i>這些瓜馬上就熟透了。</li>",
-        "</ul>",
-        "<p><strong>to develop to a suitable condition for something to happen</strong></p>",
-        "<p>時機成熟；條件成熟</p>",
-        "<ul>",
-        "<li><i>My plans are ripening - now all I need is official approval.</i>我的計劃就要瓜熟蒂落了——現在就差官方的批准了。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "saffron",
-    "translation": {
-      "tc": [
-        "<p><strong>a dark yellow substance obtained from a flower and used as a spice to give colour and flavour to food</strong></p>",
-        "<p>番紅花粉（用於給食物增色提味）</p>",
-        "<ul>",
-        "<li><i>saffron rice</i>番紅花米飯</li>",
-        "</ul>",
-        "<p><strong>having a dark yellow colour</strong></p>",
-        "<p>番紅花色的，暗黃色的</p>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "savoury",
-    "translation": {
-      "tc": [
-        "<p><strong>Savoury food is salty or spicy and not sweet in taste.</strong></p>",
-        "<p>鹹的；辛辣的</p>",
-        "<ul>",
-        "<li><i>a savoury dish/sauce/flavour</i>帶鹹味的一道菜／一種調料／一種味道</li>",
-        "<li><i>savoury dumplings/pancakes</i>鹹湯圓／薄餅</li>",
-        "<li><i>A pie can be sweet or savoury.</i>餡餅可以是甜的或鹹的。</li>",
-        "</ul>",
-        "<p><strong>If you say that something is not savoury, you mean that it is not pleasant or socially acceptable.</strong></p>",
-        "<p>令人愉快的；名聲好的；受歡迎的</p>",
-        "<ul>",
-        "<li><i>That hotel doesn't have a very savoury reputation.</i>那家旅館的聲譽不太好。</li>",
         "</ul>"
       ]
     },
@@ -604,39 +437,6 @@
         "<ul>",
         "<li><i>I never smack my children.</i></li>",
         "<li><i>I'll smack your bottom if you don't behave yourself.</i></li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "supper",
-    "translation": {
-      "tc": [
-        "<p><strong>a main meal eaten in the evening</strong></p>",
-        "<p>晚飯，晚餐</p>",
-        "<ul>",
-        "<li><i>Why don't you come to/for supper tonight?</i>你今天一起來吃晚飯好嗎?</li>",
-        "<li><i>你今天一起來吃晚飯好嗎?</i>他們早早吃完晚飯，去看電影了。</li>",
-        "</ul>",
-        "<p><strong>a small meal eaten in the late evening</strong></p>",
-        "<p>夜宵</p>",
-        "<ul>",
-        "<li><i>We usually have tea at about 5.30 p.m. , then supper before we go to bed.</li>",
-        "<li><i>我們通常會在下午五點半吃晚飯，然後在睡覺前再吃些夜宵。</li>",
-        "</ul>"
-      ]
-    },
-    "thirdParty": "cambridge"
-  },
-  {
-    "word": "terribly",
-    "translation": {
-      "tc": [
-        "<p><strong>very badly</strong></p>",
-        "<p>很糟；很不好</p>",
-        "<ul>",
-        "<li><i>I slept terribly last night.</i>我昨晚睡得很不好。</li>",
         "</ul>"
       ]
     },
