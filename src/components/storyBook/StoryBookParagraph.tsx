@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 import {
     StyledParagraphLine,
     StyledParagraphTranslation
@@ -125,7 +127,10 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                         >
                             <span>{tagWord}</span>
                             &nbsp;
-                            <i className="text-danger fa-solid fa-language"></i>
+                            <FontAwesomeIcon
+                                className={`text-danger`}
+                                icon={solid('language')}
+                            ></FontAwesomeIcon>
                         </span>
                     </React.Fragment>
                 )
@@ -145,27 +150,29 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                 className={`btn btn-sm btn-link`}
                 onClick={() => audioControl.set(timestampStart, timestampEnd)}
             >
-                <i className="fa-solid fa-repeat"></i>
+                <FontAwesomeIcon icon={solid('repeat')}></FontAwesomeIcon>
             </button>
         )
-        const BtnPlay = () => (
-            <button
-                title={`Play from here`}
-                className={`btn btn-sm btn-link`}
-                onClick={() => audioControl.set(timestampStart, null)}
-            >
-                <i className="fa-solid fa-play"></i>
-            </button>
-        )
-        const BtnPause = () => (
-            <button
-                title={`Pause`}
-                className={`btn btn-sm btn-link`}
-                onClick={() => audioControl.pause()}
-            >
-                <i className="fa-solid fa-pause"></i>
-            </button>
-        )
+        const BtnPlay = () =>
+            btnPlayShow ? (
+                <button
+                    title={`Play from here`}
+                    className={`btn btn-sm btn-link`}
+                    onClick={() => audioControl.set(timestampStart, null)}
+                >
+                    <FontAwesomeIcon icon={solid('play')}></FontAwesomeIcon>
+                </button>
+            ) : null
+        const BtnPause = () =>
+            btnPauseShow ? (
+                <button
+                    title={`Pause`}
+                    className={`btn btn-sm btn-link`}
+                    onClick={() => audioControl.pause()}
+                >
+                    <FontAwesomeIcon icon={solid('pause')}></FontAwesomeIcon>
+                </button>
+            ) : null
         const BtnHighlight = () => (
             <button
                 title={`Stop highlight and auto-scroll`}
@@ -174,14 +181,14 @@ const StoryBookParagraph: React.FC<Props> = (props) => {
                 }`}
                 onClick={() => audioControl.highlight()}
             >
-                <i className="fa-solid fa-highlighter"></i>
+                <FontAwesomeIcon icon={solid('highlighter')}></FontAwesomeIcon>
             </button>
         )
         return (
             <div>
                 <BtnRepeat />
-                {btnPlayShow && <BtnPlay />}
-                {btnPauseShow && <BtnPause />}
+                <BtnPlay />
+                <BtnPause />
                 <BtnHighlight />
             </div>
         )

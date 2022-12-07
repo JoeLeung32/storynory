@@ -4,6 +4,8 @@ import { StyledTranslationBottomUp } from '../../styled/StyledTranslationButtomU
 import { useStory } from '../../../context/StoryContext'
 import { useWordData } from '../../../context/WordData'
 import { MdxPartOfSpeech } from '../../../interfaces/Mdx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
 
 interface ThirdPartyUrl {
     [x: string]: {
@@ -110,7 +112,7 @@ const TranslationBottomUp: React.FC<Props> = ({ locale }) => {
             <header className={`d-flex justify-content-between`}>
                 <div>Dictionary</div>
                 <div className={`btnClose`} onClick={handleBtnClose}>
-                    <i className="fa-solid fa-xmark"></i>
+                    <FontAwesomeIcon icon={solid('xmark')}></FontAwesomeIcon>
                 </div>
             </header>
             <div className={`p-2`}>
