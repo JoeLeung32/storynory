@@ -22,9 +22,10 @@ const StyledTranslationBottomUp = styled.div`
         color: #fff;
         display: block;
         padding: 4px 8px;
+        width: 100%;
 
         position: fixed;
-        width: 100%;
+        z-index: 1;
 
         .btnClose {
             cursor: pointer;
